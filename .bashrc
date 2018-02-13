@@ -1,1 +1,1 @@
-alias panread='pandoc -s -f markdown -t html -o README.md.html README.md'
+alias panread='pandoc -s -f markdown -t html --css ~/pan.css -o README.md.html README.md'
