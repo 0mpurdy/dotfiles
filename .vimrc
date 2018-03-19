@@ -46,3 +46,4 @@ nmap - <C-p>
 " map half page moves to leader + direction
 nmap <leader>j <C-d>
 nmap <leader>k <C-u>
+map \ $
