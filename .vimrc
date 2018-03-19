@@ -16,7 +16,7 @@ set softtabstop=2   " with expand tab not set combination of spaces will be used
 set number relativenumber
 
 autocmd FileType python nmap <F5> <Esc>:w<CR>:!clear;python %<CR>
-autocmd FileType python nmap <F6> :w<CR>:!clear;pytest<CR>
+autocmd FileType python nmap <F6> :w<CR>:!clear;pytest -v<CR>
 autocmd FileType python nmap <F1> :w<CR>:!autopep8 -i %<CR>
 
 " let Vundle manage Vundle, required
