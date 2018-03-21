@@ -1,10 +1,5 @@
 set nocompatible  " not compatible with vi
 syntax on         " use syntax highlighting
-filetype off      " required to be off for vundle
-
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
 
 " tab controls (more info at https://tedlogan.com/techblog3.html)
 set expandtab       " change tab key to insert spaces
@@ -12,17 +7,28 @@ set tabstop=2       " existing tabs look like 2 spaces
 set shiftwidth=2    " >> indent 2 spaces
 set softtabstop=2   " with expand tab not set combination of spaces will be used
 
-" use hybrid line numbers (https://jeffkreeftmeijer.com/vim-number/)
-set number relativenumber
+set number relativenumber   " use hybrid line numbers (https://jeffkreeftmeijer.com/vim-number/)
+set splitright              " new windows in a vertical split open to the right
 
-" F5 to run current file
-autocmd FileType python nmap <F5> <Esc>:w<CR>:!clear;python %<CR>
-" F6 to run tests
-autocmd FileType python nmap <F6> :w<CR>:!clear;pytest -v<CR>
-" F1 to auto format file
-autocmd FileType python nmap <F1> :w<CR>:!autopep8 -i %<CR>
-" Ctrl + / to comment
-autocmd FileType python nmap <C-_> 0i#<Esc>j
+" ********************* Keyboard mappings *************************
+
+" map ctrlp plugin to hypen
+nmap - <C-p>
+" map half page moves to leader + direction
+nmap <leader>j <C-d>
+nmap <leader>k <C-u>
+" handier end of line key
+map \ $
+" use gx to open files
+:let g:netrw_browsex_viewer= "open -a Firefox"
+
+" ************************ Plugins **********************************
+
+filetype off      " required to be off for vundle
+
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
 
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'       " https://github.com/VundleVim/Vundle.vim
@@ -43,19 +49,16 @@ filetype plugin indent on " vim autodetects file type (can't remember what inden
 " DONT FORGET TO DO :PluginInstall
 call vundle#end()            " required
 
+" *************** Python specific settings ***************************
+
+" F5 to run current file
+autocmd FileType python nmap <F5> <Esc>:w<CR>:!clear;python %<CR>
+" F6 to run tests
+autocmd FileType python nmap <F6> :w<CR>:!clear;pytest -v<CR>
+" F1 to auto format file
+autocmd FileType python nmap <F1> :w<CR>:!autopep8 -i %<CR>
+" Ctrl + / to comment
+autocmd FileType python nmap <C-_> 0i#<Esc>j
 " http://vim.wikia.com/wiki/Macros
 nmap , @q
 let mapleader=" " " set leader to space
-
-" map ctrlp plugin to hypen
-nmap - <C-p>
-
-" map half page moves to leader + direction
-nmap <leader>j <C-d>
-nmap <leader>k <C-u>
-
-" handier end of line key
-map \ $
-
-" use gx to open files
-:let g:netrw_browsex_viewer= "open -a Firefox"
