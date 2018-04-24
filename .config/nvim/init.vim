@@ -84,6 +84,9 @@ vnoremap // y/<C-R>"<CR>
 " Open neovim terminal
 :nnoremap <leader>t :vsp<CR>:terminal<CR>A
 
+" deoplete tab-complete
+inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
+
 " ********************* Terminal mappings ***************************
 
 " Map <Esc> to quitting the terminal
@@ -93,7 +96,9 @@ vnoremap // y/<C-R>"<CR>
 " git diff
 ":command GD !clear;git diff
 " Edit vim settings
-:command! EVIM e ~/.config/nvim/init.vim
+:command! EVIM e ~/.vimrc
+" Edit vim settings
+:command! ENVIM e ~/.config/nvim/init.vim
 " Source vim settings
 :command! RVIM source ~/.config/nvim/init.vim
 

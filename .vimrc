@@ -75,6 +75,10 @@ vnoremap // y/<C-R>"<CR>
 " find and replace visually selected text
 :vnoremap /s y:%s/<C-R>"/
 
+" Set indent folding
+:nnoremap <leader>z :set foldmethod=indent<CR>zM<CR>
+:nnoremap <leader>v :vsp<CR>
+
 " ********************* Commands ************************************
 " git diff
 ":command GD !clear;git diff
@@ -85,6 +89,10 @@ vnoremap // y/<C-R>"<CR>
 
 " Cover short tests pytorch
 :command! PyCS !pytest --cov=. --cov-report term-missing:skip-covered -m 'not long'
+
+" Search current directory for text
+:command! -nargs=1 CSearch vimgrep "<args>" ./**/*.py ./**/*.txt
+:nnoremap <leader>] :CSearch 
 
 " *************** Python specific settings ***************************
 
