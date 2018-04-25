@@ -17,18 +17,11 @@ set splitright                    " new windows in a vertical split open to the 
 set hidden                        " don't ask to save before switching buffers
 set directory^=$HOME/.vim/tmp//   " Use central location for swp files
 
-" ********************* Keyboard mappings *************************
+" ************************* Leader mappings *************************
 
 let mapleader=" " " set leader to space
 " map double leader (space) to command
 nmap <leader><leader> :
-" handier end of line key
-map \ $
-" use gx to open files
-:let g:netrw_browsex_viewer= "open -a Firefox"
-" next in quickfix list
-:nnoremap = :cn<CR>
-
 " Set indent folding
 :nnoremap <leader>z :set foldmethod=indent<CR>zM<CR>
 :nnoremap <leader>v :vsp<CR>
@@ -37,19 +30,38 @@ map \ $
 set listchars=eol:¬,tab:>·,trail:~,extends:>,precedes:<,space:␣
 :nnoremap <leader>= :set list!<cr>
 
+" ********************** Function key mappings **********************
+
+" toggle search highlighting
+:noremap <F2> :set hlsearch! hlsearch?<cr>
+
+" ********************** Keyboard mappings **************************
+
+" handier end of line key
+map \ $
+" use gx to open files
+:let g:netrw_browsex_viewer= "open -a Firefox"
+" next in quickfix list
+:nnoremap = :cn<CR>
+" http://vim.wikia.com/wiki/Macros
+nmap , @q
+
 " ************************ Plugins **********************************
 
 " Specify a directory for plugins
 " - Avoid using standard Vim directory names like 'plugin'
 call plug#begin('~/.local/share/nvim/plugged')
 
-Plug 'tpope/vim-fugitive'       " Git integration
 Plug 'flazz/vim-colorschemes'   " Colorschemes
-Plug 'scrooloose/nerdtree'      " Directory navigation
 Plug 'tpope/vim-surround'       " surround with quotes or brackets
 
-" Fuzzy find
-Plug 'junegunn/fzf.vim'
+Plug 'tpope/vim-fugitive'       " Git integration
+set diffopt+=vertical
+
+Plug 'scrooloose/nerdtree'      " Directory navigation
+:nnoremap <leader>n :NERDTreeToggle<cr>
+
+Plug 'junegunn/fzf.vim'         " Fuzzy find
 set rtp+=/usr/local/opt/fzf
 " map FZF plugin to hypen
 nmap - :FZF<CR>
@@ -124,31 +136,30 @@ vnoremap // y/<C-R>"<CR>
 :command! PyCS !pytest --cov=. --cov-report term-missing:skip-covered -m 'not long'
 
 " Search current directory for text
-:command! -nargs=1 CSearch vimgrep "<args>" ./**/*.py ./**/*.txt
+:command! -nargs=1 CSearch noautocmd vimgrep "<args>" ./**/*.py ./**/*.txt
 :nnoremap <leader>] :CSearch 
 
 " ********************* Python specific settings *********************
 
-" F4 to run curret dir
+" F4 to run current dir
 autocmd FileType python nmap <F4> <Esc><Esc>:!clear;python .<CR>
 " F5 to run current file
 autocmd FileType python nmap <F5> <Esc>:w<CR>:!clear;python %<CR>
 " F6 to run unit tests
 autocmd FileType python nmap <F6> :w<CR>:vsp term://pytest -v -m 'not long'<CR>
 " F7 to run single test with debugging
-autocmd FileType python nmap <F7> :w<CR>:!clear;pytest -v --pdb %<CR>
+autocmd FileType python nmap <F7> :w<CR>:vsp term://pytest -v --pdb %<CR>
 " F8 to run all tests
-autocmd FileType python nmap <F8> :w<CR>:!clear;pytest -v<CR>
+autocmd FileType python nmap <F8> :w<CR>:vsp term://pytest -v<CR>
 " F9 to run code coverage
-autocmd FileType python nmap <F9> :w<CR>:!pytest --cov=. --cov-report term-missing:skip-covered<CR>
+autocmd FileType python nmap <F9> :w<CR>:vsp term://pytest --cov=. --cov-report term-missing:skip-covered<CR>
 " F10 to run code coverage for single file
-autocmd FileType python nmap <F10> :w<CR>:!pytest % --cov=. --cov-report term-missing<CR>
+autocmd FileType python nmap <F10> :w<CR>:vsp term://pytest % --cov=. --cov-report term-missing<CR>
 " F1 to auto format file
-autocmd FileType python nmap <F1> :w<CR>:!autopep8 -i %<CR>
+autocmd FileType python nmap <F1> :w<CR>:!autopep8 -i --aggressive --aggressive %<CR>
+
 " Ctrl + / to comment
 autocmd FileType python nmap <C-_> 0i# <Esc>j
 " + to uncomment
 autocmd FileType python nnoremap + 02xj
-" http://vim.wikia.com/wiki/Macros
-nmap , @q
 
