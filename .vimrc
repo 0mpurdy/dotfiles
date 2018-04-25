@@ -26,9 +26,9 @@ Plugin 'VundleVim/Vundle.vim'       " https://github.com/VundleVim/Vundle.vim
 
 " add ctrlp pluging (http://ctrlpvim.github.io/ctrlp.vim/#installation)
 " set runtimepath^=~/.vim/bundle/ctrlp.vim
-Plugin 'ctrlpvim/ctrlp.vim'         " https://github.com/ctrlpvim/ctrlp.vim
-set wildignore+=*/node_modules/*    " Linux/Mac
-let g:ctrlp_working_path_mode = 'r' " default ctrlp directory - nearest ancestor with .git
+" Plugin 'ctrlpvim/ctrlp.vim'         " https://github.com/ctrlpvim/ctrlp.vim
+" set wildignore+=*/node_modules/*    " Linux/Mac
+" let g:ctrlp_working_path_mode = 'r' " default ctrlp directory - nearest ancestor with .git
 Plugin 'Valloric/YouCompleteMe'     " https://valloric.github.io/YouCompleteMe/#installation
 let g:ycm_add_preview_to_completeopt = 0
 set completeopt-=preview
