@@ -21,7 +21,7 @@ set directory^=$HOME/.vim/tmp//   " Use central location for swp files
 
 let mapleader=" " " set leader to space
 " map double leader (space) to command
-nmap <leader><leader> :
+:nnoremap <leader><leader> :
 " Set indent folding
 :nnoremap <leader>z :set foldmethod=indent<CR>zM<CR>
 :nnoremap <leader>v :vsp<CR>
@@ -38,13 +38,13 @@ set listchars=eol:¬,tab:>·,trail:~,extends:>,precedes:<,space:␣
 " ********************** Keyboard mappings **************************
 
 " handier end of line key
-map \ $
+:noremap \ $
 " use gx to open files
 :let g:netrw_browsex_viewer= "open -a Firefox"
 " next in quickfix list
 :nnoremap = :cn<CR>
 " http://vim.wikia.com/wiki/Macros
-nmap , @q
+:nnoremap , @q
 
 " ************************ Plugins **********************************
 
@@ -64,7 +64,7 @@ Plug 'scrooloose/nerdtree'      " Directory navigation
 Plug 'junegunn/fzf.vim'         " Fuzzy find
 set rtp+=/usr/local/opt/fzf
 " map FZF plugin to hypen
-nmap - :FZF<CR>
+:nnoremap - :FZF<CR>
 
 " Auto completion
 if has('nvim')
@@ -76,7 +76,7 @@ else
 endif
 let g:deoplete#enable_at_startup = 1
 " deoplete tab-complete
-inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
+:inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
 
 Plug 'w0rp/ale'                 " Linting
 " ALE error navigation
@@ -94,17 +94,17 @@ colo monokain
 " *********************** Navigating windows ***********************
 
 " map half page moves to ctrl + direction
-nmap <C-j> <C-d>zz
-nmap <C-k> <C-u>zz
+:nnoremap <C-j> <C-d>zz
+:nnoremap <C-k> <C-u>zz
 " map window moves to leader
-nmap <leader>w <C-w>
-nmap <leader>h <C-w>h
-nmap <leader>l <C-w>l
+:nnoremap <leader>w <C-w>
+:nnoremap <leader>h <C-w>h
+:nnoremap <leader>l <C-w>l
 
 " ************************ Find and replace ************************
 
 " search for visually selected text
-vnoremap // y/<C-R>"<CR>
+:vnoremap // y/<C-R>"<CR>
 " find and replace visually selected text
 :vnoremap /s y:%s/<C-R>"/
 " find word in all files
@@ -134,32 +134,40 @@ vnoremap // y/<C-R>"<CR>
 
 " Cover short tests pytorch
 :command! PyCS !pytest --cov=. --cov-report term-missing:skip-covered -m 'not long'
+" Cover all pytest
+:command! PytestCoverAll !pytest --cov=. --cov-report term-missing
+" Recreate python ctags
+:command! PythonCTags !ctags -R --languages=python -f ./tags .
 
 " Search current directory for text
 :command! -nargs=1 CSearch noautocmd vimgrep "<args>" ./**/*.py ./**/*.txt
 :nnoremap <leader>] :CSearch 
 
+" Copy line to OS clipboard
+:command! CLine execute "normal! \"*yy"
+:command! PLine execute "normal! \"*p"
+
 " ********************* Python specific settings *********************
 
 " F4 to run current dir
-autocmd FileType python nmap <F4> <Esc><Esc>:!clear;python .<CR>
+autocmd FileType python nnoremap <F4> <Esc><Esc>:!clear;python .<CR>
 " F5 to run current file
-autocmd FileType python nmap <F5> <Esc>:w<CR>:!clear;python %<CR>
+autocmd FileType python nnoremap <F5> <Esc>:w<CR>:!clear;python %<CR>
 " F6 to run unit tests
-autocmd FileType python nmap <F6> :w<CR>:vsp term://pytest -v -m 'not long'<CR>
+autocmd FileType python nnoremap <F6> :w<CR>:vsp term://pytest -v -m 'not long'<CR>
 " F7 to run single test with debugging
-autocmd FileType python nmap <F7> :w<CR>:vsp term://pytest -v --pdb %<CR>
+autocmd FileType python nnoremap <F7> :w<CR>:vsp term://pytest -v --pdb %<CR>
 " F8 to run all tests
-autocmd FileType python nmap <F8> :w<CR>:vsp term://pytest -v<CR>
+autocmd FileType python nnoremap <F8> :w<CR>:vsp term://pytest -v<CR>
 " F9 to run code coverage
-autocmd FileType python nmap <F9> :w<CR>:vsp term://pytest --cov=. --cov-report term-missing:skip-covered<CR>
+autocmd FileType python nnoremap <F9> :w<CR>:vsp term://pytest --cov=. --cov-report term-missing:skip-covered<CR>
 " F10 to run code coverage for single file
-autocmd FileType python nmap <F10> :w<CR>:vsp term://pytest % --cov=. --cov-report term-missing<CR>
+autocmd FileType python nnoremap <F10> :w<CR>:vsp term://pytest % --cov=. --cov-report term-missing<CR>
 " F1 to auto format file
-autocmd FileType python nmap <F1> :w<CR>:!autopep8 -i --aggressive --aggressive %<CR>
+autocmd FileType python nnoremap <F1> :w<CR>:!autopep8 -i --aggressive --aggressive %<CR>
 
 " Ctrl + / to comment
-autocmd FileType python nmap <C-_> 0i# <Esc>j
+autocmd FileType python nnoremap <C-_> 0i# <Esc>j
 " + to uncomment
 autocmd FileType python nnoremap + 02xj
 
