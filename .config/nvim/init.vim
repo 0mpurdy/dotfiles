@@ -84,6 +84,11 @@ Plug 'w0rp/ale'                 " Linting
 :nnoremap [e :ALEPreviousWrap<cr>
 :nnoremap <leader>a :ALEToggle<cr>
 
+" Typescript support
+Plug 'mhartington/nvim-typescript'
+" Typescript syntax highlighting
+Plug 'leafgarland/typescript-vim'
+
 " Initialize plugin system
 call plug#end()
 
