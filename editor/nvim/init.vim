@@ -157,7 +157,7 @@ colo monokain
 " F4 to run current dir
 autocmd FileType python nnoremap <F4> <Esc><Esc>:!clear;python .<CR>
 " F5 to run current file
-autocmd FileType python nnoremap <F5> <Esc>:w<CR>:!clear;python %<CR>
+autocmd FileType python nnoremap <F5> :w<CR>:vsp term://python %<CR>
 " F6 to run unit tests
 autocmd FileType python nnoremap <F6> :w<CR>:vsp term://pytest -v -m 'not long'<CR>
 " F7 to run single test with debugging
