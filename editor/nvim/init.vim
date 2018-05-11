@@ -84,6 +84,13 @@ Plug 'w0rp/ale'                 " Linting
 :nnoremap [e :ALEPreviousWrap<cr>
 :nnoremap <leader>a :ALEToggle<cr>
 
+" Snippet support
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+
 " Typescript support
 Plug 'mhartington/nvim-typescript'
 " Typescript syntax highlighting
