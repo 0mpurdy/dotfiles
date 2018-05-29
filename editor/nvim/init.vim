@@ -62,7 +62,7 @@ Plug 'scrooloose/nerdtree'      " Directory navigation
 :nnoremap <leader>n :NERDTreeToggle<cr>
 
 Plug 'junegunn/fzf.vim'         " Fuzzy find
-set rtp+=/usr/local/opt/fzf
+set rtp+=~/.fzf
 " map FZF plugin to hypen
 :nnoremap - :FZF<CR>
 
