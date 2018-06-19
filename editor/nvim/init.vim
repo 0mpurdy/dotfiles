@@ -64,7 +64,7 @@ Plug 'scrooloose/nerdtree'      " Directory navigation
 Plug 'junegunn/fzf.vim'         " Fuzzy find
 set rtp+=~/.fzf
 " map FZF plugin to hypen
-:nnoremap - :FZF<CR>
+:nnoremap - :GFiles<CR>
 
 " Auto completion
 if has('nvim')
@@ -87,7 +87,7 @@ Plug 'w0rp/ale'                 " Linting
 " Snippet support
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
-let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsExpandTrigger="ƒ"	
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
@@ -159,6 +159,8 @@ colo monokain
 :command! CLine execute "normal! \"*yy"
 :command! PLine execute "normal! \"*p"
 
+:command! Less :!lessc ./css/style.less ./style.css
+
 " ********************* Python specific settings *********************
 
 " F4 to run current dir
@@ -183,3 +185,11 @@ autocmd FileType python nnoremap <C-_> 0i# <Esc>j
 " + to uncomment
 autocmd FileType python nnoremap + 02xj
 
+" ********************* Rust specific settings *********************
+
+" F5 to run current file
+autocmd FileType rust nnoremap <F5> :w<CR>:vsp term://cargo run %<CR>
+
+" ********************* Bash specific settings *********************
+
+autocmd Filetype sh nnoremap <c-_> 0i# <Esc>j
