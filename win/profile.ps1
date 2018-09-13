@@ -1,5 +1,7 @@
-param([string] $username)
+param([string] $username = $env:USERNAME)
+
 Write-Host ('Profile for', $username, 'in "Documents/WindowsPowerShell"') -Separator ' '
+
 function go {cd C:\dev}
 function goconfig {cd "C:\Users\$username\Documents\WindowsPowerShell"}
 function ecfg {nvim "C:\Users\$username\Documents\WindowsPowerShell\profile.ps1"}
