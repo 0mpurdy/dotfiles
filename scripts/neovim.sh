@@ -19,3 +19,7 @@ cp "${HOME}/dev/dotfiles/editor/nvim/init.vim" ~/.config/nvim/init.vim
 
 # install python3 for neovim (required for deoplete)
 python3 -m pip install neovim
+
+echo 'You may need to change the owner of the ~/Local/nvim folder'
+echo 'The ~/.local/share/nvim/site/autoload/plug.vim folder may also need changed'
+echo '$ sudo chown -R username folder/'
