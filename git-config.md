@@ -1,5 +1,11 @@
 # Commands for generating git configuration
 
+To edit the git global config:
+
+```
+git config --global --edit
+```
+
 Git `lol` alias
 
 ```
