@@ -1,9 +1,16 @@
+echo 'Hello Michael'
+
 # third party installations
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+export GOPATH=$HOME/dev/go
+export GOBIN=$HOME/dev/go/bin
+
+export EDITOR=nvim
 
 # personal bashrc
 alias panread='pandoc -s -f markdown -t html --css ~/.config/pan.css -o README.md.html README.md; open README.md.html'
@@ -19,16 +26,13 @@ function pan() {
   fi
   outputfile="$inputfile.html"
 
-  pandoc -s -f markdown -t html --css ~/.config/pan.css -o $outputfile $inputfile; open $outputfile
+  pandoc -s -f markdown -t html --css "$HOME/.config/pan.css" -o $outputfile $inputfile; open $outputfile
 }
 
 alias ll='ls -lah'
 alias gst='git status -uall -s -b'
-alias cdev='cd ~/dev/'
-
-export EDITOR=nvim
-
-export GOPATH=$HOME/dev/go
-export GOBIN=$HOME/dev/go/bin
+alias dev='cd ~/dev/'
+alias ecfg="${EDITOR} ${HOME}/.bashrc"
+alias epro="${EDITOR} ${HOME}/.profile"
 
 source ~/.config/git-completion.bash
