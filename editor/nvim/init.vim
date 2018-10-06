@@ -52,8 +52,18 @@ set listchars=eol:¬,tab:>·,trail:~,extends:>,precedes:<,space:␣
 " - Avoid using standard Vim directory names like 'plugin'
 call plug#begin('~/.local/share/nvim/plugged')
 
-Plug 'flazz/vim-colorschemes'   " Colorschemes
-Plug 'tpope/vim-surround'       " surround with quotes or brackets
+Plug 'flazz/vim-colorschemes' " Colorschemes
+Plug 'tpope/vim-surround'     " surround with quotes or brackets
+Plug 'tpope/vim-repeat'       " For repeating plugin actions
+Plug 'tpope/vim-speeddating'  " For incrementing dates properly
+Plug 'tpope/vim-unimpaired'   " Some useful normal mode mappings
+Plug 'tpope/vim-commentary'   " Better comment support
+
+Plug 'junegunn/vim-easy-align' " Alignment tool
+" Start interactive EasyAlign in visual mode (e.g. vipga)
+xmap ga <Plug>(EasyAlign)
+" Start interactive EasyAlign for a motion/text object (e.g. gaip)
+nmap ga <Plug>(EasyAlign)
 
 Plug 'tpope/vim-fugitive'       " Git integration
 set diffopt+=vertical
