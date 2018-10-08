@@ -26,3 +26,5 @@ Edit `~/.bash_profile` to set the default terminal emulator for i3
 ```
 export TERMINAL=gnome-terminal
 ```
+
+Install [nvm](https://github.com/creationix/nvm)
