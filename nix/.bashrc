@@ -1,4 +1,13 @@
+# .bashrc
 echo 'Hello Michael'
+
+# Source global definitions
+if [ -f /etc/bashrc ]; then
+	. /etc/bashrc
+fi
+
+# Fedora : Uncomment the following line if you don't like systemctl's auto-paging feature:
+# export SYSTEMD_PAGER=
 
 # third party installations
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
