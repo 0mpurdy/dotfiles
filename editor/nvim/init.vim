@@ -73,8 +73,7 @@ Plug 'scrooloose/nerdtree'      " Directory navigation
 
 Plug 'junegunn/fzf.vim'         " Fuzzy find
 set rtp+=~/.fzf
-" map FZF plugin to hypen
-:nnoremap - :GFiles<CR>
+:nnoremap <leader>f :GFiles<CR>
 
 " Auto completion
 if has('nvim')
