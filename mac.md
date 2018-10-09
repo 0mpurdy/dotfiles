@@ -26,6 +26,7 @@
  - Install [GitKraken][gitkraken]
  - Install Slack
  - Install WhatsApp
+ - Install Google Drive
  - Install the Affinity suite
 
  - Install [Android Studio][android-studio]
