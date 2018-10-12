@@ -100,10 +100,10 @@ let g:UltiSnipsExpandTrigger="ƒ"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
-" Typescript support
-Plug 'mhartington/nvim-typescript'
-" Typescript syntax highlighting
-Plug 'leafgarland/typescript-vim'
+Plug 'HerringtonDarkholme/yats.vim'                        " Required for nvim-typescript
+Plug 'Shougo/denite.nvim'                                  " Required for nvim-typescript
+Plug 'mhartington/nvim-typescript', {'do': './install.sh'} " Typescript support
+Plug 'leafgarland/typescript-vim'                          " Typescript syntax highlighting
 
 " Initialize plugin system
 call plug#end()
