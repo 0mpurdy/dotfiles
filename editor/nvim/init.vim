@@ -56,7 +56,7 @@ Plug 'flazz/vim-colorschemes' " Colorschemes
 Plug 'tpope/vim-surround'     " surround with quotes or brackets
 Plug 'tpope/vim-repeat'       " For repeating plugin actions
 Plug 'tpope/vim-speeddating'  " For incrementing dates properly
-Plug 'tpope/vim-unimpaired'   " Some useful normal mode mappings
+"Plug 'tpope/vim-unimpaired'   " Some useful normal mode mappings
 Plug 'tpope/vim-commentary'   " Better comment support
 
 Plug 'junegunn/vim-easy-align' " Alignment tool
@@ -164,6 +164,13 @@ colo monokain
 :command! -nargs=1 CSearch noautocmd vimgrep "<args>" ./**/*.py ./**/*.txt
 :nnoremap <leader>] :CSearch 
 
+" Navigating buffers and tabs
+:nnoremap <leader>, :tabnext<cr>
+:nnoremap <leader>. :tabprevious<cr>
+:nnoremap <tab> :bnext<cr>
+:nnoremap <S-tab> :bprevious<cr>
+:nnoremap <leader><tab> :tabnew<cr>
+
 " Copy line to OS clipboard
 :command! CLine execute "normal! \"*yy"
 :command! PLine execute "normal! \"*p"
@@ -172,10 +179,12 @@ colo monokain
 
 " ********************* Python specific settings *********************
 
+" F1 to auto format file
+autocmd FileType python nnoremap <F1> :w<CR>:!autopep8 -i --aggressive --aggressive %<CR>
 " F4 to run current dir
 autocmd FileType python nnoremap <F4> <Esc><Esc>:!clear;python .<CR>
 " F5 to run current file
-autocmd FileType python nnoremap <F5> :w<CR>:vsp term://python %<CR>
+autocmd FileType python nnoremap <F5> :w<CR>:vsp term://python %<CR>i
 " F6 to run unit tests
 autocmd FileType python nnoremap <F6> :w<CR>:vsp term://pytest -v -m 'not long'<CR>
 " F7 to run single test with debugging
@@ -186,8 +195,6 @@ autocmd FileType python nnoremap <F8> :w<CR>:vsp term://pytest -v<CR>
 autocmd FileType python nnoremap <F9> :w<CR>:vsp term://pytest --cov=. --cov-report term-missing:skip-covered<CR>
 " F10 to run code coverage for single file
 autocmd FileType python nnoremap <F10> :w<CR>:vsp term://pytest % --cov=. --cov-report term-missing<CR>
-" F1 to auto format file
-autocmd FileType python nnoremap <F1> :w<CR>:!autopep8 -i --aggressive --aggressive %<CR>
 
 " Ctrl + / to comment
 autocmd FileType python nnoremap <C-_> 0i# <Esc>j
