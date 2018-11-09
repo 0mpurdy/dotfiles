@@ -67,8 +67,8 @@ map \ $
 :nnoremap <Leader>/ /\<<C-r><C-w>\><CR>
 " find word in all files
 :nnoremap K :grep ' **/*.py<S-Left><S-Left>'
-" net in quickfix list
-:nnoremap = :cn<CR>
+" next in quickfix list
+:nnoremap <leader>e :cn<CR>
 
 " search for visually selected text
 vnoremap // y/<C-R>"<CR>

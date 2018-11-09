@@ -16,6 +16,7 @@ set number relativenumber         " use hybrid line numbers (https://jeffkreeftm
 set splitright                    " new windows in a vertical split open to the right
 set hidden                        " don't ask to save before switching buffers
 set directory^=$HOME/.vim/tmp//   " Use central location for swp files
+set ignorecase
 
 " ************************* Leader mappings *************************
 
@@ -42,7 +43,7 @@ set listchars=eol:¬,tab:>·,trail:~,extends:>,precedes:<,space:␣
 " use gx to open files
 :let g:netrw_browsex_viewer= "open -a Firefox"
 " next in quickfix list
-:nnoremap = :cn<CR>
+:nnoremap <leader>e :cn<CR>
 " http://vim.wikia.com/wiki/Macros
 :nnoremap , @q
 
@@ -69,7 +70,8 @@ Plug 'tpope/vim-fugitive'       " Git integration
 set diffopt+=vertical
 
 Plug 'scrooloose/nerdtree'      " Directory navigation
-:nnoremap <leader>n :NERDTreeToggle<cr>
+:nnoremap <leader>no :NERDTreeToggle<cr>
+:nnoremap <leader>nf :NERDTreeFind<cr>
 
 Plug 'junegunn/fzf.vim'         " Fuzzy find
 set rtp+=~/.fzf
@@ -110,7 +112,7 @@ call plug#end()
 
 " ************************** Colorscheme **************************
 
-colo monokain
+colo onedark
 
 " *********************** Navigating windows ***********************
 
@@ -129,7 +131,7 @@ colo monokain
 " find and replace visually selected text
 :vnoremap /s y:%s/<C-R>"/
 " find word in all files
-:nnoremap K :grep ' **/*.py<S-Left><S-Left>'
+:nnoremap K :vimgrep ' **/*.ts<S-Left><S-Left>'
 " replace word under cursor
 :nnoremap <Leader>s :%s/\<<C-r><C-w>\>/
 " find word under cursor
@@ -161,7 +163,8 @@ colo monokain
 :command! PythonCTags !ctags -R --languages=python -f ./tags .
 
 " Search current directory for text
-:command! -nargs=1 CSearch noautocmd vimgrep "<args>" ./**/*.py ./**/*.txt
+:set wildignore+=objd/**,obj/**,*.tmp,test.c,**/node_modules/**
+:command! -nargs=1 CSearch noautocmd vimgrep "<args>" ./**/*.py ./**/*.txt ./**/*.html ./**/*.ts
 :nnoremap <leader>] :CSearch 
 
 " Navigating buffers and tabs
@@ -171,11 +174,18 @@ colo monokain
 :nnoremap <S-tab> :bprevious<cr>
 :nnoremap <leader><tab> :tabnew<cr>
 
+:nnoremap <leader>+ :vertical resize +10<CR>
+:nnoremap <leader>- :vertical resize -10<CR>
+
+:nnoremap <leader>q :bd<CR>
+
 " Copy line to OS clipboard
 :command! CLine execute "normal! \"*yy"
 :command! PLine execute "normal! \"*p"
 
 :command! Less :!lessc ./css/style.less ./style.css
+:command! JsonFormat :%!python -m json.tool
+:nnoremap =j :JsonFormat<cr>
 
 " ********************* Python specific settings *********************
 
@@ -212,4 +222,12 @@ autocmd Filetype sh nnoremap <c-_> 0i# <Esc>j
 
 " ********************* Typescript specific settings *********************
 
-autocmd Filetype typescript nnoremap <F5> :!tsc %<CR>:vsp term://node %:r.js<CR>i
+autocmd Filetype typescript nnoremap <F3> :!tslint --fix %<cr>
+autocmd Filetype typescript nnoremap <F5> :!tsc --experimentalDecorators --target ES5 %<CR>:vsp term://node %:r.js<CR>i
+autocmd Filetype typescript nnoremap <F6> :vsp term://npm run test<CR>i
+autocmd Filetype typescript nnoremap <F12> :TSDef<CR>
+
+autocmd Filetype typescript nnoremap <leader>gd :TSDef<CR>
+autocmd Filetype typescript nnoremap <leader>gp :TSDefPreview<CR>
+autocmd Filetype typescript nnoremap <leader>gi :TSDoc<CR>
+autocmd Filetype typescript nnoremap <leader>gf :TSGetCodeFix<CR>
