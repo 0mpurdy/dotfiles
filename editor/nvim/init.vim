@@ -209,3 +209,7 @@ autocmd FileType rust nnoremap <F5> :w<CR>:vsp term://cargo run %<CR>
 " ********************* Bash specific settings *********************
 
 autocmd Filetype sh nnoremap <c-_> 0i# <Esc>j
+
+" ********************* Typescript specific settings *********************
+
+autocmd Filetype typescript nnoremap <F5> :!tsc %<CR>:vsp term://node %:r.js<CR>i

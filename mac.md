@@ -28,9 +28,12 @@
  - Install WhatsApp
  - Install Google Drive
  - Install the Affinity suite
+ - Install Spotify
 
  - Install [Android Studio][android-studio]
  - Install [pandoc][pandoc] (use brew)
+
+ - Install Visual Studio
 
 [android-studio]: https://developer.android.com/studio/
 [github-ssh]: https://help.github.com/articles/connecting-to-github-with-ssh/
