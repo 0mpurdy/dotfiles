@@ -1,7 +1,16 @@
 dotpath="${HOME}/dev/dotfiles"
 
-cp "${HOME}/.bashrc" "${dotpath}/nix/.bashrc"
-cp "${dotpath}/pandoc/panread.css" "${HOME}/.config/pan.css"
-cp "${HOME}/.vimrc" "${dotpath}/editor/.vimrc"
-cp "${HOME}/.profile" "${dotpath}/nix/.profile"
-cp "${HOME}/.config/nvim/init.vim" "${dotpath}/editor/nvim/init.vim"
+docopy() {
+  if [ ! -f $1 ]; then
+    echo "Could not find \"$1\""
+  else
+    echo "Copying \"$1\" to \"$2\""
+    cp $1 $2
+  fi
+}
+
+docopy "${HOME}/.bashrc" "${dotpath}/nix/.bashrc"
+docopy "${HOME}/.config/pan.css" "${dotpath}/pandoc/panread.css"
+docopy "${HOME}/.vimrc" "${dotpath}/editor/.vimrc"
+docopy "${HOME}/.profile" "${dotpath}/nix/.profile"
+docopy "${HOME}/.config/nvim/init.vim" "${dotpath}/editor/nvim/init.vim"
