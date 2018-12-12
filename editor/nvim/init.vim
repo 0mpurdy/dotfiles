@@ -107,6 +107,8 @@ Plug 'Shougo/denite.nvim'                                  " Required for nvim-t
 Plug 'mhartington/nvim-typescript', {'do': './install.sh'} " Typescript support
 Plug 'leafgarland/typescript-vim'                          " Typescript syntax highlighting
 
+Plug 'joshdick/onedark.vim'   " Colourscheme
+
 " Initialize plugin system
 call plug#end()
 
