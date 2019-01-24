@@ -27,6 +27,9 @@ let mapleader=" " " set leader to space
 :nnoremap <leader>z :set foldmethod=indent<CR>zM<CR>
 :nnoremap <leader>v :vsp<CR>
 
+:nnoremap <leader>y "+y
+:nnoremap <leader>p "+p
+
 " toggle list chars
 set listchars=eol:¬,tab:>·,trail:~,extends:>,precedes:<,space:␣
 :nnoremap <leader>= :set list!<cr>
@@ -35,6 +38,7 @@ set listchars=eol:¬,tab:>·,trail:~,extends:>,precedes:<,space:␣
 
 " toggle search highlighting
 :noremap <F2> :set hlsearch! hlsearch?<cr>
+:noremap <leader>2 :set hlsearch! hlsearch?<cr>
 
 " ********************** Keyboard mappings **************************
 
@@ -46,6 +50,26 @@ set listchars=eol:¬,tab:>·,trail:~,extends:>,precedes:<,space:␣
 :nnoremap <leader>e :cn<CR>
 " http://vim.wikia.com/wiki/Macros
 :nnoremap , @q
+:nnoremap Y y$
+
+function! Test()
+  if has('win32')
+    :exe 'norm i' . expand('$USERNAME') . " is testing"
+    echo "test"
+  else
+    :norm itesting
+  endif
+endfunction
+
+" function! ReplaceConsole()
+"     :bd!
+"     :terminal
+"     i
+" endfunction
+
+function! Split(match)
+    :exe 's/' . a:match . '/\0\r/g'
+endfunction
 
 " ************************ Plugins **********************************
 
@@ -73,8 +97,12 @@ Plug 'scrooloose/nerdtree'      " Directory navigation
 :nnoremap <leader>no :NERDTreeToggle<cr>
 :nnoremap <leader>nf :NERDTreeFind<cr>
 
-Plug 'junegunn/fzf.vim'         " Fuzzy find
-set rtp+=~/.fzf
+if has('win32')
+    Plug 'junegunn/fzf.vim'         " Fuzzy find
+    set rtp+=~/.fzf
+else
+    Plug 'C:/ProgramData/chocolatey/lib/fzf'
+endif
 :nnoremap <leader>f :GFiles<CR>
 
 " Auto completion
@@ -132,6 +160,8 @@ colo onedark
 :vnoremap // y/<C-R>"<CR>
 " find and replace visually selected text
 :vnoremap /s y:%s/<C-R>"/
+" replace from yank register without overriding yank
+:vnoremap R "_d"0P
 " find word in all files
 :nnoremap K :vimgrep ' **/*.ts<S-Left><S-Left>'
 " replace word under cursor
@@ -142,7 +172,7 @@ colo onedark
 " ******************** Neovim terminal mappings ********************
 
 " Open neovim terminal
-:nnoremap <leader>t :vsp<CR>:terminal<CR>A
+:nnoremap <leader>t :terminal<CR>A
 " Map <Esc> to quitting the terminal
 :tnoremap <Esc> <C-\><C-n>
 
@@ -154,8 +184,14 @@ colo onedark
 :command! EVIM e ~/.vimrc
 " Edit vim settings
 :command! ENVIM e ~/.config/nvim/init.vim
+if has('win32')
+    :command! ENVIM :exe "e C:/Users/" . expand('$USERNAME') . "/AppData/Local/nvim/init.vim"
+endif
 " Source vim settings
 :command! RVIM source ~/.config/nvim/init.vim
+if has('win32')
+    :command! RVIM :exe "source C:/Users/" . expand('$USERNAME') . "/AppData/Local/nvim/init.vim"
+endif
 
 " Cover short tests pytorch
 :command! PyCS !pytest --cov=. --cov-report term-missing:skip-covered -m 'not long'
@@ -170,8 +206,8 @@ colo onedark
 :nnoremap <leader>] :CSearch 
 
 " Navigating buffers and tabs
-:nnoremap <leader>, :tabnext<cr>
-:nnoremap <leader>. :tabprevious<cr>
+:nnoremap <leader>. :tabnext<cr>
+:nnoremap <leader>, :tabprevious<cr>
 :nnoremap <tab> :bnext<cr>
 :nnoremap <S-tab> :bprevious<cr>
 :nnoremap <leader><tab> :tabnew<cr>
@@ -179,7 +215,9 @@ colo onedark
 :nnoremap <leader>+ :vertical resize +10<CR>
 :nnoremap <leader>- :vertical resize -10<CR>
 
-:nnoremap <leader>q :bd<CR>
+:nnoremap <leader>q :bd!<CR> :qa
+:nnoremap <leader>bd :bd<CR>
+:nnoremap <leader>! :bd!<CR>
 
 " Copy line to OS clipboard
 :command! CLine execute "normal! \"*yy"
