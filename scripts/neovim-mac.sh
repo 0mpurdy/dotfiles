@@ -53,6 +53,14 @@ then
   curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 fi
 
+confirm 'install :Ag silver searcher'
+confirmation=$?
+if [[ "${confirmation}" -eq 0 ]]
+then
+  # https://github.com/ggreer/the_silver_searcher
+  brew install the_silver_searcher
+fi
+
 confirm 'copy config files'
 confirmation=$?
 if [[ "${confirmation}" -eq 0 ]]

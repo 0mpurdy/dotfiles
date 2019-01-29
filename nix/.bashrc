@@ -75,6 +75,8 @@ if ! shopt -oq posix; then
   fi
 fi
 
+# personal bashrc
+
 # https://github.com/junegunn/fzf
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
