@@ -34,6 +34,8 @@ let mapleader=" " " set leader to space
 set listchars=eol:¬,tab:>·,trail:~,extends:>,precedes:<,space:␣
 :nnoremap <leader>= :set list!<cr>
 
+:nnoremap <leader>G Gkzt
+
 " ********************** Function key mappings **********************
 
 " toggle search highlighting
@@ -97,10 +99,11 @@ Plug 'scrooloose/nerdtree'      " Directory navigation
 :nnoremap <leader>no :NERDTreeToggle<cr>
 :nnoremap <leader>nf :NERDTreeFind<cr>
 
+" Fuzzy find
 if has('win32')
     Plug 'C:/ProgramData/chocolatey/lib/fzf'
 else
-    Plug 'junegunn/fzf.vim'         " Fuzzy find
+    Plug 'junegunn/fzf.vim'
     set rtp+=~/.fzf
 endif
 :nnoremap <leader>f :GFiles<CR>
@@ -200,6 +203,10 @@ endif
 :command! PytestCoverAll !pytest --cov=. --cov-report term-missing
 " Recreate python ctags
 :command! PythonCTags !ctags -R --languages=python -f ./tags .
+
+" Replace to end of doc
+:command! ReplaceFromQuotes exe 'norm! 0"kyi""lyi''}:.,$s/\C<c-r>k/<c-r>l/g<cr><c-o>'
+:command! SwapQuotes exe 'norm! 0di"f''vi''p0p'
 
 " Search current directory for text
 :set wildignore+=objd/**,obj/**,*.tmp,test.c,**/node_modules/**
