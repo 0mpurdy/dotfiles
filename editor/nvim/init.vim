@@ -98,10 +98,10 @@ Plug 'scrooloose/nerdtree'      " Directory navigation
 :nnoremap <leader>nf :NERDTreeFind<cr>
 
 if has('win32')
+    Plug 'C:/ProgramData/chocolatey/lib/fzf'
+else
     Plug 'junegunn/fzf.vim'         " Fuzzy find
     set rtp+=~/.fzf
-else
-    Plug 'C:/ProgramData/chocolatey/lib/fzf'
 endif
 :nnoremap <leader>f :GFiles<CR>
 
@@ -183,6 +183,7 @@ colo onedark
 " Edit vim settings
 :command! EVIM e ~/.vimrc
 " Edit vim settings
+:command! ECFG e ~/.bashrc
 :command! ENVIM e ~/.config/nvim/init.vim
 if has('win32')
     :command! ENVIM :exe "e C:/Users/" . expand('$USERNAME') . "/AppData/Local/nvim/init.vim"
