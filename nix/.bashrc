@@ -12,6 +12,11 @@ if [ -f /etc/bashrc ]; then
   . /etc/bashrc
 fi
 
+# Source platform specific configuration
+if [ -f ~/.mac.bashrc ]; then
+  . ~/.mac.bashrc
+fi
+
 # don't put duplicate lines or lines starting with space in the history.
 # See bash(1) for more options
 HISTCONTROL=ignoreboth
@@ -75,6 +80,10 @@ if ! shopt -oq posix; then
   fi
 fi
 
+# Environment variables
+
+export EDITOR=nvim
+
 # personal bashrc
 
 # https://github.com/junegunn/fzf
@@ -84,5 +93,3 @@ fi
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
-export EDITOR=nvim
