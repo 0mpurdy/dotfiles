@@ -22,3 +22,5 @@ alias gst='git status -uall -s -b'
 alias dev='cd ~/dev/'
 alias ecfg="${EDITOR} ${HOME}/.bashrc"
 alias epro="${EDITOR} ${HOME}/.profile"
+
+alias fix='$EDITOR `git diff --name-only | uniq`'

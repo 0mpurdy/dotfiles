@@ -65,6 +65,8 @@ if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi
 
+# https://git-scm.com/book/en/v1/Git-Basics-Tips-and-Tricks
+# https://github.com/git/git/blob/master/contrib/completion/git-completion.bash
 if [ -f ~/.config/git-completion.bash ]; then
     . ~/.config/git-completion.bash
 fi
