@@ -326,3 +326,8 @@ table td {
     page-break-after: avoid;
   }
 }
+
+div.sourceCode {
+  background: #eee;
+  padding: 10px;
+}
