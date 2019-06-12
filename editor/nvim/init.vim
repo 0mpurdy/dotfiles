@@ -24,7 +24,9 @@ let mapleader=" " " set leader to space
 " map double leader (space) to command
 :nnoremap <leader><leader> :
 " Set indent folding
-:nnoremap <leader>z :set foldmethod=indent<CR>zM<CR>
+:nnoremap <leader>zi :set foldmethod=indent<CR>zM<CR>
+:nnoremap <leader>zf :norm zf%<CR>
+:nnoremap <leader>zp :norm zfip<CR>
 :nnoremap <leader>v :vsp<CR>
 
 :nnoremap <leader>y "+y
@@ -33,9 +35,19 @@ let mapleader=" " " set leader to space
 " insert current date
 :nnoremap <leader>d "=strftime("%FT%T%z")<CR>P
 
+:vnoremap <leader>y "+y
+
 " toggle list chars
 set listchars=eol:¬,tab:>·,trail:~,extends:>,precedes:<,space:␣
 :nnoremap <leader>= :set list!<cr>
+
+:nnoremap <leader>G Gkzt
+
+" insert log above
+:nnoremap <leader>il Othis.logger.log(LogLevel.Trace, 'placeholder');<esc>==
+
+" insert date time
+:nnoremap <leader>id :put = strftime('%FT%T%z')<cr>
 
 " ********************** Function key mappings **********************
 
@@ -73,7 +85,20 @@ endfunction
 " endfunction
 
 function! Split(match)
-    :exe 's/' . a:match . '/\0\r/g'
+  :exe 's/' . a:match . '/\0\r/g'
+endfunction
+
+function! CopyJasmineTest()
+  :norm VaB$hoky
+  :exe "norm jjvaB\<esc>"
+  :exe "norm o\<esc>pjzz0\<c-a>"
+endfunction
+
+function! CreateMockProvider()
+  :norm ma
+  :exe "norm 0wdf:i{ provide:\<esc>w\"yywA useValue: mock\<esc>\"ypA },\<esc>"
+  :exe "norm ?beforeEach\<cr>Oconst mock\<esc>\"ypA = jasmine.createSpyObj(\'\<esc>\"ypA', ['placeholder']);\<cr>\<esc>"
+  :norm 'aj
 endfunction
 
 " ************************ Plugins **********************************
@@ -110,6 +135,9 @@ else
     set rtp+=~/.fzf
 endif
 :nnoremap <leader>f :GFiles<CR>
+
+" HTML edit
+Plug 'mattn/emmet-vim'
 
 " Auto completion
 if has('nvim')
@@ -228,7 +256,9 @@ endif
 
 :nnoremap <leader>q :bd!<CR> :qa
 :nnoremap <leader>w :w<CR> :bd<CR>
-:nnoremap <leader>bd :bd<CR>
+" close buffer, while maintaining split
+" https://stackoverflow.com/questions/4465095/vim-delete-buffer-without-losing-the-split-window
+:nnoremap <leader>bd :bn\|bd #<CR>
 :nnoremap <leader>! :bd!<CR>
 
 " Copy line to OS clipboard
@@ -246,7 +276,7 @@ autocmd FileType python nnoremap <F1> :w<CR>:!autopep8 -i --aggressive --aggress
 " F4 to run current dir
 autocmd FileType python nnoremap <F4> <Esc><Esc>:!clear;python .<CR>
 " F5 to run current file
-autocmd FileType python nnoremap <F5> :w<CR>:vsp term://python %<CR>i
+autocmd FileType python nnoremap <F5> :w<CR>:vsp term://python3 %<CR>i
 " F6 to run unit tests
 autocmd FileType python nnoremap <F6> :w<CR>:vsp term://pytest -v -m 'not long'<CR>
 " F7 to run single test with debugging
