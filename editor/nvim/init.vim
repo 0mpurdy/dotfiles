@@ -213,6 +213,13 @@ if has('win32')
     :command! RVIM :exe "source C:/Users/" . expand('$USERNAME') . "/AppData/Local/nvim/init.vim"
 endif
 
+" Edit oni configuration
+if has('win32')
+    :command! OpenOniConfig :exe "e C:/Users/" . expand('$USERNAME') . "/AppData/Roaming/Oni/config.tsx"
+else
+    :command! OpenOniConfig e ~/.config/oni/config.tsx
+endif
+
 " Cover short tests pytorch
 :command! PyCS !pytest --cov=. --cov-report term-missing:skip-covered -m 'not long'
 " Cover all pytest
