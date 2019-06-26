@@ -80,73 +80,85 @@ endfunction
 
 " Specify a directory for plugins
 " - Avoid using standard Vim directory names like 'plugin'
-call plug#begin('~/.local/share/nvim/plugged')
-
-Plug 'flazz/vim-colorschemes' " Colorschemes
-Plug 'tpope/vim-surround'     " surround with quotes or brackets
-Plug 'tpope/vim-repeat'       " For repeating plugin actions
-Plug 'tpope/vim-speeddating'  " For incrementing dates properly
-"Plug 'tpope/vim-unimpaired'   " Some useful normal mode mappings
-Plug 'tpope/vim-commentary'   " Better comment support
-
-Plug 'junegunn/vim-easy-align' " Alignment tool
-" Start interactive EasyAlign in visual mode (e.g. vipga)
-xmap ga <Plug>(EasyAlign)
-" Start interactive EasyAlign for a motion/text object (e.g. gaip)
-nmap ga <Plug>(EasyAlign)
-
-Plug 'tpope/vim-fugitive'       " Git integration
-set diffopt+=vertical
-
-Plug 'scrooloose/nerdtree'      " Directory navigation
-:nnoremap <leader>no :NERDTreeToggle<cr>
-:nnoremap <leader>nf :NERDTreeFind<cr>
-
-" Fuzzy find
 if has('win32')
-    Plug 'C:/ProgramData/chocolatey/lib/fzf'
-else
-    Plug 'junegunn/fzf.vim'
-    set rtp+=~/.fzf
-endif
-:nnoremap <leader>f :GFiles<CR>
+  call plug#begin('C:\Users\michael.purdy\vimfiles\autoload')
 
-" Auto completion
-if has('nvim')
+  " Fuzzy find
+  Plug 'C:/ProgramData/chocolatey/lib/fzf'
+ 
+  " Neovim in firefox https://github.com/glacambre/firenvim
+  Plug 'file://c:\dev\nvim\firenvim', { 'do': function('firenvim#install') }
+
+  " Powershell syntax highlighting
+  Plug 'PProvost/vim-ps1'
+else
+  call plug#begin('~/.local/share/nvim/plugged')
+
+  " Fuzzy find
+  Plug 'junegunn/fzf.vim'
+  set rtp+=~/.fzf
+
+  Plug 'flazz/vim-colorschemes' " Colorschemes
+  Plug 'tpope/vim-surround'     " surround with quotes or brackets
+  Plug 'tpope/vim-repeat'       " For repeating plugin actions
+  Plug 'tpope/vim-speeddating'  " For incrementing dates properly
+  "Plug 'tpope/vim-unimpaired'   " Some useful normal mode mappings
+  Plug 'tpope/vim-commentary'   " Better comment support
+  
+  Plug 'junegunn/vim-easy-align' " Alignment tool
+  " Start interactive EasyAlign in visual mode (e.g. vipga)
+  xmap ga <Plug>(EasyAlign)
+  " Start interactive EasyAlign for a motion/text object (e.g. gaip)
+  nmap ga <Plug>(EasyAlign)
+
+  Plug 'tpope/vim-fugitive'       " Git integration
+  set diffopt+=vertical
+
+  Plug 'scrooloose/nerdtree'      " Directory navigation
+  :nnoremap <leader>no :NERDTreeToggle<cr>
+  :nnoremap <leader>nf :NERDTreeFind<cr>
+
+  " Auto completion
   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-else
-  Plug 'Shougo/deoplete.nvim'
-  Plug 'roxma/nvim-yarp'
-  Plug 'roxma/vim-hug-neovim-rpc'
+  let g:deoplete#enable_at_startup = 1
+  " deoplete tab-complete
+  :inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
+
+  Plug 'w0rp/ale'                 " Linting
+  " ALE error navigation
+  :nnoremap ]e :ALENextWrap<cr>
+  :nnoremap [e :ALEPreviousWrap<cr>
+  :nnoremap <leader>a :ALEToggle<cr>
+
+  " Snippet support
+  Plug 'SirVer/ultisnips'
+  Plug 'honza/vim-snippets'
+  let g:UltiSnipsExpandTrigger="ƒ"  
+  let g:UltiSnipsJumpForwardTrigger="<c-b>"
+  let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+
+  " Required for nvim-typescript
+  Plug 'HerringtonDarkholme/yats.vim'
+  " Required for nvim-typescript
+  Plug 'Shougo/denite.nvim'
+  " Typescript support
+  Plug 'mhartington/nvim-typescript', {'do': './install.sh'}
+  " Typescript syntax highlighting
+  Plug 'leafgarland/typescript-vim'
 endif
-let g:deoplete#enable_at_startup = 1
-" deoplete tab-complete
-:inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
 
-Plug 'w0rp/ale'                 " Linting
-" ALE error navigation
-:nnoremap ]e :ALENextWrap<cr>
-:nnoremap [e :ALEPreviousWrap<cr>
-:nnoremap <leader>a :ALEToggle<cr>
+" Colorscheme
+Plug 'joshdick/onedark.vim'
 
-" Snippet support
-Plug 'SirVer/ultisnips'
-Plug 'honza/vim-snippets'
-let g:UltiSnipsExpandTrigger="ƒ"	
-let g:UltiSnipsJumpForwardTrigger="<c-b>"
-let g:UltiSnipsJumpBackwardTrigger="<c-z>"
-
-Plug 'HerringtonDarkholme/yats.vim'                        " Required for nvim-typescript
-Plug 'Shougo/denite.nvim'                                  " Required for nvim-typescript
-Plug 'mhartington/nvim-typescript', {'do': './install.sh'} " Typescript support
-Plug 'leafgarland/typescript-vim'                          " Typescript syntax highlighting
-
-Plug 'joshdick/onedark.vim'   " Colourscheme
+" Fuzzy find shortcut
+:nnoremap <leader>f :GFiles<CR>
 
 " Initialize plugin system
 call plug#end()
 
 " ************************** Colorscheme **************************
+
+colorscheme industry
 
 silent! colorscheme onedark
 
