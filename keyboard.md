@@ -1,6 +1,6 @@
 # Keyboard tips
 
-## Backtick on Magicforce68
+## ANSI keyboards
 
 If an ANSI keyboard is in UK mode and there are some keys that you can't access the
 following combinations will serve as an alternative
