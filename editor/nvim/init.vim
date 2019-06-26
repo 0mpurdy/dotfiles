@@ -49,7 +49,9 @@ set listchars=eol:¬,tab:>·,trail:~,extends:>,precedes:<,space:␣
 " use gx to open files
 :let g:netrw_browsex_viewer= "open -a Firefox"
 " next in quickfix list
-:nnoremap <leader>e :cn<CR>
+:nnoremap <leader>] :cn<CR>
+" previous in quickfix list
+:nnoremap <leader>[ :cp<CR>
 " http://vim.wikia.com/wiki/Macros
 :nnoremap , @q
 :nnoremap Y y$
@@ -167,6 +169,7 @@ colo onedark
 :vnoremap R "_d"0P
 " find word in all files
 :nnoremap K :vimgrep ' **/*.ts<S-Left><S-Left>'
+:nnoremap <leader>K :grep -r --exclude-dir=node_modules --exclude="*.d.ts" --include "*.ts" ' ./src/ ./e2e<S-Left><S-Left><S-Left>'
 " replace word under cursor
 :nnoremap <Leader>s :%s/\<<C-r><C-w>\>/
 " find word under cursor
@@ -211,7 +214,6 @@ endif
 " Search current directory for text
 :set wildignore+=objd/**,obj/**,*.tmp,test.c,**/node_modules/**
 :command! -nargs=1 CSearch noautocmd vimgrep "<args>" ./**/*.py ./**/*.txt ./**/*.html ./**/*.ts
-:nnoremap <leader>] :CSearch 
 
 " Navigating buffers and tabs
 :nnoremap <leader>. :tabnext<cr>
@@ -224,6 +226,7 @@ endif
 :nnoremap <leader>- :vertical resize -10<CR>
 
 :nnoremap <leader>q :bd!<CR> :qa
+:nnoremap <leader>w :w<CR> :bd<CR>
 :nnoremap <leader>bd :bd<CR>
 :nnoremap <leader>! :bd!<CR>
 
