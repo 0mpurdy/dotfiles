@@ -29,12 +29,13 @@ let mapleader=" " " set leader to space
 
 :nnoremap <leader>y "+y
 :nnoremap <leader>p "+p
+"
+" insert current date
+:nnoremap <leader>d "=strftime("%FT%T%z")<CR>P
 
 " toggle list chars
 set listchars=eol:¬,tab:>·,trail:~,extends:>,precedes:<,space:␣
 :nnoremap <leader>= :set list!<cr>
-
-:nnoremap <leader>G Gkzt
 
 " ********************** Function key mappings **********************
 
