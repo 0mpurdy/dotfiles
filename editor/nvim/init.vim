@@ -148,7 +148,7 @@ call plug#end()
 
 " ************************** Colorscheme **************************
 
-colo onedark
+silent! colorscheme onedark
 
 " *********************** Navigating windows ***********************
 
