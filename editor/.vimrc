@@ -13,36 +13,6 @@ set hidden                  " don't ask to save before switching buffers
 
 set directory^=$HOME/.vim/tmp//   " Use central location for swp files
 
-" ************************ Plugins **********************************
-
-filetype off      " required to be off for vundle
-
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-
-" let Vundle manage Vundle, required
-Plugin 'VundleVim/Vundle.vim'       " https://github.com/VundleVim/Vundle.vim
-
-" add ctrlp pluging (http://ctrlpvim.github.io/ctrlp.vim/#installation)
-" set runtimepath^=~/.vim/bundle/ctrlp.vim
-" Plugin 'ctrlpvim/ctrlp.vim'         " https://github.com/ctrlpvim/ctrlp.vim
-" set wildignore+=*/node_modules/*    " Linux/Mac
-" let g:ctrlp_working_path_mode = 'r' " default ctrlp directory - nearest ancestor with .git
-Plugin 'Valloric/YouCompleteMe'     " https://valloric.github.io/YouCompleteMe/#installation
-let g:ycm_add_preview_to_completeopt = 0
-set completeopt-=preview
-Plugin 'tpope/vim-fugitive'                                  " https://github.com/tpope/vim-fugitive
-Plugin 'https://github.com/junegunn/fzf/tree/master/plugin'  " vim plugin part of https://github.com/junegunn/fzf
-Plugin 'junegunn/fzf.vim'                                    " https://github.com/junegunn/fzf.vim
-set rtp+=/usr/local/opt/fzf
-
-filetype plugin indent on " vim autodetects file type (can't remember what indent does)
-
-" All of your Plugins must be added before the following line
-" DONT FORGET TO DO :PluginInstall
-call vundle#end()            " required
-
 " ********************* Keyboard mappings *************************
 
 let mapleader=" " " set leader to space
