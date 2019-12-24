@@ -4,6 +4,49 @@ filetype plugin indent on " vim autodetects file type (can't remember what inden
 
 " *************************** Tabbing ***************************
 
+function! LogFile()
+
+ syn match fatal ".* FATAL .*"
+ syn match fatal "^FATAL: .*"
+ syn match error ".* ERROR .*"
+ syn match error "^ERROR: .*"
+ syn match error "\[ERROR\] .*"
+ syn match warn ".* WARN .*"
+ syn match warn "\[WARN\] .*"
+ syn match warn "^WARN: .*"
+ syn match info ".* INFO .*"
+ syn match info "\c\[INFO\(RMATION\)\?\]"
+ syn match info "^INFO: .*"
+ syn match debug ".* DEBUG .*"
+ syn match debug "\c^DEBUG: .*"
+ syn match debug "\c\[DEBUG\]"
+ syn match error "^java.*Exception.*"
+ syn match error "^java.*Error.*"
+ syn match error "^\tat .*"
+
+ " nextgroup and skipwhite makes vim look for logTime after the match
+ syn match logDate /^\d\{4}-\d\{2}-\d\{2}/ nextgroup=logTime skipwhite
+
+ " This creates a match on the time (but only if it follows the date)
+ syn match logTime /\d\{2}:\d\{2}:\d\{2}.\d\{3}/ nextgroup=logTimeOffset skipwhite
+ syn match logTimeOffset /[+-]\d\{2}:\d\{2}/
+
+ " Highlight colors for log levels.
+ hi fatal ctermfg=Red ctermbg=Black
+ hi error ctermfg=Red ctermbg=Black
+ hi warn ctermfg=Yellow ctermbg=Black
+ hi info ctermfg=lightblue
+ hi debug ctermfg=darkblue
+
+ " Def means default colour - colourschemes can override
+ hi def logDate ctermfg=green
+ hi def logTime ctermfg=green
+ hi def logTimeOffset ctermfg=green
+
+ let b:current_syntax = "log"
+
+endfunction
+
 " (more info at https://tedlogan.com/techblog3.html)
 set expandtab       " change tab key to insert spaces
 set tabstop=2       " existing tabs look like 2 spaces
