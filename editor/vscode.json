@@ -1,0 +1,28 @@
+{
+    "editor.tabSize": 4,
+    "vim.handleKeys": {
+        "<C-n>": false,
+        "<C-w>": false,
+    },
+    "vim.leader": "<space>",
+    "vim.normalModeKeyBindingsNonRecursive": [
+        {
+            "before": ["<leader>", "p"],
+            "after": ["\"", "+", "p"]
+        },
+        {
+            "before": ["<leader>", "y"],
+            "after": ["\"", "+", "y"]
+        },
+        {
+            "before": ["<leader>", "<leader><leader>"],
+            "after": ["<space>"]
+        }
+    ],
+    "vim.visualModeKeyBindingsNonRecursive": [
+        {
+            "before": ["<leader>", "y"],
+            "after": ["\"", "+", "y"]
+        }
+    ]
+}
