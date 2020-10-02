@@ -1,3 +1,18 @@
+" Save to C:/Users/Username
+
 set ignorecase
 
+let mapleader = " "
+
 nnoremap , @q
+
+nnoremap <leader>p "+p
+nnoremap <leader>y "+y
+vnoremap <leader>y "+y
+
+" mapping to make a view property for xamarin view model
+nnoremap <leader>m _iprivate <esc>wy$A;<esc>o<esc>opublic <esc>pByE~o{<CR>get => <esc>pa;<CR>set => SetProperty(ref <esc>pa, value<esc>A;<esc>o}<esc>
+
+" mappings for making mocks
+nnoremap <leader>k _iprivate readonly Mock<<esc>llyeA> mock<esc>pA;<esc>
+nnoremap <leader>h _dwdwdWea = new <esc>ps()<esc>
