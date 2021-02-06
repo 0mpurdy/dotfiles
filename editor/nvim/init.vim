@@ -167,6 +167,10 @@ Plug 'w0rp/ale'                 " Linting
 :nnoremap [e :ALEPreviousWrap<cr>
 :nnoremap <leader>a :ALEToggle<cr>
 
+let g:ale_linters = {
+\ 'cs': ['OmniSharp']
+\}
+
 " Snippet support
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
@@ -178,10 +182,10 @@ Plug 'HerringtonDarkholme/yats.vim'                        " Required for nvim-t
 Plug 'Shougo/denite.nvim'                                  " Required for nvim-typescript
 Plug 'mhartington/nvim-typescript', {'do': './install.sh'} " Typescript support
 Plug 'leafgarland/typescript-vim'                          " Typescript syntax highlighting
-Plug 'OmniSharp/omnisharp-vim'
+Plug 'OmniSharp/omnisharp-vim'                             " C# support
 " Use the stdio version of OmniSharp-roslyn:
 let g:OmniSharp_server_stdio = 1
-let g:OmniSharp_server_path = '/Users/mike/Downloads/omnisharp-osx/run'
+" let g:OmniSharp_server_path = '/Users/mike/Downloads/omnisharp-osx/run'
 
 Plug 'joshdick/onedark.vim'   " Colourscheme
 
@@ -202,6 +206,8 @@ silent! colorscheme onedark
 " map window moves to leader
 :nnoremap <leader>w <C-w>
 :nnoremap <leader>h <C-w>h
+:nnoremap <leader>j <C-w>j
+:nnoremap <leader>k <C-w>k
 :nnoremap <leader>l <C-w>l
 
 " ************************ Find and replace ************************
@@ -285,6 +291,10 @@ endif
 :command! JsonFormat :%!python -m json.tool
 :nnoremap =j :JsonFormat<cr>
 
+:command! EightyOn set colorcolumn=80
+:command! OneTwentyOn set colorcolumn=120
+:command! ColourColumnOff set colorcolumn=
+
 " ********************* Python specific settings *********************
 
 " F1 to auto format file
@@ -336,6 +346,30 @@ autocmd Filetype typescript nnoremap <leader>gf :TSGetCodeFix<CR>
 " ********************* csharp specific settings *********************
 
 autocmd Filetype cs let b:match_words = '\s*#\s*region.*$:\s*#\s*endregion'
+
+" https://github.com/OmniSharp/Omnisharp-vim#configuration
+autocmd FileType cs nmap <silent> <buffer> gd <Plug>(omnisharp_go_to_definition)
+autocmd FileType cs nmap <silent> <buffer> <leader>osfu <Plug>(omnisharp_find_usages)
+autocmd FileType cs nmap <silent> <buffer> <leader>osfi <Plug>(omnisharp_find_implementations)
+autocmd FileType cs nmap <silent> <buffer> <leader>ospd <Plug>(omnisharp_preview_definition)
+autocmd FileType cs nmap <silent> <buffer> <leader>ospi <Plug>(omnisharp_preview_implementations)
+autocmd FileType cs nmap <silent> <buffer> <leader>ost <Plug>(omnisharp_type_lookup)
+autocmd FileType cs nmap <silent> <buffer> <leader>osd <Plug>(omnisharp_documentation)
+autocmd FileType cs nmap <silent> <buffer> <leader>osfs <Plug>(omnisharp_find_symbol)
+autocmd FileType cs nmap <silent> <buffer> <leader>osfx <Plug>(omnisharp_fix_usings)
+autocmd FileType cs nmap <silent> <buffer> <C-\> <Plug>(omnisharp_signature_help)
+autocmd FileType cs imap <silent> <buffer> <C-\> <Plug>(omnisharp_signature_help)
+
+" Navigate up and down by method/property/field
+autocmd FileType cs nmap <silent> <buffer> [[ <Plug>(omnisharp_navigate_up)
+autocmd FileType cs nmap <silent> <buffer> ]] <Plug>(omnisharp_navigate_down)
+" Find all code errors/warnings for the current solution and populate the quickfix window
+autocmd FileType cs nmap <silent> <buffer> <leader>osgcc <Plug>(omnisharp_global_code_check)
+
+autocmd FileType cs nmap <silent> <buffer> <leader>os= <Plug>(omnisharp_code_format)
+
+autocmd FileType cs setlocal tabstop=4
+autocmd FileType cs setlocal shiftwidth=4
 
 " ********************* xaml specific settings *********************
 
