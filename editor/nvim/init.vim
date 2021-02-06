@@ -178,6 +178,10 @@ Plug 'HerringtonDarkholme/yats.vim'                        " Required for nvim-t
 Plug 'Shougo/denite.nvim'                                  " Required for nvim-typescript
 Plug 'mhartington/nvim-typescript', {'do': './install.sh'} " Typescript support
 Plug 'leafgarland/typescript-vim'                          " Typescript syntax highlighting
+Plug 'OmniSharp/omnisharp-vim'
+" Use the stdio version of OmniSharp-roslyn:
+let g:OmniSharp_server_stdio = 1
+let g:OmniSharp_server_path = '/Users/mike/Downloads/omnisharp-osx/run'
 
 Plug 'joshdick/onedark.vim'   " Colourscheme
 
@@ -187,6 +191,8 @@ call plug#end()
 " ************************** Colorscheme **************************
 
 silent! colorscheme onedark
+
+" For light theme PaperColor is very good
 
 " *********************** Navigating windows ***********************
 
@@ -283,10 +289,10 @@ endif
 
 " F1 to auto format file
 autocmd FileType python nnoremap <F1> :w<CR>:!autopep8 -i --aggressive --aggressive %<CR>
-" F4 to run current dir
-autocmd FileType python nnoremap <F4> <Esc><Esc>:!clear;python .<CR>
-" F5 to run current file
-autocmd FileType python nnoremap <F5> :w<CR>:vsp term://python3 %<CR>i
+" F4 to run current file
+autocmd FileType python nnoremap <F4> :w<CR>:vsp term://python3 %<CR>i
+" F5 to run current dir
+autocmd FileType python nnoremap <F5> :w<CR>:vsp term://python3 __main__.py<CR>i
 " F6 to run unit tests
 autocmd FileType python nnoremap <F6> :w<CR>:vsp term://pytest -v -m 'not long'<CR>
 " F7 to run single test with debugging
@@ -297,6 +303,9 @@ autocmd FileType python nnoremap <F8> :w<CR>:vsp term://pytest -v<CR>
 autocmd FileType python nnoremap <F9> :w<CR>:vsp term://pytest --cov=. --cov-report term-missing:skip-covered<CR>
 " F10 to run code coverage for single file
 autocmd FileType python nnoremap <F10> :w<CR>:vsp term://pytest % --cov=. --cov-report term-missing<CR>
+
+" K to vimgrep
+autocmd FileType python nnoremap K :vimgrep ' **/*.py<S-Left><S-Left>'
 
 " Ctrl + / to comment
 autocmd FileType python nnoremap <C-_> 0i# <Esc>j
