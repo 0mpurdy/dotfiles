@@ -35,6 +35,10 @@
 
  - Install Visual Studio
 
+Omnisharp for Neovim
+
+[Server](https://github.com/OmniSharp/omnisharp-roslyn/blob/master/BUILD.md)
+
 [android-studio]: https://developer.android.com/studio/
 [github-ssh]: https://help.github.com/articles/connecting-to-github-with-ssh/
 [gitkraken]: https://www.gitkraken.com
