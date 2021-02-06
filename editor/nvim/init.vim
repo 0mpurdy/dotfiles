@@ -135,6 +135,16 @@ else
     set rtp+=~/.fzf
 endif
 :nnoremap <leader>f :GFiles<CR>
+let $FZF_DEFAULT_OPTS = '--bind ctrl-a:select-all'
+
+function! s:build_quickfix_list(lines)
+  call setqflist(map(copy(a:lines), '{ "filename": v:val }'))
+  copen
+  cc
+endfunction
+
+let g:fzf_action = {
+  \ 'ctrl-q': function('s:build_quickfix_list') }
 
 " HTML edit
 Plug 'mattn/emmet-vim'
@@ -254,7 +264,7 @@ endif
 :nnoremap <leader>+ :vertical resize +10<CR>
 :nnoremap <leader>- :vertical resize -10<CR>
 
-:nnoremap <leader>q :bd!<CR> :qa
+:nnoremap <leader>qa :bd!<CR> :qa
 :nnoremap <leader>w :w<CR> :bd<CR>
 " close buffer, while maintaining split
 " https://stackoverflow.com/questions/4465095/vim-delete-buffer-without-losing-the-split-window
@@ -313,3 +323,11 @@ autocmd Filetype typescript nnoremap <leader>gd :TSDef<CR>
 autocmd Filetype typescript nnoremap <leader>gp :TSDefPreview<CR>
 autocmd Filetype typescript nnoremap <leader>gi :TSDoc<CR>
 autocmd Filetype typescript nnoremap <leader>gf :TSGetCodeFix<CR>
+
+" ********************* csharp specific settings *********************
+
+autocmd Filetype cs let b:match_words = '\s*#\s*region.*$:\s*#\s*endregion'
+
+" ********************* xaml specific settings *********************
+
+autocmd Filetype xaml let b:match_words = '\s*<!--\s*#\s*region.*$:\s*<!--\s*#\s*endregion'
