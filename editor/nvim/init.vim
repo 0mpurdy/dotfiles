@@ -158,7 +158,7 @@ if has('win32')
   Plug 'C:/ProgramData/chocolatey/lib/fzf'
  
   " Neovim in firefox https://github.com/glacambre/firenvim
-  Plug 'file://c:\dev\nvim\firenvim', { 'do': function('firenvim#install') }
+  "Plug 'file://c:\dev\nvim\firenvim', { 'do': function('firenvim#install') }
 
   " Powershell syntax highlighting
   Plug 'PProvost/vim-ps1'
@@ -201,9 +201,9 @@ else
   :nnoremap [e :ALEPreviousWrap<cr>
   :nnoremap <leader>a :ALEToggle<cr>
 
-let g:ale_linters = {
-\ 'cs': ['OmniSharp']
-\}
+  let g:ale_linters = {
+  \ 'cs': ['OmniSharp']
+  \}
 
   " Snippet support
   Plug 'SirVer/ultisnips'
