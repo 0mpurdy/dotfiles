@@ -29,6 +29,9 @@ let mapleader=" " " set leader to space
 :nnoremap <leader>zp :norm zfip<CR>
 :nnoremap <leader>v :vsp<CR>
 
+:vnoremap <leader>y "+y
+:vnoremap <leader>p "+p
+
 :nnoremap <leader>y "+y
 :nnoremap <leader>p "+p
 "
