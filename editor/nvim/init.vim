@@ -67,8 +67,13 @@ let mapleader=" " " set leader to space
 " map double leader (space) to command
 :nnoremap <leader><leader> :
 " Set indent folding
-:nnoremap <leader>z :set foldmethod=indent<CR>zM<CR>
+:nnoremap <leader>zi :set foldmethod=indent<CR>zM<CR>
+:nnoremap <leader>zf :norm zf%<CR>
+:nnoremap <leader>zp :norm zfip<CR>
 :nnoremap <leader>v :vsp<CR>
+
+:vnoremap <leader>y "+y
+:vnoremap <leader>p "+p
 
 :nnoremap <leader>y "+y
 :nnoremap <leader>p "+p
@@ -76,9 +81,19 @@ let mapleader=" " " set leader to space
 " insert current date
 :nnoremap <leader>d "=strftime("%FT%T%z")<CR>P
 
+:vnoremap <leader>y "+y
+
 " toggle list chars
 set listchars=eol:¬,tab:>·,trail:~,extends:>,precedes:<,space:␣
 :nnoremap <leader>= :set list!<cr>
+
+:nnoremap <leader>G Gkzt
+
+" insert log above
+:nnoremap <leader>il Othis.logger.log(LogLevel.Trace, 'placeholder');<esc>==
+
+" insert date time
+:nnoremap <leader>id :put = strftime('%FT%T%z')<cr>
 
 " ********************** Function key mappings **********************
 
@@ -116,7 +131,20 @@ endfunction
 " endfunction
 
 function! Split(match)
-    :exe 's/' . a:match . '/\0\r/g'
+  :exe 's/' . a:match . '/\0\r/g'
+endfunction
+
+function! CopyJasmineTest()
+  :norm VaB$hoky
+  :exe "norm jjvaB\<esc>"
+  :exe "norm o\<esc>pjzz0\<c-a>"
+endfunction
+
+function! CreateMockProvider()
+  :norm ma
+  :exe "norm 0wdf:i{ provide:\<esc>w\"yywA useValue: mock\<esc>\"ypA },\<esc>"
+  :exe "norm ?beforeEach\<cr>Oconst mock\<esc>\"ypA = jasmine.createSpyObj(\'\<esc>\"ypA', ['placeholder']);\<cr>\<esc>"
+  :norm 'aj
 endfunction
 
 " ************************ Plugins **********************************
@@ -173,6 +201,10 @@ else
   :nnoremap [e :ALEPreviousWrap<cr>
   :nnoremap <leader>a :ALEToggle<cr>
 
+let g:ale_linters = {
+\ 'cs': ['OmniSharp']
+\}
+
   " Snippet support
   Plug 'SirVer/ultisnips'
   Plug 'honza/vim-snippets'
@@ -205,6 +237,8 @@ colorscheme industry
 
 silent! colorscheme onedark
 
+" For light theme PaperColor is very good
+
 " *********************** Navigating windows ***********************
 
 " map half page moves to ctrl + direction
@@ -213,6 +247,8 @@ silent! colorscheme onedark
 " map window moves to leader
 :nnoremap <leader>w <C-w>
 :nnoremap <leader>h <C-w>h
+:nnoremap <leader>j <C-w>j
+:nnoremap <leader>k <C-w>k
 :nnoremap <leader>l <C-w>l
 
 " ************************ Find and replace ************************
@@ -288,9 +324,11 @@ endif
 :nnoremap <leader>+ :vertical resize +10<CR>
 :nnoremap <leader>- :vertical resize -10<CR>
 
-:nnoremap <leader>q :bd!<CR> :qa
+:nnoremap <leader>qa :bd!<CR> :qa
 :nnoremap <leader>w :w<CR> :bd<CR>
-:nnoremap <leader>bd :bd<CR>
+" close buffer, while maintaining split
+" https://stackoverflow.com/questions/4465095/vim-delete-buffer-without-losing-the-split-window
+:nnoremap <leader>bd :bn\|bd #<CR>
 :nnoremap <leader>! :bd!<CR>
 
 " Copy line to OS clipboard
@@ -301,14 +339,18 @@ endif
 :command! JsonFormat :%!python -m json.tool
 :nnoremap =j :JsonFormat<cr>
 
+:command! EightyOn set colorcolumn=80
+:command! OneTwentyOn set colorcolumn=120
+:command! ColourColumnOff set colorcolumn=
+
 " ********************* Python specific settings *********************
 
 " F1 to auto format file
 autocmd FileType python nnoremap <F1> :w<CR>:!autopep8 -i --aggressive --aggressive %<CR>
-" F4 to run current dir
-autocmd FileType python nnoremap <F4> <Esc><Esc>:!clear;python .<CR>
-" F5 to run current file
-autocmd FileType python nnoremap <F5> :w<CR>:vsp term://python %<CR>i
+" F4 to run current file
+autocmd FileType python nnoremap <F4> :w<CR>:vsp term://python3 %<CR>i
+" F5 to run current dir
+autocmd FileType python nnoremap <F5> :w<CR>:vsp term://python3 __main__.py<CR>i
 " F6 to run unit tests
 autocmd FileType python nnoremap <F6> :w<CR>:vsp term://pytest -v -m 'not long'<CR>
 " F7 to run single test with debugging
@@ -319,6 +361,9 @@ autocmd FileType python nnoremap <F8> :w<CR>:vsp term://pytest -v<CR>
 autocmd FileType python nnoremap <F9> :w<CR>:vsp term://pytest --cov=. --cov-report term-missing:skip-covered<CR>
 " F10 to run code coverage for single file
 autocmd FileType python nnoremap <F10> :w<CR>:vsp term://pytest % --cov=. --cov-report term-missing<CR>
+
+" K to vimgrep
+autocmd FileType python nnoremap K :vimgrep ' **/*.py<S-Left><S-Left>'
 
 " Ctrl + / to comment
 autocmd FileType python nnoremap <C-_> 0i# <Esc>j
@@ -345,3 +390,35 @@ autocmd Filetype typescript nnoremap <leader>gd :TSDef<CR>
 autocmd Filetype typescript nnoremap <leader>gp :TSDefPreview<CR>
 autocmd Filetype typescript nnoremap <leader>gi :TSDoc<CR>
 autocmd Filetype typescript nnoremap <leader>gf :TSGetCodeFix<CR>
+
+" ********************* csharp specific settings *********************
+
+autocmd Filetype cs let b:match_words = '\s*#\s*region.*$:\s*#\s*endregion'
+
+" https://github.com/OmniSharp/Omnisharp-vim#configuration
+autocmd FileType cs nmap <silent> <buffer> gd <Plug>(omnisharp_go_to_definition)
+autocmd FileType cs nmap <silent> <buffer> <leader>osfu <Plug>(omnisharp_find_usages)
+autocmd FileType cs nmap <silent> <buffer> <leader>osfi <Plug>(omnisharp_find_implementations)
+autocmd FileType cs nmap <silent> <buffer> <leader>ospd <Plug>(omnisharp_preview_definition)
+autocmd FileType cs nmap <silent> <buffer> <leader>ospi <Plug>(omnisharp_preview_implementations)
+autocmd FileType cs nmap <silent> <buffer> <leader>ost <Plug>(omnisharp_type_lookup)
+autocmd FileType cs nmap <silent> <buffer> <leader>osd <Plug>(omnisharp_documentation)
+autocmd FileType cs nmap <silent> <buffer> <leader>osfs <Plug>(omnisharp_find_symbol)
+autocmd FileType cs nmap <silent> <buffer> <leader>osfx <Plug>(omnisharp_fix_usings)
+autocmd FileType cs nmap <silent> <buffer> <C-\> <Plug>(omnisharp_signature_help)
+autocmd FileType cs imap <silent> <buffer> <C-\> <Plug>(omnisharp_signature_help)
+
+" Navigate up and down by method/property/field
+autocmd FileType cs nmap <silent> <buffer> [[ <Plug>(omnisharp_navigate_up)
+autocmd FileType cs nmap <silent> <buffer> ]] <Plug>(omnisharp_navigate_down)
+" Find all code errors/warnings for the current solution and populate the quickfix window
+autocmd FileType cs nmap <silent> <buffer> <leader>osgcc <Plug>(omnisharp_global_code_check)
+
+autocmd FileType cs nmap <silent> <buffer> <leader>os= <Plug>(omnisharp_code_format)
+
+autocmd FileType cs setlocal tabstop=4
+autocmd FileType cs setlocal shiftwidth=4
+
+" ********************* xaml specific settings *********************
+
+autocmd Filetype xaml let b:match_words = '\s*<!--\s*#\s*region.*$:\s*<!--\s*#\s*endregion'

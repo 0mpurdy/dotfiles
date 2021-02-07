@@ -1,5 +1,6 @@
 set nocompatible  " not compatible with vi
 syntax on         " use syntax highlighting
+filetype plugin indent on " vim autodetects file type (can't remember what indent does)
 
 " tab controls (more info at https://tedlogan.com/techblog3.html)
 set expandtab       " change tab key to insert spaces
@@ -14,6 +15,9 @@ set hidden                  " don't ask to save before switching buffers
 set directory^=$HOME/.vim/tmp//   " Use central location for swp files
 
 " ********************* Keyboard mappings *************************
+
+" http://vim.wikia.com/wiki/Macros
+nmap , @q
 
 let mapleader=" " " set leader to space
 " map double leader (space) to command
@@ -86,5 +90,3 @@ autocmd FileType python nmap <F1> :w<CR>:!autopep8 -i %<CR>
 autocmd FileType python nmap <C-_> 0i# <Esc>j
 " + to uncomment
 autocmd FileType python nnoremap + 02xj
-" http://vim.wikia.com/wiki/Macros
-nmap , @q

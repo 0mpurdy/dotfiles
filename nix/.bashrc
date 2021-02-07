@@ -1,3 +1,6 @@
+# Set the environment variable for the most recently sourced bash config
+export BASH_CONF="bashrc"
+
 # If not running interactively, don't do anything
 case $- in
     *i*) ;;

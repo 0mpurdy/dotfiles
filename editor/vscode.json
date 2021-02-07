@@ -1,0 +1,87 @@
+{
+    "editor.tabSize": 4,
+    "files.exclude": {
+        "*-node_modules": true,
+        "*.d.ts": true,
+        "**/*.d.ts": true,
+        "**/node_modules/": true
+    },
+    "html.format.endWithNewline": true,
+    "html.format.wrapAttributes": "force",
+    "telemetry.enableTelemetry": false,
+    "tslint.alwaysShowRuleFailuresAsWarnings": true,
+    "typescript.updateImportsOnFileMove.enabled": "always",
+    "vim.handleKeys": {
+        "<C-n>": false,
+        "<C-w>": false
+    },
+    "vim.leader": "<space>",
+    "vim.normalModeKeyBindingsNonRecursive": [
+        // repeat q macro
+        {
+            "before": [","],
+            "after": ["@", "q"]
+        },
+        {
+            "before": ["<leader>", "p"],
+            "after": ["\"", "+", "p"]
+        },
+        // yank into system clipboard
+        {
+            "before": ["<leader>", "y"],
+            "after": ["\"", "+", "y"]
+        },
+        {
+            "before": ["<leader>", "<leader><leader>"],
+            "after": ["<space>"]
+        }
+        // replace WORD with contents of system clipboard without overwriting system clipboard contents
+        {
+            "before": ["<leader>", "R"],
+            "after": ["d", "i", "W", "\"", "0", "P"]
+        },
+        // Go to bottom of log file
+        {
+            "before": ["<leader>", "G"],
+            "after": ["G", "k", "z", "t"]
+        },
+        // select whole file
+        {
+            "before": ["<leader>", "a"],
+            "after": ["g", "g", "V", "G"]
+        },
+        // global replace
+        {
+            "before": ["<leader>", "s"],
+            "after": [":", "%", "s", "/", "/", "g", "<Left>", "<Left>"]
+        },
+        // move left including across line breaks
+        {
+            "before": ["<leader>", "<leader>"],
+            "after": ["<space>"]
+        },
+        // copy test into system clipboard
+        {
+            "before": ["<leader>", "t", "c"],
+            "after": ["v", "a", "B", "$", "o", "k", "\"", "+", "y", "j", "j", "v", "a", "B", "<esc>", "j"]
+        },
+        // go to next jasmine spec
+        {
+            "before": ["<leader>", "t", "n"],
+            "after": ["/", "i", "t", "(", "'", "<cr>"]
+        },
+    ],
+    "vim.visualModeKeyBindingsNonRecursive": [
+        // replace visual selection with contents of system clipboard without overwriting system clipboard contents
+        {
+            "before": ["<leader>", "r"],
+            "after": ["d", "\"", "0", "P"]
+        },
+        // yank visual selection into system clipboard
+        {
+            "before": ["<leader>", "y"],
+            "after": ["\"", "+", "y"]
+        }
+    ],
+    "window.zoomLevel": 1
+}

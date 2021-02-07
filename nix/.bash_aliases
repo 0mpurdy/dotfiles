@@ -24,3 +24,4 @@ alias ecfg="${EDITOR} ${HOME}/.bashrc"
 alias epro="${EDITOR} ${HOME}/.profile"
 
 alias fix='$EDITOR `git diff --name-only | uniq`'
+alias work='source ~/quicklaunch/work.sh'

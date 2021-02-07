@@ -2,8 +2,8 @@ param([string] $username = $env:USERNAME)
 
 echo "Pulling dotfiles for $username"
 
-$dotfilesLoc='C:/dev/dotfiles'
-$profileDestination="C:/Users/$username/Documents/WindowsPowerShell"
+$dotfilesLoc='T:/dev/dotfiles'
 
-cp "$profileDestination/profile.ps1" "$dotfilesLoc/win/profile.ps1"
-cp "$env:LOCALAPPDATA/nvim/init.vim" "C:/dev/dotfiles/editor/nvim/init.vim"
+cp "$profile" "$dotfilesLoc/win/profile.ps1"
+cp "$env:LOCALAPPDATA/nvim/init.vim" "$dotfilesLoc/editor/nvim/init.vim"
+cp "C:/Users/$username/_vimrc" "$dotfilesLoc/win/_vimrc"
