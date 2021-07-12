@@ -4,6 +4,49 @@ filetype plugin indent on " vim autodetects file type (can't remember what inden
 
 " *************************** Tabbing ***************************
 
+function! LogFile()
+
+ syn match fatal ".* FATAL .*"
+ syn match fatal "^FATAL: .*"
+ syn match error ".* ERROR .*"
+ syn match error "^ERROR: .*"
+ syn match error "\[ERROR\] .*"
+ syn match warn ".* WARN .*"
+ syn match warn "\[WARN\] .*"
+ syn match warn "^WARN: .*"
+ syn match info ".* INFO .*"
+ syn match info "\c\[INFO\(RMATION\)\?\]"
+ syn match info "^INFO: .*"
+ syn match debug ".* DEBUG .*"
+ syn match debug "\c^DEBUG: .*"
+ syn match debug "\c\[DEBUG\]"
+ syn match error "^java.*Exception.*"
+ syn match error "^java.*Error.*"
+ syn match error "^\tat .*"
+
+ " nextgroup and skipwhite makes vim look for logTime after the match
+ syn match logDate /^\d\{4}-\d\{2}-\d\{2}/ nextgroup=logTime skipwhite
+
+ " This creates a match on the time (but only if it follows the date)
+ syn match logTime /\d\{2}:\d\{2}:\d\{2}.\d\{3}/ nextgroup=logTimeOffset skipwhite
+ syn match logTimeOffset /[+-]\d\{2}:\d\{2}/
+
+ " Highlight colors for log levels.
+ hi fatal ctermfg=Red ctermbg=Black
+ hi error ctermfg=Red ctermbg=Black
+ hi warn ctermfg=Yellow ctermbg=Black
+ hi info ctermfg=lightblue
+ hi debug ctermfg=darkblue
+
+ " Def means default colour - colourschemes can override
+ hi def logDate ctermfg=green
+ hi def logTime ctermfg=green
+ hi def logTimeOffset ctermfg=green
+
+ let b:current_syntax = "log"
+
+endfunction
+
 " (more info at https://tedlogan.com/techblog3.html)
 set expandtab       " change tab key to insert spaces
 set tabstop=2       " existing tabs look like 2 spaces
@@ -108,94 +151,114 @@ endfunction
 
 " Specify a directory for plugins
 " - Avoid using standard Vim directory names like 'plugin'
-call plug#begin('~/.local/share/nvim/plugged')
-
-Plug 'flazz/vim-colorschemes' " Colorschemes
-Plug 'tpope/vim-surround'     " surround with quotes or brackets
-Plug 'tpope/vim-repeat'       " For repeating plugin actions
-Plug 'tpope/vim-speeddating'  " For incrementing dates properly
-"Plug 'tpope/vim-unimpaired'   " Some useful normal mode mappings
-Plug 'tpope/vim-commentary'   " Better comment support
-
-Plug 'junegunn/vim-easy-align' " Alignment tool
-" Start interactive EasyAlign in visual mode (e.g. vipga)
-xmap ga <Plug>(EasyAlign)
-" Start interactive EasyAlign for a motion/text object (e.g. gaip)
-nmap ga <Plug>(EasyAlign)
-
-Plug 'tpope/vim-fugitive'       " Git integration
-set diffopt+=vertical
-
-Plug 'scrooloose/nerdtree'      " Directory navigation
-:nnoremap <leader>no :NERDTreeToggle<cr>
-:nnoremap <leader>nf :NERDTreeFind<cr>
-
-" Fuzzy find
 if has('win32')
-    Plug 'C:/ProgramData/chocolatey/lib/fzf'
+  call plug#begin('C:\Users\michael.purdy\vimfiles\autoload')
+
+  " Fuzzy find
+  Plug 'C:/ProgramData/chocolatey/lib/fzf'
+ 
+  " Neovim in firefox https://github.com/glacambre/firenvim
+  "Plug 'file://c:\dev\nvim\firenvim', { 'do': function('firenvim#install') }
+
+  " Powershell syntax highlighting
+  Plug 'PProvost/vim-ps1'
 else
-    Plug 'junegunn/fzf.vim'
-    set rtp+=~/.fzf
+  call plug#begin('~/.local/share/nvim/plugged')
+
+  " Fuzzy find
+  Plug 'junegunn/fzf.vim'
+  set rtp+=~/.fzf
+  let $FZF_DEFAULT_OPTS = '--bind ctrl-a:select-all'
+
+  function! s:build_quickfix_list(lines)
+    call setqflist(map(copy(a:lines), '{ "filename": v:val }'))
+    copen
+    cc
+  endfunction
+
+  let g:fzf_action = {
+    \ 'ctrl-q': function('s:build_quickfix_list') }
+
+  " HTML edit
+  Plug 'mattn/emmet-vim'
+
+  Plug 'flazz/vim-colorschemes' " Colorschemes
+  Plug 'tpope/vim-surround'     " surround with quotes or brackets
+  Plug 'tpope/vim-repeat'       " For repeating plugin actions
+  Plug 'tpope/vim-speeddating'  " For incrementing dates properly
+  "Plug 'tpope/vim-unimpaired'   " Some useful normal mode mappings
+  Plug 'tpope/vim-commentary'   " Better comment support
+  
+  Plug 'junegunn/vim-easy-align' " Alignment tool
+  " Start interactive EasyAlign in visual mode (e.g. vipga)
+  xmap ga <Plug>(EasyAlign)
+  " Start interactive EasyAlign for a motion/text object (e.g. gaip)
+  nmap ga <Plug>(EasyAlign)
+
+  Plug 'tpope/vim-fugitive'       " Git integration
+  set diffopt+=vertical
+
+  Plug 'scrooloose/nerdtree'      " Directory navigation
+  :nnoremap <leader>no :NERDTreeToggle<cr>
+  :nnoremap <leader>nf :NERDTreeFind<cr>
+
+  " Auto completion
+  if has('nvim')
+    Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+  else
+    Plug 'Shougo/deoplete.nvim'
+    Plug 'roxma/nvim-yarp'
+    Plug 'roxma/vim-hug-neovim-rpc'
+  endif
+  let g:deoplete#enable_at_startup = 1
+  " deoplete tab-complete
+  :inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
+
+  Plug 'w0rp/ale'                 " Linting
+  " ALE error navigation
+  :nnoremap ]e :ALENextWrap<cr>
+  :nnoremap [e :ALEPreviousWrap<cr>
+  :nnoremap <leader>a :ALEToggle<cr>
+
+  let g:ale_linters = {
+  \ 'cs': ['OmniSharp']
+  \}
+
+  " Snippet support
+  Plug 'SirVer/ultisnips'
+  Plug 'honza/vim-snippets'
+  let g:UltiSnipsExpandTrigger="ƒ"
+  let g:UltiSnipsJumpForwardTrigger="<c-b>"
+  let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+
+  " Required for nvim-typescript
+  Plug 'HerringtonDarkholme/yats.vim'
+  " Required for nvim-typescript
+  Plug 'Shougo/denite.nvim'
+  " Typescript support
+  Plug 'mhartington/nvim-typescript', {'do': './install.sh'}
+  " Typescript syntax highlighting
+  Plug 'leafgarland/typescript-vim'
+
+  " C# support
+  Plug 'OmniSharp/omnisharp-vim'
+  " Use the stdio version of OmniSharp-roslyn:
+  let g:OmniSharp_server_stdio = 1
+  " let g:OmniSharp_server_path = '/Users/mike/Downloads/omnisharp-osx/run'
 endif
+
+" Colorscheme
+Plug 'joshdick/onedark.vim'
+
+" Fuzzy find shortcut
 :nnoremap <leader>f :GFiles<CR>
-let $FZF_DEFAULT_OPTS = '--bind ctrl-a:select-all'
-
-function! s:build_quickfix_list(lines)
-  call setqflist(map(copy(a:lines), '{ "filename": v:val }'))
-  copen
-  cc
-endfunction
-
-let g:fzf_action = {
-  \ 'ctrl-q': function('s:build_quickfix_list') }
-
-" HTML edit
-Plug 'mattn/emmet-vim'
-
-" Auto completion
-if has('nvim')
-  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-else
-  Plug 'Shougo/deoplete.nvim'
-  Plug 'roxma/nvim-yarp'
-  Plug 'roxma/vim-hug-neovim-rpc'
-endif
-let g:deoplete#enable_at_startup = 1
-" deoplete tab-complete
-:inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
-
-Plug 'w0rp/ale'                 " Linting
-" ALE error navigation
-:nnoremap ]e :ALENextWrap<cr>
-:nnoremap [e :ALEPreviousWrap<cr>
-:nnoremap <leader>a :ALEToggle<cr>
-
-let g:ale_linters = {
-\ 'cs': ['OmniSharp']
-\}
-
-" Snippet support
-Plug 'SirVer/ultisnips'
-Plug 'honza/vim-snippets'
-let g:UltiSnipsExpandTrigger="ƒ"	
-let g:UltiSnipsJumpForwardTrigger="<c-b>"
-let g:UltiSnipsJumpBackwardTrigger="<c-z>"
-
-Plug 'HerringtonDarkholme/yats.vim'                        " Required for nvim-typescript
-Plug 'Shougo/denite.nvim'                                  " Required for nvim-typescript
-Plug 'mhartington/nvim-typescript', {'do': './install.sh'} " Typescript support
-Plug 'leafgarland/typescript-vim'                          " Typescript syntax highlighting
-Plug 'OmniSharp/omnisharp-vim'                             " C# support
-" Use the stdio version of OmniSharp-roslyn:
-let g:OmniSharp_server_stdio = 1
-" let g:OmniSharp_server_path = '/Users/mike/Downloads/omnisharp-osx/run'
-
-Plug 'joshdick/onedark.vim'   " Colourscheme
 
 " Initialize plugin system
 call plug#end()
 
 " ************************** Colorscheme **************************
+
+colorscheme industry
 
 silent! colorscheme onedark
 
@@ -252,6 +315,13 @@ endif
 :command! RVIM source ~/.config/nvim/init.vim
 if has('win32')
     :command! RVIM :exe "source C:/Users/" . expand('$USERNAME') . "/AppData/Local/nvim/init.vim"
+endif
+
+" Edit oni configuration
+if has('win32')
+    :command! OpenOniConfig :exe "e C:/Users/" . expand('$USERNAME') . "/AppData/Roaming/Oni/config.tsx"
+else
+    :command! OpenOniConfig e ~/.config/oni/config.tsx
 endif
 
 " Cover short tests pytorch
