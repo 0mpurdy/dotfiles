@@ -74,14 +74,14 @@ let mapleader=" " " set leader to space
 
 :vnoremap <leader>y "+y
 :vnoremap <leader>p "+p
+:vnoremap <leader>r d"0P
 
 :nnoremap <leader>y "+y
 :nnoremap <leader>p "+p
-"
+:nnoremap <leader>r diw"0P
+
 " insert current date
 :nnoremap <leader>d "=strftime("%FT%T%z")<CR>P
-
-:vnoremap <leader>y "+y
 
 " toggle list chars
 set listchars=eol:¬,tab:>·,trail:~,extends:>,precedes:<,space:␣
