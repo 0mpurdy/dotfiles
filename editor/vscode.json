@@ -22,6 +22,7 @@
             "before": [","],
             "after": ["@", "q"]
         },
+        // paste from system register
         {
             "before": ["<leader>", "p"],
             "after": ["\"", "+", "p"]
@@ -34,7 +35,7 @@
         {
             "before": ["<leader>", "<leader><leader>"],
             "after": ["<space>"]
-        }
+        },
         // replace WORD with contents of system clipboard without overwriting system clipboard contents
         {
             "before": ["<leader>", "R"],
@@ -69,7 +70,7 @@
         {
             "before": ["<leader>", "t", "n"],
             "after": ["/", "i", "t", "(", "'", "<cr>"]
-        },
+        }
     ],
     "vim.visualModeKeyBindingsNonRecursive": [
         // replace visual selection with contents of system clipboard without overwriting system clipboard contents
@@ -81,6 +82,11 @@
         {
             "before": ["<leader>", "y"],
             "after": ["\"", "+", "y"]
+        },
+        // search for visual selection
+        {
+            "before": ["/", "/"],
+            "after": ["\"", "a", "y", "/", "<c-r>", "a", "<cr>"]
         }
     ],
     "window.zoomLevel": 1
