@@ -274,6 +274,10 @@ if has('win32')
     :command! RVIM :exe "source C:/Users/" . expand('$USERNAME') . "/AppData/Local/nvim/init.vim"
 endif
 
+" Ag (silver searcher) but only search files
+" https://github.com/junegunn/fzf.vim/issues/346#issuecomment-288483704
+command! -bang -nargs=* Au call fzf#vim#ag(<q-args>, {'options': '--delimiter : --nth 4..'}, <bang>0)
+
 " Edit oni configuration
 if has('win32')
     :command! OpenOniConfig :exe "e C:/Users/" . expand('$USERNAME') . "/AppData/Roaming/Oni/config.tsx"
