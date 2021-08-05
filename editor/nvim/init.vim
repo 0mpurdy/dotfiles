@@ -139,12 +139,18 @@ else
   " HTML edit
   Plug 'mattn/emmet-vim'
 
-  Plug 'flazz/vim-colorschemes' " Colorschemes
-  Plug 'tpope/vim-surround'     " surround with quotes or brackets
-  Plug 'tpope/vim-repeat'       " For repeating plugin actions
-  Plug 'tpope/vim-speeddating'  " For incrementing dates properly
-  "Plug 'tpope/vim-unimpaired'   " Some useful normal mode mappings
-  Plug 'tpope/vim-commentary'   " Better comment support
+  " Colorschemes
+  Plug 'flazz/vim-colorschemes'
+  " surround with quotes or brackets
+  Plug 'tpope/vim-surround'
+  " For repeating plugin actions
+  Plug 'tpope/vim-repeat'
+  " For incrementing dates properly
+  Plug 'tpope/vim-speeddating'
+  " Better comment support
+  Plug 'tpope/vim-commentary'
+  " Some useful normal mode mappings
+  "Plug 'tpope/vim-unimpaired'
   
   Plug 'junegunn/vim-easy-align' " Alignment tool
   " Start interactive EasyAlign in visual mode (e.g. vipga)
