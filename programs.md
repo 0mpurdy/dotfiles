@@ -1,0 +1,32 @@
+- [ ] 7zip
+- [ ] Android studio
+- [ ] Autohotkey
+- [ ] Chrome
+- [ ] Chrome remote desktop
+- [ ] cmder
+- [ ] Display drivers
+- [ ] Dropbox
+- [ ] Firefox
+- [ ] Gimp
+- [ ] git
+- [ ] GitKraken
+- [ ] Google Drive
+- [ ] ImageGlass
+- [ ] IntelliJ
+- [ ] Ionic
+- [ ] Java
+- [ ] MS Office
+- [ ] NodeJS
+- [ ] OneDrive
+- [ ] Postman
+- [ ] Python
+- [ ] Signal
+- [ ] Slack
+- [ ] SourceTree
+- [ ] Spotify
+- [ ] Steam
+- [ ] Sublime
+- [ ] Veracrypt
+- [ ] Visual Studio
+- [ ] VLC
+- [ ] WhatsApp
