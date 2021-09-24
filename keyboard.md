@@ -15,6 +15,16 @@ therefore may have some non-standard behaviour.
 | `` ` `` | Backtick  | `AltGr` + `#` + `#`       |
 | `` ` `` | Backtick  | `Fn` + `Esc`              |
 
+MagicForce68, Windows, UK keyboard language
+
+| Output | Name | Input |
+| --- | --- | --- |
+| # | Hash | `\` |
+| ~ | Tilde | `Shift` + `\` |
+| \\ | Backslash | `AltGr` + `\` |
+| \| | Pipe | `AltGr` + `Shift` + `\` |
+| \` | Backtick | `Fn` + `Esc` |
+
 On a ANSI Vortex Cypher the following mappings apply
 
 | Key     | Name      | Chord                   |
