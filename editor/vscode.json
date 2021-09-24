@@ -1,4 +1,8 @@
 {
+    // useful extensions
+    // - Markdown All in One
+    // - Vim
+    // - autoscrolldown
     "editor.tabSize": 4,
     "files.exclude": {
         "*-node_modules": true,
