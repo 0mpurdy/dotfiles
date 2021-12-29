@@ -44,6 +44,11 @@ let mapleader=" " " set leader to space
 set listchars=eol:¬,tab:>·,trail:~,extends:>,precedes:<,space:␣
 :nnoremap <leader>= :set list!<cr>
 
+" FZF Fuzzy find shortcut
+:nnoremap <leader>f :GFiles<CR>
+:nnoremap <leader>b :Buffers<CR>
+
+" Tail log file
 :nnoremap <leader>G Gkzt
 
 " insert log above
@@ -112,7 +117,8 @@ if has('win32')
   call plug#begin('C:\Users\michael.purdy\vimfiles\autoload')
 
   " Fuzzy find
-  Plug 'C:/ProgramData/chocolatey/lib/fzf'
+  Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+  Plug 'junegunn/fzf.vim'
  
   " Neovim in firefox https://github.com/glacambre/firenvim
   "Plug 'file://c:\dev\nvim\firenvim', { 'do': function('firenvim#install') }
@@ -161,10 +167,6 @@ else
   Plug 'tpope/vim-fugitive'       " Git integration
   set diffopt+=vertical
 
-  Plug 'scrooloose/nerdtree'      " Directory navigation
-  :nnoremap <leader>no :NERDTreeToggle<cr>
-  :nnoremap <leader>nf :NERDTreeFind<cr>
-
   " Auto completion
   if has('nvim')
     Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
@@ -203,18 +205,21 @@ else
   " Typescript syntax highlighting
   Plug 'leafgarland/typescript-vim'
 
-  " C# support
-  Plug 'OmniSharp/omnisharp-vim'
-  " Use the stdio version of OmniSharp-roslyn:
-  let g:OmniSharp_server_stdio = 1
-  " let g:OmniSharp_server_path = '/Users/mike/Downloads/omnisharp-osx/run'
 endif
 
 " Colorscheme
 Plug 'joshdick/onedark.vim'
 
-" Fuzzy find shortcut
-:nnoremap <leader>f :GFiles<CR>
+" Directory navigation
+Plug 'scrooloose/nerdtree'
+:nnoremap <leader>no :NERDTreeToggle<cr>
+:nnoremap <leader>nf :NERDTreeFind<cr>
+
+" C# support
+Plug 'OmniSharp/omnisharp-vim'
+" Use the stdio version of OmniSharp-roslyn:
+let g:OmniSharp_server_stdio = 1
+" let g:OmniSharp_server_path = '/Users/mike/Downloads/omnisharp-osx/run'
 
 " Initialize plugin system
 call plug#end()
@@ -434,14 +439,14 @@ autocmd Filetype cs let b:match_words = '\s*#\s*region.*$:\s*#\s*endregion'
 
 " https://github.com/OmniSharp/Omnisharp-vim#configuration
 autocmd FileType cs nmap <silent> <buffer> gd <Plug>(omnisharp_go_to_definition)
-autocmd FileType cs nmap <silent> <buffer> <leader>osfu <Plug>(omnisharp_find_usages)
-autocmd FileType cs nmap <silent> <buffer> <leader>osfi <Plug>(omnisharp_find_implementations)
+autocmd FileType cs nmap <silent> <buffer> <leader>osu <Plug>(omnisharp_find_usages)
+autocmd FileType cs nmap <silent> <buffer> <leader>osi <Plug>(omnisharp_find_implementations)
 autocmd FileType cs nmap <silent> <buffer> <leader>ospd <Plug>(omnisharp_preview_definition)
 autocmd FileType cs nmap <silent> <buffer> <leader>ospi <Plug>(omnisharp_preview_implementations)
 autocmd FileType cs nmap <silent> <buffer> <leader>ost <Plug>(omnisharp_type_lookup)
 autocmd FileType cs nmap <silent> <buffer> <leader>osd <Plug>(omnisharp_documentation)
 autocmd FileType cs nmap <silent> <buffer> <leader>osfs <Plug>(omnisharp_find_symbol)
-autocmd FileType cs nmap <silent> <buffer> <leader>osfx <Plug>(omnisharp_fix_usings)
+autocmd FileType cs nmap <silent> <buffer> <leader>osx <Plug>(omnisharp_fix_usings)
 autocmd FileType cs nmap <silent> <buffer> <C-\> <Plug>(omnisharp_signature_help)
 autocmd FileType cs imap <silent> <buffer> <C-\> <Plug>(omnisharp_signature_help)
 
