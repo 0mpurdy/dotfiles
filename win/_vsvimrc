@@ -17,5 +17,8 @@ nnoremap <leader>n k_Wc2f {<CR><esc>lyiwf,s=<esc>f)C;<CR><esc>"0pA ));<esc>_~IOn
 " mappings for making mocks
 nnoremap <leader>k _iprivate readonly Mock<<esc>llyeA> mock<esc>pA;<esc>
 nnoremap <leader>h _dwdwdWea = new <esc>ps()<esc>
+nnoremap <leader>j _ElC.Object,<esc>j_
+
+" mappings for replace
 nnoremap <leader>r diw"0P
 vnoremap <leader>r d"0P
