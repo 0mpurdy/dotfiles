@@ -8,6 +8,7 @@ Write-Host ('$Profile', $profile)
 
 function go {cd "C:\dev"}
 function dev {cd "C:\dev"}
+function dotfiles {cd "C:\dev\dotfiles"}
 function notes {cd "C:\dev\notes"}
 function tools {cd "C:\dev\tools"}
 function work {cd "T:\dev\work"}
