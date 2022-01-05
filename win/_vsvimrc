@@ -22,3 +22,6 @@ nnoremap <leader>j _ElC.Object,<esc>j_
 " mappings for replace
 nnoremap <leader>r diw"0P
 vnoremap <leader>r d"0P
+
+" macro to shorten csproj version syntax
+nnoremap <leader>gv j_ditk$i Version="<esc>pEDA" /><esc>jdd._
