@@ -57,6 +57,9 @@ set listchars=eol:¬,tab:>·,trail:~,extends:>,precedes:<,space:␣
 " insert date time
 :nnoremap <leader>id :put = strftime('%FT%T%z')<cr>
 
+" macro to shorten csproj version syntax
+nnoremap <leader>gv j_ditk$i Version="<esc>pEDA" /><esc>jdd._
+
 " ********************** Function key mappings **********************
 
 " toggle search highlighting
