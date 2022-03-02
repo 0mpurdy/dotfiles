@@ -1,8 +1,10 @@
 {
     // useful extensions
-    // - Markdown All in One
-    // - Vim
+    // - Markdown All in One - Yu Zhang
+    // - Vim - vscodevim
+    // - Auto Scroll - Pejman Nikram
     // - autoscrolldown
+    // - Super One Dark Theme - Sean Sassenrath
     "editor.tabSize": 4,
     "files.exclude": {
         "*-node_modules": true,
