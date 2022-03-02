@@ -164,8 +164,6 @@ else
   " Start interactive EasyAlign for a motion/text object (e.g. gaip)
   nmap ga <Plug>(EasyAlign)
 
-  Plug 'tpope/vim-fugitive'       " Git integration
-  set diffopt+=vertical
 
   " Auto completion
   if has('nvim')
@@ -214,6 +212,10 @@ Plug 'joshdick/onedark.vim'
 Plug 'scrooloose/nerdtree'
 :nnoremap <leader>no :NERDTreeToggle<cr>
 :nnoremap <leader>nf :NERDTreeFind<cr>
+
+" Git integration
+Plug 'tpope/vim-fugitive'
+set diffopt+=vertical
 
 " C# support
 Plug 'OmniSharp/omnisharp-vim'
