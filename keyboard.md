@@ -23,6 +23,16 @@ Additional mappings for MagicForce68, Windows, UK keyboard language
 | \|     | Pipe      | `AltGr` + `Shift` + `Esc` |
 | \`     | Backtick  | `AltGr` + `#` + `#`       |
 
+Vortex Cypher, macOS, UK language
+
+| Key | Name      | Chord                  |
+| --- | ---       | ---                    |
+| #   | Hash      | `Alt` + `3`            |
+| ~   | Tilde     | `Shift` + `Fn` + `Esc` |
+| \\  | Backslash | `\`                    |
+| \|  | Pipe      | `Shift` + `\`          |
+| \`  | Backtick  | `Fn` + `Esc`           |
+
 ## Programming Vortex
 
 - [Cypher programming manual](http://www.vortexgear.tw/db/upload/webdata4/6vortex_20188221365892480.pdf)
