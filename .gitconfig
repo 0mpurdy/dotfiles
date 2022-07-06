@@ -1,3 +1,5 @@
 [alias]
   lol = log --oneline --graph --decorate --all
   lola = log --graph --decorate --abbrev-commit --all --date=local --pretty=format:\"%C(auto)%h%d %C(blue)%an %C(green)%cd %C(red)%GG %C(reset)%s\" --date=local
+[rebase]
+	autosquash = true
