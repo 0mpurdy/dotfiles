@@ -42,6 +42,11 @@
             "before": ["<leader>", "<leader><leader>"],
             "after": ["<space>"]
         },
+        // replace word with contents of system clipboard without overwriting system clipboard contents
+        {
+            "before": ["<leader>", "r"],
+            "after": ["d", "i", "w", "\"", "0", "P"]
+        },
         // replace WORD with contents of system clipboard without overwriting system clipboard contents
         {
             "before": ["<leader>", "R"],
@@ -72,6 +77,11 @@
             "before": ["<leader>", "t", "c"],
             "after": ["v", "a", "B", "$", "o", "k", "\"", "+", "y", "j", "j", "v", "a", "B", "<esc>", "j"]
         },
+        // Format markdown DevOps link
+        {
+            "before": ["<leader>", "d"],
+            "after": ["g", "E", "W", "E", "b", "y", "e", "E", "a", ")", "<esc>", "B", "i", "[", "#", "<esc>", "p", "a", "]", "(", "<esc>"]
+        },
         // go to next jasmine spec
         {
             "before": ["<leader>", "t", "n"],
@@ -95,5 +105,6 @@
             "after": ["\"", "a", "y", "/", "<c-r>", "a", "<cr>"]
         }
     ],
-    "window.zoomLevel": 1
+    "window.zoomLevel": 1,
+    "workbench.colorTheme": "Super One Dark"
 }
