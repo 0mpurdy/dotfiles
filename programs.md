@@ -1,11 +1,12 @@
 - [ ] 7zip
 - [ ] Android studio
+- [ ] Affinity Designer
 - [ ] Autohotkey
 - [ ] Chrome
 - [ ] Chrome remote desktop
-- [ ] cmder
 - [ ] Display drivers
 - [ ] Dropbox
+- [ ] Docker
 - [ ] Firefox
 - [ ] Gimp
 - [ ] git
@@ -24,9 +25,13 @@
 - [ ] Slack
 - [ ] SourceTree
 - [ ] Spotify
+- [ ] Screen To Gif
+- [ ] Synergy
 - [ ] Steam
 - [ ] Sublime
 - [ ] Veracrypt
 - [ ] Visual Studio
+- [ ] Visual Studio Code
+- [ ] Vysor
 - [ ] VLC
 - [ ] WhatsApp
