@@ -17,6 +17,7 @@ set splitright                    " new windows in a vertical split open to the 
 set hidden                        " don't ask to save before switching buffers
 set directory^=$HOME/.vim/tmp//   " Use central location for swp files
 set ignorecase
+set colorcolumn=80,120            " Show column 80 and 120 line lengths
 
 " ************************* Leader mappings *************************
 
