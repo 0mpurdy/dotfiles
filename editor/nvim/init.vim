@@ -340,6 +340,7 @@ endif
 
 :command! Less :!lessc ./css/style.less ./style.css
 :command! JsonFormat :%!python -m json.tool
+:command! XmlFormat :%!python -c "import xml.dom.minidom, sys; print(xml.dom.minidom.parse(sys.stdin).toprettyxml(newl='',indent=''))"
 :nnoremap =j :JsonFormat<cr>
 
 :command! EightyOn set colorcolumn=80
