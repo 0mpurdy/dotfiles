@@ -2,7 +2,7 @@ set nocompatible          " not compatible with vi
 syntax on                 " use syntax highlighting
 filetype plugin indent on " vim autodetects file type (can't remember what indent does)
 
-" *************************** Tabbing ***************************
+" ********************************** Tabbing **********************************
 
 " (more info at https://tedlogan.com/techblog3.html)
 set expandtab       " change tab key to insert spaces
@@ -10,7 +10,7 @@ set tabstop=2       " existing tabs look like 2 spaces
 set shiftwidth=2    " >> indent 2 spaces
 set softtabstop=2   " with expand tab not set combination of spaces will be used
 
-" ****************************** Misc ******************************
+" *********************************** Misc ************************************
 
 set number relativenumber         " use hybrid line numbers (https://jeffkreeftmeijer.com/vim-number/)
 set splitright                    " new windows in a vertical split open to the right
@@ -19,7 +19,7 @@ set directory^=$HOME/.vim/tmp//   " Use central location for swp files
 set ignorecase
 set colorcolumn=80,120            " Show column 80 and 120 line lengths
 
-" ************************* Leader mappings *************************
+" ****************************** Leader mappings ******************************
 
 let mapleader=" " " set leader to space
 " map double leader (space) to command
@@ -61,13 +61,13 @@ set listchars=eol:¬,tab:>·,trail:~,extends:>,precedes:<,space:␣
 " macro to shorten csproj version syntax
 nnoremap <leader>gv j_ditk$i Version="<esc>pEDA" /><esc>jdd._
 
-" ********************** Function key mappings **********************
+" *************************** Function key mappings ***************************
 
 " toggle search highlighting
 :noremap <F2> :set hlsearch! hlsearch?<cr>
 :noremap <leader>2 :set hlsearch! hlsearch?<cr>
 
-" ********************** Keyboard mappings **************************
+" *************************** Keyboard mappings *******************************
 
 " handier end of line key
 :noremap \ $
@@ -113,7 +113,7 @@ function! CreateMockProvider()
   :norm 'aj
 endfunction
 
-" ************************ Plugins **********************************
+" ***************************** Plugins ***************************************
 
 " Specify a directory for plugins
 " - Avoid using standard Vim directory names like 'plugin'
@@ -230,7 +230,7 @@ let g:OmniSharp_server_stdio = 1
 " Initialize plugin system
 call plug#end()
 
-" ************************** Colorscheme **************************
+" ******************************** Colorscheme ********************************
 
 colorscheme industry
 
@@ -238,7 +238,7 @@ silent! colorscheme onedark
 
 " For light theme PaperColor is very good
 
-" *********************** Navigating windows ***********************
+" **************************** Navigating windows *****************************
 
 " map half page moves to ctrl + direction
 :nnoremap <C-j> <C-d>zz
@@ -250,7 +250,7 @@ silent! colorscheme onedark
 :nnoremap <leader>k <C-w>k
 :nnoremap <leader>l <C-w>l
 
-" ************************ Find and replace ************************
+" ***************************** Find and replace ******************************
 
 " search for visually selected text
 :vnoremap // y/<C-R>"<CR>
@@ -266,14 +266,14 @@ silent! colorscheme onedark
 " find word under cursor
 :nnoremap <Leader>/ /\<<C-r><C-w>\><CR>
 
-" ******************** Neovim terminal mappings ********************
+" ************************* Neovim terminal mappings **************************
 
 " Open neovim terminal
 :nnoremap <leader>t :terminal<CR>A
 " Map <Esc> to quitting the terminal
 :tnoremap <Esc> <C-\><C-n>
 
-" **************************** Commands ****************************
+" ********************************* Commands **********************************
 
 " git diff
 ":command GD !clear;git diff
@@ -347,7 +347,7 @@ endif
 :command! OneTwentyOn set colorcolumn=120
 :command! ColourColumnOff set colorcolumn=
 
-" **************************** Functions *****************************
+" ******************************** Functions **********************************
 
 function! LogFile()
 
@@ -392,7 +392,7 @@ function! LogFile()
 
 endfunction
 
-" ********************* Python specific settings *********************
+" ************************* Python specific settings **************************
 
 " F1 to auto format file
 autocmd FileType python nnoremap <F1> :w<CR>:!autopep8 -i --aggressive --aggressive %<CR>
@@ -419,16 +419,16 @@ autocmd FileType python nnoremap <C-_> 0i# <Esc>j
 " + to uncomment
 autocmd FileType python nnoremap + 02xj
 
-" ********************* Rust specific settings *********************
+" ************************** Rust specific settings ***************************
 
 " F5 to run current file
 autocmd FileType rust nnoremap <F5> :w<CR>:vsp term://cargo run %<CR>
 
-" ********************* Bash specific settings *********************
+" ************************** Bash specific settings ***************************
 
 autocmd Filetype sh nnoremap <c-_> 0i# <Esc>j
 
-" ********************* Typescript specific settings *********************
+" *********************** Typescript specific settings ************************
 
 autocmd Filetype typescript nnoremap <F3> :!tslint --fix %<cr>
 autocmd Filetype typescript nnoremap <F5> :!tsc --experimentalDecorators --target ES5 %<CR>:vsp term://node %:r.js<CR>i
@@ -440,7 +440,7 @@ autocmd Filetype typescript nnoremap <leader>gp :TSDefPreview<CR>
 autocmd Filetype typescript nnoremap <leader>gi :TSDoc<CR>
 autocmd Filetype typescript nnoremap <leader>gf :TSGetCodeFix<CR>
 
-" ********************* csharp specific settings *********************
+" ************************* csharp specific settings **************************
 
 autocmd Filetype cs let b:match_words = '\s*#\s*region.*$:\s*#\s*endregion'
 
@@ -468,6 +468,6 @@ autocmd FileType cs nmap <silent> <buffer> <leader>os= <Plug>(omnisharp_code_for
 autocmd FileType cs setlocal tabstop=4
 autocmd FileType cs setlocal shiftwidth=4
 
-" ********************* xaml specific settings *********************
+" ************************** xaml specific settings ***************************
 
 autocmd Filetype xaml let b:match_words = '\s*<!--\s*#\s*region.*$:\s*<!--\s*#\s*endregion'
