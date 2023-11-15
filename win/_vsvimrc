@@ -16,8 +16,8 @@ nnoremap <leader>mo k_Wc2f {<CR><esc>lyiwf,s=<esc>f)C;<CR><esc>"0pA ));<esc>_~IO
 
 " macro for making mocks
 nnoremap <leader>mj _iprivate readonly Mock<<esc>llyeA> mock<esc>pA;<esc>
-nnoremap <leader>mh _dwdwdWea = new <esc>ps(MockBehavior.Strict)<esc>
-nnoremap <leader>mj _ElC.Object,<esc>j_
+nnoremap <leader>mh _dwdwdWea = new <esc>ps(MockBehavior.Strict)<esc>==
+nnoremap <leader>mk _ElC.Object,<esc>>>j_
 
 " macro for making setter from attribute
 nnoremap <leader>ms I<Setter Property="<esc>lxxf=i" Value<esc>A /><esc>
