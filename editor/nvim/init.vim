@@ -1,3 +1,5 @@
+" Needs manual installation of https://github.com/junegunn/vim-plug
+
 set nocompatible          " not compatible with vi
 syntax on                 " use syntax highlighting
 filetype plugin indent on " vim autodetects file type (can't remember what indent does)
@@ -118,7 +120,7 @@ endfunction
 " Specify a directory for plugins
 " - Avoid using standard Vim directory names like 'plugin'
 if has('win32')
-  call plug#begin('C:\Users\michael.purdy\vimfiles\autoload')
+  call plug#begin('$USERPROFILE\AppData\Local\nvim-data\site\autoload')
 
   " Fuzzy find
   Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
