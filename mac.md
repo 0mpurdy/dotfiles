@@ -46,3 +46,23 @@ Omnisharp for Neovim
 [iterm]: https://www.iterm2.com
 [nvm]: https://github.com/creationix/nvm
 [pandoc]: https://pandoc.org/installing.html#macos
+
+## For C# .NET MAUI dev
+
+Must have
+
+ - Install XCode (nice to use [xcodes][xcodes])
+ - Install Visual Studio for mac
+
+Nice to have
+
+ - Install [Android Studio][android-studio]
+
+[xcodes]: https://www.xcodes.app
+[android-studio]: https://developer.android.com/studio/
+
+## For web dev
+
+ - Install nodejs (use [nvm][nvm])
+
+[nvm]: https://github.com/creationix/nvm
