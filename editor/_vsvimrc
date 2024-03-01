@@ -1,14 +1,22 @@
 " Save to C:/Users/Username
 
+" *********************************** Misc ************************************
+
 set ignorecase
 
-let mapleader = " "
+" ****************************** Leader mappings ******************************
 
-nnoremap , @q
+let mapleader = " "
 
 nnoremap <leader>p "+p
 nnoremap <leader>y "+y
 vnoremap <leader>y "+y
+
+" *************************** Keyboard mappings *******************************
+
+nnoremap , @q
+
+" ********************************** Macros ***********************************
 
 " macro to make a view property for xamarin view model
 nnoremap <leader>mp _iprivate <esc>wy$A;<esc>o<esc>opublic <esc>pByE~o{<CR>get => <esc>pa;<CR>set => SetProperty(ref <esc>pa, value<esc>A;<esc>o}<esc>
