@@ -163,13 +163,12 @@ else
   Plug 'tpope/vim-commentary'
   " Some useful normal mode mappings
   "Plug 'tpope/vim-unimpaired'
-  
-  Plug 'junegunn/vim-easy-align' " Alignment tool
+  " Alignment tool
+  Plug 'junegunn/vim-easy-align'
   " Start interactive EasyAlign in visual mode (e.g. vipga)
   xmap ga <Plug>(EasyAlign)
   " Start interactive EasyAlign for a motion/text object (e.g. gaip)
   nmap ga <Plug>(EasyAlign)
-
 
   " Auto completion
   if has('nvim')
@@ -183,7 +182,8 @@ else
   " deoplete tab-complete
   :inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
 
-  Plug 'w0rp/ale'                 " Linting
+  " Linting
+  Plug 'w0rp/ale'
   " ALE error navigation
   :nnoremap ]e :ALENextWrap<cr>
   :nnoremap [e :ALEPreviousWrap<cr>
