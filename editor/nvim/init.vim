@@ -448,14 +448,14 @@ autocmd Filetype cs let b:match_words = '\s*#\s*region.*$:\s*#\s*endregion'
 
 " https://github.com/OmniSharp/Omnisharp-vim#configuration
 autocmd FileType cs nmap <silent> <buffer> gd <Plug>(omnisharp_go_to_definition)
-autocmd FileType cs nmap <silent> <buffer> <leader>osu <Plug>(omnisharp_find_usages)
-autocmd FileType cs nmap <silent> <buffer> <leader>osi <Plug>(omnisharp_find_implementations)
+autocmd FileType cs nmap <silent> <buffer> <leader>osfu <Plug>(omnisharp_find_usages)
+autocmd FileType cs nmap <silent> <buffer> <leader>osfi <Plug>(omnisharp_find_implementations)
 autocmd FileType cs nmap <silent> <buffer> <leader>ospd <Plug>(omnisharp_preview_definition)
 autocmd FileType cs nmap <silent> <buffer> <leader>ospi <Plug>(omnisharp_preview_implementations)
 autocmd FileType cs nmap <silent> <buffer> <leader>ost <Plug>(omnisharp_type_lookup)
 autocmd FileType cs nmap <silent> <buffer> <leader>osd <Plug>(omnisharp_documentation)
 autocmd FileType cs nmap <silent> <buffer> <leader>osfs <Plug>(omnisharp_find_symbol)
-autocmd FileType cs nmap <silent> <buffer> <leader>osx <Plug>(omnisharp_fix_usings)
+autocmd FileType cs nmap <silent> <buffer> <leader>osfx <Plug>(omnisharp_fix_usings)
 autocmd FileType cs nmap <silent> <buffer> <C-\> <Plug>(omnisharp_signature_help)
 autocmd FileType cs imap <silent> <buffer> <C-\> <Plug>(omnisharp_signature_help)
 
