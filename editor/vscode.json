@@ -82,6 +82,11 @@
             "before": ["<leader>", "d"],
             "after": ["g", "E", "W", "E", "b", "y", "e", "E", "a", ")", "<esc>", "B", "i", "[", "#", "<esc>", "p", "a", "]", "(", "<esc>"]
         },
+        // Remove markdown link
+        {
+            "before": ["<leader>", "D"],
+            "after": ["F", "[", "x", "f", "]", "x", "d", "%"]
+        },
         // go to next jasmine spec
         {
             "before": ["<leader>", "t", "n"],
