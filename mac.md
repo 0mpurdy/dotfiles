@@ -1,39 +1,49 @@
 # Setting up a mac
 
  - Check for updates
- - Install magnet
- - Change settings
-   + Display resolution
-   + Gestures
-   + Set up internet accounts
-   + Remap caps lock key
- - Install Apple software suite
-   + Numbers
-   + Pages
-   + Keynote
-   + iMovie
-   + XCode
- - Install Chrome
- - Clone dotfiles repo
- - [Install Homebrew][homebrew]
- - Install python (use homebrew)
- - Install nodejs (use [nvm][nvm])
-   + Install npm packages
-     * typescript
- - Install neovim (use dotfiles script)
- - Install [iTerm][iterm]
- - Set up [ssh keys][github-ssh]
- - Install [GitKraken][gitkraken]
- - Install Slack
- - Install WhatsApp
- - Install Google Drive
- - Install the Affinity suite
- - Install Spotify
 
- - Install [Android Studio][android-studio]
- - Install [pandoc][pandoc] (use brew)
+## Settings
 
- - Install Visual Studio
+- For external keyboard, choose "British PC" as input language so that keys
+  like #\\\` all work.
+- Change settings
+  + Display resolution
+  + Gestures
+  + Set up internet accounts
+  + Remap caps lock key
+- Clone dotfiles repo
+- Set up [ssh keys][github-ssh]
+
+## Apps
+
+- Screen management
+  + Magnet
+  + OR Rectangle
+- Apple software suite
+  + Numbers
+  + Pages
+  + Keynote
+  + iMovie
+  + XCode
+- Chrome
+- [Homebrew][homebrew]
+- Python (use homebrew)
+- NodeJS (use [nvm][nvm])
+  + Install NPM packages
+    * Typescript
+- Neovim (use dotfiles script)
+- [iTerm][iterm]
+- [GitKraken][gitkraken]
+- Slack
+- WhatsApp
+- Google Drive
+- Affinity suite
+- Spotify
+
+- Install [Android Studio][android-studio]
+- Install [pandoc][pandoc] (use brew)
+
+- Install Visual Studio
 
 Omnisharp for Neovim
 
