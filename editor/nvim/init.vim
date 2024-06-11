@@ -205,6 +205,7 @@ else
   if has('nvim')
     Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
   else
+    " if using venv - `pip install pynvim`
     Plug 'Shougo/deoplete.nvim'
     Plug 'roxma/nvim-yarp'
     Plug 'roxma/vim-hug-neovim-rpc'
@@ -234,10 +235,19 @@ else
   Plug 'HerringtonDarkholme/yats.vim'
   " Required for nvim-typescript
   Plug 'Shougo/denite.nvim'
+ 
   " Typescript support
-  Plug 'mhartington/nvim-typescript', {'do': './install.sh'}
+  Plug 'neovim/nvim-lspconfig'
+  Plug 'nvim-lua/plenary.nvim'
+  Plug 'pmizio/typescript-tools.nvim'
+  "Plug 'mhartington/nvim-typescript', {'do': './install.sh'}
   " Typescript syntax highlighting
-  Plug 'leafgarland/typescript-vim'
+  "Plug 'leafgarland/typescript-vim'
+
+  " React prettify tsx
+  Plug 'prettier/vim-prettier', {
+    \ 'do': 'yarn install --frozen-lockfile --production',
+    \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'svelte', 'yaml', 'html'] }
 
 endif
 
