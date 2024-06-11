@@ -11,7 +11,6 @@ docopy() {
 
 docopy "${dotpath}/nix/.bashrc" "${HOME}/.bashrc"
 docopy "${dotpath}/nix/.bash_aliases" "${HOME}/.bash_aliases"
-docopy "${dotpath}/pandoc/panread.css" "${HOME}/.config/pan.css"
 docopy "${dotpath}/editor/.vimrc" "${HOME}/.vimrc"
 docopy "${dotpath}/nix/.profile" "${HOME}/.profile"
 docopy "${dotpath}/editor/nvim/init.vim" "${HOME}/.config/nvim/init.vim"
