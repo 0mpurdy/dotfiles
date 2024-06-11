@@ -28,6 +28,7 @@ let mapleader=" " " set leader to space
 :nnoremap <leader><leader> :
 " Set indent folding
 :nnoremap <leader>zi :set foldmethod=indent<CR>zM<CR>
+:nnoremap <leader>zn zR<CR>:set foldmethod=manual<CR>
 :nnoremap <leader>zf :norm zf%<CR>
 :nnoremap <leader>zp :norm zfip<CR>
 :nnoremap <leader>v :vsp<CR>
@@ -40,16 +41,13 @@ let mapleader=" " " set leader to space
 :nnoremap <leader>p "+p
 :nnoremap <leader>r diw"0P
 
-" insert current date
-:nnoremap <leader>d "=strftime("%FT%T%z")<CR>P
-
 " toggle list chars
 set listchars=eol:¬,tab:>·,trail:~,extends:>,precedes:<,space:␣
 :nnoremap <leader>= :set list!<cr>
 
 " FZF Fuzzy find shortcut
 :nnoremap <leader>f :GFiles<CR>
-:nnoremap <leader>b :Buffers<CR>
+:nnoremap <leader>bb :Buffers<CR>
 
 " Tail log file
 :nnoremap <leader>G Gkzt
@@ -57,11 +55,42 @@ set listchars=eol:¬,tab:>·,trail:~,extends:>,precedes:<,space:␣
 " insert log above
 :nnoremap <leader>il Othis.logger.log(LogLevel.Trace, 'placeholder');<esc>==
 
-" insert date time
-:nnoremap <leader>id :put = strftime('%FT%T%z')<cr>
+" insert current date
+:nnoremap <leader>id "=strftime("%F")<CR>p
 
-" macro to shorten csproj version syntax
-nnoremap <leader>gv j_ditk$i Version="<esc>pEDA" /><esc>jdd._
+" insert date time
+:nnoremap <leader>it "=strftime('%FT%T%z')<cr>p
+
+" macro to convert PR link to markdown
+" DevOps
+"nnoremap <leader>mdp BEyiwa)<esc>Bi[PR !<esc>pa](<esc>
+
+" macro to convert JIRA ticket link to markdown
+nnoremap <leader>mdl gEWET/yEBEa)<esc>Bi[<esc>pa](<esc>
+
+" macro to convert JIRA PR link to markdown
+nnoremap <leader>mdp gEWEvT/ygEWEa)<esc>Bi[PR !<esc>pa](<esc>
+
+" macro to remove markdown link syntax
+nnoremap <leader>mdr F[xf]df)
+
+" macro to copy previous link
+nnoremap <leader>mdL ?\[.*\](<cr>f("+yi)
+
+" Macro for prettier
+nnoremap <leader>e <Plug>(Prettier)
+
+" Macro for tsx comment
+vnoremap <leader>gc <esc>`<i{/*<esc>`>a*/}<esc>
+
+" fuzzy search
+command! -bang -nargs=* Agi call fzf#vim#ag(<q-args>, '--ignore=node_modules --ignore=package-lock.json', fzf#vim#with_preview(), <bang>0)
+:nnoremap <leader>a :Agi<cr>
+
+" Git mappings
+nnoremap <leader>gl :Gclog %<cr>
+nnoremap <leader>gh :0Gclog<cr>
+nnoremap <leader>gb :Git blame<cr>
 
 " *************************** Function key mappings ***************************
 
@@ -73,12 +102,14 @@ nnoremap <leader>gv j_ditk$i Version="<esc>pEDA" /><esc>jdd._
 
 " handier end of line key
 :noremap \ $
-" use gx to open files
-:let g:netrw_browsex_viewer= "open -a Firefox"
+
+" Use Firefox as default browser
+":let g:netrw_browsex_viewer= "open -a Firefox"
+
 " next in quickfix list
-:nnoremap <leader>] :cn<CR>
+:nnoremap ) :cn<CR>zz
 " previous in quickfix list
-:nnoremap <leader>[ :cp<CR>
+:nnoremap ( :cp<CR>zz
 " http://vim.wikia.com/wiki/Macros
 :nnoremap , @q
 :nnoremap Y y$
@@ -187,7 +218,6 @@ else
   " ALE error navigation
   :nnoremap ]e :ALENextWrap<cr>
   :nnoremap [e :ALEPreviousWrap<cr>
-  :nnoremap <leader>a :ALEToggle<cr>
 
   let g:ale_linters = {
   \ 'cs': ['OmniSharp']
@@ -251,6 +281,7 @@ silent! colorscheme onedark
 :nnoremap <leader>j <C-w>j
 :nnoremap <leader>k <C-w>k
 :nnoremap <leader>l <C-w>l
+:nnoremap <leader>x <C-w>c
 
 " ***************************** Find and replace ******************************
 
@@ -262,7 +293,7 @@ silent! colorscheme onedark
 :vnoremap R "_d"0P
 " find word in all files
 :nnoremap K :vimgrep ' **/*.ts<S-Left><S-Left>'
-:nnoremap <leader>K :grep -r --exclude-dir=node_modules --exclude="*.d.ts" --include "*.ts" ' ./src/ ./e2e<S-Left><S-Left><S-Left>'
+:nnoremap <leader>K :grep -r --exclude-dir=node_modules --exclude="*.d.ts" --include "*.ts" --include "*.tsx" --include "*.py" ' ./src/ ./e2e<S-Left><S-Left><S-Left>'
 " replace word under cursor
 :nnoremap <Leader>s :%s/\<<C-r><C-w>\>/
 " find word under cursor
@@ -342,6 +373,8 @@ endif
 
 :command! Less :!lessc ./css/style.less ./style.css
 :command! JsonFormat :%!python -m json.tool
+" I don't love this vimscript, but it did the job I needed this time
+"%delete | 0put =json_encode(json_decode(@@))
 :command! XmlFormat :%!python -c "import xml.dom.minidom, sys; print(xml.dom.minidom.parse(sys.stdin).toprettyxml(newl='',indent=''))"
 :nnoremap =j :JsonFormat<cr>
 
@@ -394,10 +427,15 @@ function! LogFile()
 
 endfunction
 
+function! ShortenCsprojVersion()
+  :exe "norm j_ditk$i Version=\"\<esc>pEDA\" />\<esc>jdd._"
+endfunction
+
 " ************************* Python specific settings **************************
 
 " F1 to auto format file
 autocmd FileType python nnoremap <F1> :w<CR>:!autopep8 -i --aggressive --aggressive %<CR>
+autocmd FileType python nnoremap <leader>e :w<CR>:!autopep8 -i --aggressive --aggressive %<CR>
 " F4 to run current file
 autocmd FileType python nnoremap <F4> :w<CR>:vsp term://python3 %<CR>i
 " F5 to run current dir
@@ -438,7 +476,6 @@ autocmd Filetype typescript nnoremap <F6> :vsp term://npm run test<CR>i
 autocmd Filetype typescript nnoremap <F12> :TSDef<CR>
 
 autocmd Filetype typescript nnoremap <leader>gd :TSDef<CR>
-autocmd Filetype typescript nnoremap <leader>gp :TSDefPreview<CR>
 autocmd Filetype typescript nnoremap <leader>gi :TSDoc<CR>
 autocmd Filetype typescript nnoremap <leader>gf :TSGetCodeFix<CR>
 
