@@ -365,12 +365,9 @@ endif
 :set wildignore+=objd/**,obj/**,*.tmp,test.c,**/node_modules/**
 :command! -nargs=1 CSearch noautocmd vimgrep "<args>" ./**/*.py ./**/*.txt ./**/*.html ./**/*.ts
 
-" Navigating buffers and tabs
-:nnoremap <leader>. :tabnext<cr>
-:nnoremap <leader>, :tabprevious<cr>
+" Navigating buffers
 :nnoremap <tab> :bnext<cr>
 :nnoremap <S-tab> :bprevious<cr>
-:nnoremap <leader><tab> :tabnew<cr>
 
 :nnoremap <leader>+ :vertical resize +10<CR>
 :nnoremap <leader>- :vertical resize -10<CR>
