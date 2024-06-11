@@ -269,6 +269,9 @@ Plug 'OmniSharp/omnisharp-vim'
 let g:OmniSharp_server_stdio = 1
 " let g:OmniSharp_server_path = '/Users/mike/Downloads/omnisharp-osx/run'
 
+" Language Server Protocol manager (LSP)
+Plug 'williamboman/mason.nvim'
+
 " Initialize plugin system
 call plug#end()
 
@@ -333,6 +336,8 @@ endif
 if has('win32')
     :command! RVIM :exe "source C:/Users/" . expand('$USERNAME') . "/AppData/Local/nvim/init.vim"
 endif
+
+:command! ENLUA e ~/.config/nvim/lua/config.lua
 
 " Ag (silver searcher) but only search files
 " https://github.com/junegunn/fzf.vim/issues/346#issuecomment-288483704
@@ -520,3 +525,12 @@ autocmd FileType cs setlocal shiftwidth=4
 " ************************** xaml specific settings ***************************
 
 autocmd Filetype xaml let b:match_words = '\s*<!--\s*#\s*region.*$:\s*<!--\s*#\s*endregion'
+
+" ******************************** Lua config *********************************
+
+lua require('config')
+lua require('lspconfig').pylsp.setup { settings = { pylsp = { plugins = { pylint = {enabled = false}, pycodestyle = { enabled = "false" }, }, }, }, }
+
+autocmd FileType python nnoremap <leader>gr :lua vim.lsp.buf.references()<cr>
+autocmd FileType python nnoremap <leader>gcr :lua vim.lsp.buf.rename()<cr>
+autocmd Filetype python nnoremap <leader>gd :lua vim.lsp.buf.definition()<cr>
