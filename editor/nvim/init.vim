@@ -272,6 +272,9 @@ let g:OmniSharp_server_stdio = 1
 " Language Server Protocol manager (LSP)
 Plug 'williamboman/mason.nvim'
 
+" LSP configs
+Plug 'neovim/nvim-lspconfig'
+
 " Initialize plugin system
 call plug#end()
 
@@ -487,9 +490,20 @@ autocmd Filetype typescript nnoremap <F5> :!tsc --experimentalDecorators --targe
 autocmd Filetype typescript nnoremap <F6> :vsp term://npm run test<CR>i
 autocmd Filetype typescript nnoremap <F12> :TSDef<CR>
 
-autocmd Filetype typescript nnoremap <leader>gd :TSDef<CR>
+" autocmd Filetype typescript nnoremap <leader>gd :TSDef<CR>
+autocmd Filetype typescript nnoremap <leader>gd :lua vim.lsp.buf.definition()<cr>
 autocmd Filetype typescript nnoremap <leader>gi :TSDoc<CR>
 autocmd Filetype typescript nnoremap <leader>gf :TSGetCodeFix<CR>
+
+autocmd Filetype typescriptreact nnoremap <F3> :!tslint --fix %<cr>
+autocmd Filetype typescriptreact nnoremap <F5> :!tsc --experimentalDecorators --target ES5 %<CR>:vsp term://node %:r.js<CR>i
+autocmd Filetype typescriptreact nnoremap <F6> :vsp term://npm run test<CR>i
+autocmd Filetype typescriptreact nnoremap <F12> :TSDef<CR>
+
+" autocmd Filetype typescriptreact nnoremap <leader>gd :TSDef<CR>
+autocmd Filetype typescriptreact nnoremap <leader>gd :lua vim.lsp.buf.definition()<cr>
+autocmd Filetype typescriptreact nnoremap <leader>gi :TSDoc<CR>
+autocmd Filetype typescriptreact nnoremap <leader>gf :TSGetCodeFix<CR>
 
 " ************************* csharp specific settings **************************
 
@@ -526,7 +540,7 @@ autocmd Filetype xaml let b:match_words = '\s*<!--\s*#\s*region.*$:\s*<!--\s*#\s
 " ******************************** Lua config *********************************
 
 lua require('config')
-lua require('lspconfig').pylsp.setup { settings = { pylsp = { plugins = { pylint = {enabled = false}, pycodestyle = { enabled = "false" }, }, }, }, }
+" lua require('lspconfig').pylsp.setup { settings = { pylsp = { plugins = { pylint = {enabled = false}, pycodestyle = { enabled = "false" }, }, }, }, }
 
 autocmd FileType python nnoremap <leader>gr :lua vim.lsp.buf.references()<cr>
 autocmd FileType python nnoremap <leader>gcr :lua vim.lsp.buf.rename()<cr>
