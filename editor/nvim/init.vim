@@ -77,9 +77,6 @@ nnoremap <leader>mdr F[xf]df)
 " macro to copy previous link
 nnoremap <leader>mdL ?\[.*\](<cr>f("+yi)
 
-" Macro for prettier
-nnoremap <leader>e <Plug>(Prettier)
-
 " Macro for tsx comment
 vnoremap <leader>gc <esc>`<i{/*<esc>`>a*/}<esc>
 
@@ -203,16 +200,16 @@ else
 
   " Auto completion
   if has('nvim')
-    Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+    " Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
   else
     " if using venv - `pip install pynvim`
-    Plug 'Shougo/deoplete.nvim'
+    "Plug 'Shougo/deoplete.nvim'
     Plug 'roxma/nvim-yarp'
     Plug 'roxma/vim-hug-neovim-rpc'
   endif
-  let g:deoplete#enable_at_startup = 1
-  " deoplete tab-complete
-  :inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
+  " let g:deoplete#enable_at_startup = 1
+  " " deoplete tab-complete
+  " :inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
 
   " Linting
   Plug 'w0rp/ale'
@@ -221,8 +218,24 @@ else
   :nnoremap [e :ALEPreviousWrap<cr>
 
   let g:ale_linters = {
-  \ 'cs': ['OmniSharp']
+  \ 'cs': ['OmniSharp'],
+  \ 'javascript': ['eslint'],
+  \ 'typescript': ['eslint'],
+  \ 'typescriptreact': ['eslint'],
   \}
+
+  let g:ale_fixers = {
+  \ 'javascript': ['prettier'],
+  \ 'typescript': ['prettier'],
+  \ 'typescriptreact': ['prettier'],
+  \ 'css': ['prettier'],
+  \}
+
+  let g:ale_linters_explicit = 1
+  let g:ale_fix_on_save = 1
+
+  Plug 'hrsh7th/nvim-cmp'
+  Plug 'hrsh7th/cmp-nvim-lsp'
 
   " Snippet support
   Plug 'SirVer/ultisnips'
@@ -239,7 +252,7 @@ else
   " Typescript support
   Plug 'neovim/nvim-lspconfig'
   Plug 'nvim-lua/plenary.nvim'
-  Plug 'pmizio/typescript-tools.nvim'
+  " Plug 'pmizio/typescript-tools.nvim'
   "Plug 'mhartington/nvim-typescript', {'do': './install.sh'}
   " Typescript syntax highlighting
   "Plug 'leafgarland/typescript-vim'
@@ -273,7 +286,7 @@ let g:OmniSharp_server_stdio = 1
 Plug 'williamboman/mason.nvim'
 
 " LSP configs
-Plug 'neovim/nvim-lspconfig'
+" Plug 'neovim/nvim-lspconfig'
 
 " Initialize plugin system
 call plug#end()
@@ -446,6 +459,24 @@ function! ShortenCsprojVersion()
   :exe "norm j_ditk$i Version=\"\<esc>pEDA\" />\<esc>jdd._"
 endfunction
 
+function! MinifyMarkdownTable()
+  :'<,'>s/  \+/ /g
+endfunction
+
+function! MarkdownToCss()
+  :call MinifyMarkdownTable()
+  :'<,'>s/\( |\)\+$//g
+  :'<,'>s/^| //g
+  :'<,'>s/ | | /,,/g
+  :'<,'>s/ | /,/g
+endfunction
+
+function! CssToMarkdown()
+  :'<,'>s/,/ | /g
+  :'<,'>s/^\(.\)/| \1/g
+  :'<,'>s/\(.\)$/\1 |/g
+endfunction
+
 " ************************* Python specific settings **************************
 
 " F1 to auto format file
@@ -485,25 +516,23 @@ autocmd Filetype sh nnoremap <c-_> 0i# <Esc>j
 
 " *********************** Typescript specific settings ************************
 
-autocmd Filetype typescript nnoremap <F3> :!tslint --fix %<cr>
-autocmd Filetype typescript nnoremap <F5> :!tsc --experimentalDecorators --target ES5 %<CR>:vsp term://node %:r.js<CR>i
-autocmd Filetype typescript nnoremap <F6> :vsp term://npm run test<CR>i
-autocmd Filetype typescript nnoremap <F12> :TSDef<CR>
+autocmd Filetype typescript,typescriptreact nnoremap <F3> :!tslint --fix %<cr>
+autocmd Filetype typescript,typescriptreact nnoremap <F5> :!tsc --experimentalDecorators --target ES5 %<CR>:vsp term://node %:r.js<CR>i
+autocmd Filetype typescript,typescriptreact nnoremap <F6> :vsp term://npm run test<CR>i
+autocmd Filetype typescript,typescriptreact nnoremap <F12> :TSDef<CR>
 
-" autocmd Filetype typescript nnoremap <leader>gd :TSDef<CR>
-autocmd Filetype typescript nnoremap <leader>gd :lua vim.lsp.buf.definition()<cr>
-autocmd Filetype typescript nnoremap <leader>gi :TSDoc<CR>
-autocmd Filetype typescript nnoremap <leader>gf :TSGetCodeFix<CR>
+" autocmd Filetype typescript,typescriptreact nnoremap <leader>gd :TSDef<CR>
+autocmd Filetype typescript,typescriptreact nnoremap <leader>gd :lua vim.lsp.buf.definition()<cr>
+autocmd Filetype typescript,typescriptreact nnoremap ]] :lua vim.diagnostic.goto_next()<cr>
+autocmd Filetype typescript,typescriptreact nnoremap [[ :lua vim.diagnostic.goto_prev()<cr>
+" autocmd Filetype typescript,typescriptreact :lua vim.keymap.set("n", "]]", vim.diagnostic.goto_next)<cr>
+" autocmd Filetype typescript,typescriptreact :lua vim.keymap.set("n", "[[", vim.diagnostic.goto_prev)<cr>
+autocmd Filetype typescript,typescriptreact nnoremap <leader>gi :TSDoc<CR>
+autocmd Filetype typescript,typescriptreact nnoremap <leader>gf :TSGetCodeFix<CR>
+autocmd Filetype typescript,typescriptreact nnoremap <silent> <buffer> <leader>ot :lua vim.lsp.buf.type_definition()<cr>
 
-autocmd Filetype typescriptreact nnoremap <F3> :!tslint --fix %<cr>
-autocmd Filetype typescriptreact nnoremap <F5> :!tsc --experimentalDecorators --target ES5 %<CR>:vsp term://node %:r.js<CR>i
-autocmd Filetype typescriptreact nnoremap <F6> :vsp term://npm run test<CR>i
-autocmd Filetype typescriptreact nnoremap <F12> :TSDef<CR>
-
-" autocmd Filetype typescriptreact nnoremap <leader>gd :TSDef<CR>
-autocmd Filetype typescriptreact nnoremap <leader>gd :lua vim.lsp.buf.definition()<cr>
-autocmd Filetype typescriptreact nnoremap <leader>gi :TSDoc<CR>
-autocmd Filetype typescriptreact nnoremap <leader>gf :TSGetCodeFix<CR>
+" Macro for prettier
+autocmd Filetype typescript,typescriptreact nnoremap <leader>e <Plug>(Prettier)
 
 " ************************* csharp specific settings **************************
 
@@ -540,8 +569,11 @@ autocmd Filetype xaml let b:match_words = '\s*<!--\s*#\s*region.*$:\s*<!--\s*#\s
 " ******************************** Lua config *********************************
 
 lua require('config')
-" lua require('lspconfig').pylsp.setup { settings = { pylsp = { plugins = { pylint = {enabled = false}, pycodestyle = { enabled = "false" }, }, }, }, }
 
 autocmd FileType python nnoremap <leader>gr :lua vim.lsp.buf.references()<cr>
 autocmd FileType python nnoremap <leader>gcr :lua vim.lsp.buf.rename()<cr>
 autocmd Filetype python nnoremap <leader>gd :lua vim.lsp.buf.definition()<cr>
+autocmd Filetype python nnoremap <silent> <buffer> <leader>od :lua vim.lsp.buf.definition()<cr>
+autocmd Filetype python nnoremap <silent> <buffer> <leader>ot :lua vim.lsp.buf.type_definition()<cr>
+autocmd Filetype python nnoremap <silent> <buffer> ]] :lua vim.diagnostic.goto_next()<cr>
+autocmd Filetype python nnoremap <silent> <buffer> [[ :lua vim.diagnostic.goto_prev()<cr>
