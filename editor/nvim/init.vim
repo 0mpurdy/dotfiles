@@ -145,6 +145,8 @@ endfunction
 
 " ***************************** Plugins ***************************************
 
+let g:no_python_maps = 1
+
 " Specify a directory for plugins
 " - Avoid using standard Vim directory names like 'plugin'
 if has('win32')
@@ -153,7 +155,7 @@ if has('win32')
   " Fuzzy find
   Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
   Plug 'junegunn/fzf.vim'
- 
+
   " Neovim in firefox https://github.com/glacambre/firenvim
   "Plug 'file://c:\dev\nvim\firenvim', { 'do': function('firenvim#install') }
 
@@ -248,7 +250,7 @@ else
   Plug 'HerringtonDarkholme/yats.vim'
   " Required for nvim-typescript
   Plug 'Shougo/denite.nvim'
- 
+
   " Typescript support
   Plug 'neovim/nvim-lspconfig'
   Plug 'nvim-lua/plenary.nvim'
@@ -322,7 +324,8 @@ silent! colorscheme onedark
 :vnoremap R "_d"0P
 " find word in all files
 :nnoremap K :vimgrep ' **/*.ts<S-Left><S-Left>'
-:nnoremap <leader>K :grep -r --exclude-dir=node_modules --exclude="*.d.ts" --include "*.ts" --include "*.tsx" --include "*.py" ' ./src/ ./e2e<S-Left><S-Left><S-Left>'
+" :nnoremap <leader>K :grep -r --exclude-dir=node_modules --exclude="*.d.ts" --include "*.ts" --include "*.tsx" --include "*.py" ' ./src/ ./e2e<S-Left><S-Left><S-Left>'
+:nnoremap <leader>K :grep -r --exclude-dir=node_modules --exclude="*.d.ts" --include "*.ts" --include "*.tsx" --include "*.py" ' ./<S-Left><S-Left>'
 " replace word under cursor
 :nnoremap <Leader>s :%s/\<<C-r><C-w>\>/
 " find word under cursor
@@ -481,7 +484,7 @@ endfunction
 
 " F1 to auto format file
 autocmd FileType python nnoremap <F1> :w<CR>:!autopep8 -i --aggressive --aggressive %<CR>
-autocmd FileType python nnoremap <leader>e :w<CR>:!autopep8 -i --aggressive --aggressive %<CR>
+autocmd FileType python nnoremap <leader>e :w<CR>:!autopep8 -i %<CR>
 " F4 to run current file
 autocmd FileType python nnoremap <F4> :w<CR>:vsp term://python3 %<CR>i
 " F5 to run current dir
@@ -522,14 +525,8 @@ autocmd Filetype typescript,typescriptreact nnoremap <F6> :vsp term://npm run te
 autocmd Filetype typescript,typescriptreact nnoremap <F12> :TSDef<CR>
 
 " autocmd Filetype typescript,typescriptreact nnoremap <leader>gd :TSDef<CR>
-autocmd Filetype typescript,typescriptreact nnoremap <leader>gd :lua vim.lsp.buf.definition()<cr>
-autocmd Filetype typescript,typescriptreact nnoremap ]] :lua vim.diagnostic.goto_next()<cr>
-autocmd Filetype typescript,typescriptreact nnoremap [[ :lua vim.diagnostic.goto_prev()<cr>
-" autocmd Filetype typescript,typescriptreact :lua vim.keymap.set("n", "]]", vim.diagnostic.goto_next)<cr>
-" autocmd Filetype typescript,typescriptreact :lua vim.keymap.set("n", "[[", vim.diagnostic.goto_prev)<cr>
 autocmd Filetype typescript,typescriptreact nnoremap <leader>gi :TSDoc<CR>
 autocmd Filetype typescript,typescriptreact nnoremap <leader>gf :TSGetCodeFix<CR>
-autocmd Filetype typescript,typescriptreact nnoremap <silent> <buffer> <leader>ot :lua vim.lsp.buf.type_definition()<cr>
 
 " Macro for prettier
 autocmd Filetype typescript,typescriptreact nnoremap <leader>e <Plug>(Prettier)
@@ -539,7 +536,7 @@ autocmd Filetype typescript,typescriptreact nnoremap <leader>e <Plug>(Prettier)
 autocmd Filetype cs let b:match_words = '\s*#\s*region.*$:\s*#\s*endregion'
 
 " https://github.com/OmniSharp/Omnisharp-vim#configuration
-autocmd FileType cs nmap <silent> <buffer> gd <Plug>(omnisharp_go_to_definition)
+autocmd FileType cs nmap <silent> <buffer> od <Plug>(omnisharp_go_to_definition)
 autocmd FileType cs nmap <silent> <buffer> <leader>osfu <Plug>(omnisharp_find_usages)
 autocmd FileType cs nmap <silent> <buffer> <leader>osfi <Plug>(omnisharp_find_implementations)
 autocmd FileType cs nmap <silent> <buffer> <leader>ospd <Plug>(omnisharp_preview_definition)
@@ -552,8 +549,8 @@ autocmd FileType cs nmap <silent> <buffer> <C-\> <Plug>(omnisharp_signature_help
 autocmd FileType cs imap <silent> <buffer> <C-\> <Plug>(omnisharp_signature_help)
 
 " Navigate up and down by method/property/field
-autocmd FileType cs nmap <silent> <buffer> [[ <Plug>(omnisharp_navigate_up)
-autocmd FileType cs nmap <silent> <buffer> ]] <Plug>(omnisharp_navigate_down)
+" autocmd FileType cs nmap <silent> <buffer> [[ <Plug>(omnisharp_navigate_up)
+" autocmd FileType cs nmap <silent> <buffer> ]] <Plug>(omnisharp_navigate_down)
 " Find all code errors/warnings for the current solution and populate the quickfix window
 autocmd FileType cs nmap <silent> <buffer> <leader>osgcc <Plug>(omnisharp_global_code_check)
 
@@ -570,10 +567,12 @@ autocmd Filetype xaml let b:match_words = '\s*<!--\s*#\s*region.*$:\s*<!--\s*#\s
 
 lua require('config')
 
-autocmd FileType python nnoremap <leader>gr :lua vim.lsp.buf.references()<cr>
-autocmd FileType python nnoremap <leader>gcr :lua vim.lsp.buf.rename()<cr>
-autocmd Filetype python nnoremap <leader>gd :lua vim.lsp.buf.definition()<cr>
-autocmd Filetype python nnoremap <silent> <buffer> <leader>od :lua vim.lsp.buf.definition()<cr>
-autocmd Filetype python nnoremap <silent> <buffer> <leader>ot :lua vim.lsp.buf.type_definition()<cr>
-autocmd Filetype python nnoremap <silent> <buffer> ]] :lua vim.diagnostic.goto_next()<cr>
-autocmd Filetype python nnoremap <silent> <buffer> [[ :lua vim.diagnostic.goto_prev()<cr>
+" ******************************* LSP mappings ********************************
+
+nnoremap <leader>od :lua vim.lsp.buf.definition()<cr>
+nnoremap <leader>ot :lua vim.lsp.buf.type_definition()<cr>
+nnoremap <leader>of :lua vim.lsp.buf.references()<cr>
+nnoremap <leader>orr :lua vim.lsp.buf.rename()<cr>
+nnoremap ]] :lua vim.diagnostic.goto_next()<cr>
+nnoremap [[ :lua vim.diagnostic.goto_prev()<cr>
+
