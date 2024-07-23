@@ -89,6 +89,8 @@ nnoremap <leader>gl :Gclog %<cr>
 nnoremap <leader>gh :0Gclog<cr>
 nnoremap <leader>gb :Git blame<cr>
 
+nnoremap <leader>gd <Plug>(doge-generate)
+
 " *************************** Function key mappings ***************************
 
 " toggle search highlighting
@@ -212,6 +214,9 @@ else
   " let g:deoplete#enable_at_startup = 1
   " " deoplete tab-complete
   " :inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
+
+  " Docs generation
+  Plug 'kkoomen/vim-doge', { 'do': { -> doge#install() } }
 
   " Linting
   Plug 'w0rp/ale'
