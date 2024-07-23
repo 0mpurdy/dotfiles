@@ -9,6 +9,21 @@ require('mason').setup()
 
 require('lspconfig').pyright.setup { }
 
+-- require('lspconfig').pylsp.setup { 
+--   settings = { 
+--     pylsp = { 
+--       plugins = { 
+--         pylint = {
+--           enabled = false
+--         }, 
+--         pycodestyle = { 
+--           enabled = "false" 
+--         }, 
+--       }, 
+--     }, 
+--   }, 
+-- }
+
 -- require("typescript-tools").setup {}
 require('lspconfig').tsserver.setup {}
 
@@ -59,3 +74,7 @@ local on_attach = function(_, bufnr)
 
   buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
 end
+
+-- ********************************* Keymaps **********************************
+
+-- vim.keymap.set('n', '<Leader>gd', '<Plug>(doge-generate)')
