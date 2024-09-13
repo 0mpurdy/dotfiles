@@ -61,6 +61,10 @@ set listchars=eol:¬,tab:>·,trail:~,extends:>,precedes:<,space:␣
 " insert date time
 :nnoremap <leader>it "=strftime('%FT%T%z')<cr>p
 
+" insert random UUID
+:nnoremap <leader>iu :r !uuidgen<cr>
+:nnoremap <leader>iju :r !uuidgen\|sed 's/.*/"uuid": "&",/'\|tr "[A-Z]" "[a-z]"<cr>
+
 " macro to convert PR link to markdown
 " DevOps
 "nnoremap <leader>mdp BEyiwa)<esc>Bi[PR !<esc>pa](<esc>
@@ -319,6 +323,9 @@ silent! colorscheme onedark
 :nnoremap <leader>l <C-w>l
 :nnoremap <leader>x <C-w>c
 
+" Open visually selected file path in split to the left
+:vnoremap <leader>o "1y<C-w>h:e <C-r>1<cr>
+
 " ***************************** Find and replace ******************************
 
 " search for visually selected text
@@ -330,7 +337,7 @@ silent! colorscheme onedark
 " find word in all files
 :nnoremap K :vimgrep ' **/*.ts<S-Left><S-Left>'
 " :nnoremap <leader>K :grep -r --exclude-dir=node_modules --exclude="*.d.ts" --include "*.ts" --include "*.tsx" --include "*.py" ' ./src/ ./e2e<S-Left><S-Left><S-Left>'
-:nnoremap <leader>K :grep -r --exclude-dir=node_modules --exclude="*.d.ts" --include "*.ts" --include "*.tsx" --include "*.py" ' ./<S-Left><S-Left>'
+:nnoremap <leader>K :grep -r --exclude-dir=node_modules --exclude-dir=venv --exclude="*.d.ts" --include "*.ts" --include "*.tsx" --include "*.py" ' ./<S-Left><S-Left>'
 " replace word under cursor
 :nnoremap <Leader>s :%s/\<<C-r><C-w>\>/
 " find word under cursor
@@ -401,14 +408,14 @@ endif
 " close buffer, while maintaining split
 " https://stackoverflow.com/questions/4465095/vim-delete-buffer-without-losing-the-split-window
 :nnoremap <leader>bd :bn\|bd #<CR>
-:nnoremap <leader>! :bd!<CR>
+:nnoremap <leader>!bd :bn\|bd! #<CR>
 
 " Copy line to OS clipboard
 :command! CLine execute "normal! \"*yy"
 :command! PLine execute "normal! \"*p"
 
 :command! Less :!lessc ./css/style.less ./style.css
-:command! JsonFormat :%!python -m json.tool
+:command! JsonFormat :set syntax=json | %!python -m json.tool
 " I don't love this vimscript, but it did the job I needed this time
 "%delete | 0put =json_encode(json_decode(@@))
 :command! XmlFormat :%!python -c "import xml.dom.minidom, sys; print(xml.dom.minidom.parse(sys.stdin).toprettyxml(newl='',indent=''))"
@@ -489,7 +496,8 @@ endfunction
 
 " F1 to auto format file
 autocmd FileType python nnoremap <F1> :w<CR>:!autopep8 -i --aggressive --aggressive %<CR>
-autocmd FileType python nnoremap <leader>e :w<CR>:!autopep8 -i %<CR>
+" autocmd FileType python nnoremap <leader>e :w<CR>:!autopep8 -i %<CR>
+autocmd FileType python nnoremap <leader>e :w<CR>:!black %<CR>
 " F4 to run current file
 autocmd FileType python nnoremap <F4> :w<CR>:vsp term://python3 %<CR>i
 " F5 to run current dir
