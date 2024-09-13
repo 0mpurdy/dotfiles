@@ -19,6 +19,7 @@ function pan() {
 }
 
 alias gst='git status -uall -s -b'
+alias gdmerge='git branch --merged origin/main | grep -v "^\*\\|main" | xargs -n 1 echo'
 alias dev='cd ~/dev/'
 alias ecfg="${EDITOR} ${HOME}/.bashrc"
 alias epro="${EDITOR} ${HOME}/.profile"
