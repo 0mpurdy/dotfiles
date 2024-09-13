@@ -4,8 +4,11 @@ vim.filetype.add({
   },
 })
 
--- Plugins
+-- ********************************* Plugins **********************************
+
 require('mason').setup()
+
+-- ***************************** Plugins - Python *****************************
 
 require('lspconfig').pyright.setup { }
 
@@ -24,8 +27,13 @@ require('lspconfig').pyright.setup { }
 --   }, 
 -- }
 
+-- *************************** Plugins - Typescript ***************************
+
 -- require("typescript-tools").setup {}
 require('lspconfig').tsserver.setup {}
+
+
+-- ********************************* LSP maps *********************************
 
 local cmp = require('cmp')
 cmp.setup {
