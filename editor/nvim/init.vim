@@ -415,6 +415,8 @@ endif
 :command! PLine execute "normal! \"*p"
 
 :command! Less :!lessc ./css/style.less ./style.css
+
+" Can also add --sort-keys arg
 :command! JsonFormat :set syntax=json | %!python -m json.tool
 " I don't love this vimscript, but it did the job I needed this time
 "%delete | 0put =json_encode(json_decode(@@))
