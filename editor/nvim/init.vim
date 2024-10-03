@@ -188,7 +188,6 @@ else
   Plug 'mattn/emmet-vim'
 
   " Colorschemes
-  Plug 'flazz/vim-colorschemes'
   " surround with quotes or brackets
   Plug 'tpope/vim-surround'
   " For repeating plugin actions
@@ -268,6 +267,9 @@ else
   " Typescript syntax highlighting
   "Plug 'leafgarland/typescript-vim'
 
+  " Neovim syntax highlighting
+  Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+
   " React prettify tsx
   Plug 'prettier/vim-prettier', {
     \ 'do': 'yarn install --frozen-lockfile --production',
@@ -276,7 +278,10 @@ else
 endif
 
 " Colorscheme
-Plug 'joshdick/onedark.vim'
+Plug 'navarasu/onedark.nvim'
+
+" a nice one but not using right now
+" Plug 'bluz71/vim-moonfly-colors'
 
 " Directory navigation
 Plug 'scrooloose/nerdtree'
@@ -304,11 +309,31 @@ call plug#end()
 
 " ******************************** Colorscheme ********************************
 
+let g:colors = getcompletion('', 'color')
+func! NextColors()
+    let idx = index(g:colors, g:colors_name)
+    let current_color = g:colors_name
+    let nextColor = (idx + 1 >= len(g:colors) ? g:colors[0] : g:colors[idx + 1])
+    echo current_color .. '->' .. nextColor
+    return nextColor
+endfunc
+func! PrevColors()
+    let idx = index(g:colors, g:colors_name)
+    let current_color = g:colors_name
+    let prevColor = (idx - 1 < 0 ? g:colors[-1] : g:colors[idx - 1])
+    echo current_color .. '->' .. prevColor
+    return prevColor
+endfunc
+" nnoremap + :exe "colo " .. NextColors()<CR>
+" nnoremap _ :exe "colo " .. PrevColors()<CR>
+
 colorscheme industry
 
+" Like Atom
+let g:onedark_config = {
+    \ 'style': 'warmer',
+\}
 silent! colorscheme onedark
-
-" For light theme PaperColor is very good
 
 " **************************** Navigating windows *****************************
 
