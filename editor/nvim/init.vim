@@ -269,6 +269,7 @@ else
 
   " Neovim syntax highlighting
   Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+  Plug 'nvim-treesitter/nvim-treesitter-textobjects'
 
   " React prettify tsx
   Plug 'prettier/vim-prettier', {
