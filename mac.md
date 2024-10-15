@@ -42,6 +42,7 @@
 
 - Install [Android Studio][android-studio]
 - Install [pandoc][pandoc] (use brew)
+- Install bash_completion (use brew)
 
 - Install Visual Studio
 
@@ -76,3 +77,8 @@ Nice to have
  - Install nodejs (use [nvm][nvm])
 
 [nvm]: https://github.com/creationix/nvm
+
+## For AWS
+
+- Shell context hint - [jonmosco/kube-ps1](https://github.com/jonmosco/kube-ps1)
+- Shell context switch - [ahmetb/kubectx](https://github.com/ahmetb/kubectx)
