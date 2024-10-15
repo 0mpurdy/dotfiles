@@ -139,7 +139,8 @@ require('lspconfig').pyright.setup { }
 -- ************************** Plugins - Typescript ****************************
 
 -- require("typescript-tools").setup {}
-require('lspconfig').tsserver.setup {}
+-- require('lspconfig').tsserver.setup {}
+require('lspconfig').ts_ls.setup {}
 
 
 -- ******************************** LSP maps **********************************

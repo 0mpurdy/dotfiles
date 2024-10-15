@@ -361,8 +361,8 @@ silent! colorscheme onedark
 " replace from yank register without overriding yank
 :vnoremap R "_d"0P
 " find word in all files
-:nnoremap K :vimgrep ' **/*.ts<S-Left><S-Left>'
 " :nnoremap <leader>K :grep -r --exclude-dir=node_modules --exclude="*.d.ts" --include "*.ts" --include "*.tsx" --include "*.py" ' ./src/ ./e2e<S-Left><S-Left><S-Left>'
+" :nnoremap <leader>K :vimgrep ' **/*.ts<S-Left><S-Left>'
 :nnoremap <leader>K :grep -r --exclude-dir=node_modules --exclude-dir=venv --exclude="*.d.ts" --include "*.ts" --include "*.tsx" --include "*.py" ' ./<S-Left><S-Left>'
 " replace word under cursor
 :nnoremap <Leader>s :%s/\<<C-r><C-w>\>/
@@ -541,8 +541,8 @@ autocmd FileType python nnoremap <F9> :w<CR>:vsp term://pytest --cov=. --cov-rep
 " F10 to run code coverage for single file
 autocmd FileType python nnoremap <F10> :w<CR>:vsp term://pytest % --cov=. --cov-report term-missing<CR>
 
-" K to vimgrep
-autocmd FileType python nnoremap K :vimgrep ' **/*.py<S-Left><S-Left>'
+" <leader>K to vimgrep
+" autocmd FileType python nnoremap <leader>K :vimgrep ' **/*.py<S-Left><S-Left>'
 
 " Ctrl + / to comment
 autocmd FileType python nnoremap <C-_> 0i# <Esc>j
@@ -610,6 +610,8 @@ lua require('config')
 
 " ******************************* LSP mappings ********************************
 
+nnoremap K :lua vim.lsp.buf.hover()<cr>
+nnoremap <leader>ok :lua vim.lsp.buf.signature_help()<cr>
 nnoremap <leader>od :lua vim.lsp.buf.definition()<cr>
 nnoremap <leader>ot :lua vim.lsp.buf.type_definition()<cr>
 nnoremap <leader>of :lua vim.lsp.buf.references()<cr>
