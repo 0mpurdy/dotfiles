@@ -10,6 +10,7 @@ docopy() {
 }
 
 docopy "${HOME}/.bashrc" "${dotpath}/nix/.bashrc"
+docopy "${HOME}/.zshrc" "${dotpath}/nix/.zshrc"
 docopy "${HOME}/.bash_aliases" "${dotpath}/nix/.bash_aliases"
 docopy "${HOME}/.mac.bashrc" "${dotpath}/nix/.mac.bashrc"
 docopy "${HOME}/.config/pan.css" "${dotpath}/pandoc/panread.css"

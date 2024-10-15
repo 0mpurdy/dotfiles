@@ -10,6 +10,7 @@ docopy() {
 }
 
 docopy "${dotpath}/nix/.bashrc" "${HOME}/.bashrc"
+docopy "${dotpath}/nix/.zshrc" "${HOME}/.zshrc"
 docopy "${dotpath}/nix/.bash_aliases" "${HOME}/.bash_aliases"
 docopy "${dotpath}/editor/.vimrc" "${HOME}/.vimrc"
 docopy "${dotpath}/nix/.profile" "${HOME}/.profile"
