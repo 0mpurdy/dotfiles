@@ -58,6 +58,14 @@ preexec() { echo -ne '\e[5 q' ;} # Use beam shape cursor for each new prompt.
 autoload -U +X bashcompinit && bashcompinit
 autoload -U +X compinit && compinit
 
+# When using a separate local admin account, needed the following for completion items 
+# 
+# sudo chown -R mpurdy:staff "$(brew --prefix)/share"
+#
+# May also need this
+#
+# sudo chown -R mpurdy:staff /usr/local/Homebrew/completions/zsh/_brew
+
 # ********************************* AWS CLI ***********************************
 
 [[ $commands[kubectl] ]] && source <(kubectl completion zsh)
