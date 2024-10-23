@@ -2,13 +2,13 @@
 
 To edit the git global config:
 
-```
+```sh
 git config --global --edit
 ```
 
 Git `lol` alias
 
-```
+```sh
 git config --global --add alias.lola 'log --graph --decorate --abbrev-commit --all --date=local --pretty=format:"%C(auto)%h%d %C(blue)%an %C(green)%cd %C(red)%GG %C(reset)%s" --date=local'
 ```
 
@@ -22,4 +22,10 @@ URL for getting script: https://github.com/git/git/blob/master/contrib/completio
 	lola = log --graph --decorate --abbrev-commit --all --date=local --pretty=format:\"%C(auto)%h%d %C(blue)%an %C(green)%cd %C(red)%GG %C(reset)%s\" --date=local
 [rebase]
 	autoSquash = true
+```
+
+Useful "I forgot to switch git user" command
+
+```sh
+git -c rebase.instructionFormat='%s%nexec GIT_COMMITTER_DATE="%cD" GIT_AUTHOR_DATE="%aD" git commit --amend --no-edit --reset-author' rebase -f origin/main
 ```
