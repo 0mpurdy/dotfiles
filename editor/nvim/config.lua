@@ -303,6 +303,6 @@ end
 -- vim.keymap.set('n', '<Leader>gd', '<Plug>(doge-generate)')
 vim.keymap.set("n", "<Leader>nt", next_terminal, {noremap=true})
 vim.keymap.set("n", "<Leader>nnn", next_no_name, {noremap=true})
-vim.keymap.set("n", "gvv", reflow_window, {noremap=true})
+vim.keymap.set("n", "<leader>wr", reflow_window, {noremap=true})
 
 

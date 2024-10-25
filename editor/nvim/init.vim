@@ -430,7 +430,6 @@ endif
 :nnoremap <leader>- :vertical resize -10<CR>
 
 :nnoremap <leader>qa :bd!<CR> :qa
-:nnoremap <leader>w :w<CR> :bd<CR>
 " close buffer, while maintaining split
 " https://stackoverflow.com/questions/4465095/vim-delete-buffer-without-losing-the-split-window
 :nnoremap <leader>bd :bn\|bd #<CR>
