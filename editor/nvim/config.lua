@@ -306,3 +306,6 @@ vim.keymap.set("n", "<Leader>nnn", next_no_name, {noremap=true})
 vim.keymap.set("n", "<leader>wr", reflow_window, {noremap=true})
 
 
+-- ********************************* Bugs *************************************
+
+vim.api.nvim_create_autocmd({ "FileType" }, { pattern = "[Dd]ockerfile" , group = optional_group, command = "TSBufDisable highlight" })
