@@ -28,6 +28,8 @@ let mapleader=" " " set leader to space
 :nnoremap <leader><leader> :
 " Set indent folding
 :nnoremap <leader>zi :set foldmethod=indent<CR>zM<CR>
+" Set treesitter folding
+:nnoremap <leader>zt :set foldmethod=expr<CR>:set foldexpr=v:lua.vim.treesitter.foldexpr()<CR>:set foldlevel=1<CR>
 :nnoremap <leader>zn zR<CR>:set foldmethod=manual<CR>
 :nnoremap <leader>zf :norm zf%<CR>
 :nnoremap <leader>zp :norm zfip<CR>
