@@ -429,8 +429,12 @@ endif
 :command! -nargs=1 CSearch noautocmd vimgrep "<args>" ./**/*.py ./**/*.txt ./**/*.html ./**/*.ts
 
 " Navigating buffers
-:nnoremap <tab> :bnext<cr>
-:nnoremap <S-tab> :bprevious<cr>
+" :nnoremap <tab> :bnext<cr>
+" :nnoremap <S-tab> :bprevious<cr>
+" regular tab may be more useful as going forward in jump list...
+:nnoremap <S-tab> <tab>
+:nnoremap <tab> <C-o>
+:nnoremap <C-o> :bnext<cr>
 
 :nnoremap <leader>+ :vertical resize +10<CR>
 :nnoremap <leader>- :vertical resize -10<CR>
