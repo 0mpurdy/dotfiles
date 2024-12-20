@@ -173,6 +173,8 @@ if has('win32')
   Plug 'PProvost/vim-ps1'
 else
   call plug#begin('~/.local/share/nvim/plugged')
+  
+  Plug 'mbbill/undotree'
 
   " Fuzzy find
   Plug 'junegunn/fzf.vim'
