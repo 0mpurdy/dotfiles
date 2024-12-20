@@ -397,6 +397,7 @@ endif
 if has('win32')
     :command! RVIM :exe "source C:/Users/" . expand('$USERNAME') . "/AppData/Local/nvim/init.vim"
 endif
+:command! ESHELL e ~/.zshrc
 
 :command! ENLUA e ~/.config/nvim/lua/config.lua
 

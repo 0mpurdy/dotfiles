@@ -12,6 +12,7 @@ setopt HIST_SAVE_NO_DUPS
 alias ecfg='nvim ~/.zshrc'
 alias todo='nvim ~/todo.md'
 alias git-delete-merged='git branch --merged origin/main | grep -v "^\*\\|main" | xargs -n 1 git branch -D'
+alias notes='cd ~/notes && nvim'
 
 alias ll='ls -lah'
 
