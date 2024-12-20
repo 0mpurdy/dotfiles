@@ -614,6 +614,10 @@ autocmd FileType cs setlocal shiftwidth=4
 
 autocmd Filetype xaml let b:match_words = '\s*<!--\s*#\s*region.*$:\s*<!--\s*#\s*endregion'
 
+" ************************** Lua specific settings ****************************
+
+" autocmd Filetype lua nnoremap <F5> luafile %<cr>
+
 " ******************************** Lua config *********************************
 
 lua require('config')

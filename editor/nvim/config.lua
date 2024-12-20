@@ -150,6 +150,8 @@ require('lspconfig').ts_ls.setup {}
 
 -- ******************************** LSP maps **********************************
 
+require'lspconfig'.lua_ls.setup{}
+
 local cmp = require('cmp')
 cmp.setup {
   sources = {
@@ -305,12 +307,21 @@ end
 
 -- ******************************** Keymaps ***********************************
 
+local vlua = '"\'<.\'>lua<cr>"'
+
 -- vim.keymap.set('n', '<Leader>gd', '<Plug>(doge-generate)')
 vim.keymap.set("n", "<Leader>nt", next_terminal, {noremap=true})
 vim.keymap.set("n", "<Leader>nnn", next_no_name, {noremap=true})
 vim.keymap.set("n", "<leader>wr", reflow_window, {noremap=true})
-
+-- don't know what the difference is between these two tbh
+-- vim.keymap.set("n", "<leader><leader>l", ":luafile %<cr>", {noremap=true})
+vim.keymap.set("n", "<leader><leader>l", ":source %<cr>", {noremap=true})
+vim.keymap.set("v", "<leader><leader>px", ":put =execute(" .. vlua ..")", {noremap=true})
+vim.keymap.set("n", "<leader>x", ":.lua<cr>", {noremap=true})
+vim.keymap.set("v", "<leader>x", ":lua<cr>", {noremap=true})
+vim.keymap.set("n", "<leader><leader>cl", ":let @+ = execute('luafile %')<cr>", {noremap=true})
 
 -- ********************************* Bugs *************************************
 
 vim.api.nvim_create_autocmd({ "FileType" }, { pattern = "[Dd]ockerfile" , group = optional_group, command = "TSBufDisable highlight" })
+vim.api.nvim_create_autocmd({ "FileType" }, { pattern = "*.lua" , command = "nnoremap <F5> :luafile %<cr>" })
