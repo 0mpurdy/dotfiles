@@ -24,8 +24,6 @@ set colorcolumn=80,120            " Show column 80 and 120 line lengths
 " ****************************** Leader mappings ******************************
 
 let mapleader=" " " set leader to space
-" map double leader (space) to command
-:nnoremap <leader><leader> :
 " Set indent folding
 :nnoremap <leader>zi :set foldmethod=indent<CR>zM<CR>
 " Set treesitter folding
@@ -49,7 +47,7 @@ set listchars=eol:¬,tab:>·,trail:~,extends:>,precedes:<,space:␣
 
 " FZF Fuzzy find shortcut
 :nnoremap <leader>f :GFiles<CR>
-:nnoremap <leader>bb :Buffers<CR>
+:nnoremap <leader>b :Buffers<CR>
 
 " Tail log file
 :nnoremap <leader>G Gkzt
@@ -353,7 +351,7 @@ silent! colorscheme onedark
 :nnoremap <leader>j <C-w>j
 :nnoremap <leader>k <C-w>k
 :nnoremap <leader>l <C-w>l
-:nnoremap <leader>x <C-w>c
+:nnoremap <leader>c <C-w>c
 
 " Open visually selected file path in split to the left
 :vnoremap <leader>o "1y<C-w>h:e <C-r>1<cr>
@@ -378,9 +376,9 @@ silent! colorscheme onedark
 " ************************* Neovim terminal mappings **************************
 
 " Open neovim terminal
-:nnoremap <leader>t :terminal<CR>A
+:nnoremap <leader>ot :terminal<CR>A
 " Map <Esc> to quitting the terminal
-:tnoremap <Esc> <C-\><C-n>
+:tnoremap <Esc><Esc> <C-\><C-n>
 
 " ********************************* Commands **********************************
 
@@ -442,8 +440,8 @@ endif
 :nnoremap <leader>qa :bd!<CR> :qa
 " close buffer, while maintaining split
 " https://stackoverflow.com/questions/4465095/vim-delete-buffer-without-losing-the-split-window
-:nnoremap <leader>bd :bn\|bd #<CR>
-:nnoremap <leader>!bd :bn\|bd! #<CR>
+:nnoremap <leader>db :bn\|bd #<CR>
+:nnoremap <leader>!db :bn\|bd! #<CR>
 
 " Copy line to OS clipboard
 :command! CLine execute "normal! \"*yy"
@@ -622,7 +620,7 @@ lua require('config')
 nnoremap K :lua vim.lsp.buf.hover()<cr>
 nnoremap <leader>ok :lua vim.lsp.buf.signature_help()<cr>
 nnoremap <leader>od :lua vim.lsp.buf.definition()<cr>
-nnoremap <leader>ot :lua vim.lsp.buf.type_definition()<cr>
+" nnoremap <leader>ot :lua vim.lsp.buf.type_definition()<cr>
 nnoremap <leader>of :lua vim.lsp.buf.references()<cr>
 nnoremap <leader>orr :lua vim.lsp.buf.rename()<cr>
 nnoremap ]] :lua vim.diagnostic.goto_next()<cr>
