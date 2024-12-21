@@ -97,8 +97,6 @@ nnoremap <leader>gb :Git blame<cr>
 nnoremap gdh :diffget //2<cr>
 nnoremap gdl :diffget //3<cr>
 
-nnoremap <leader>gd <Plug>(doge-generate)
-
 " *************************** Function key mappings ***************************
 
 " toggle search highlighting
@@ -157,163 +155,6 @@ endfunction
 
 let g:no_python_maps = 1
 
-" Specify a directory for plugins
-" - Avoid using standard Vim directory names like 'plugin'
-if has('win32')
-  call plug#begin('$USERPROFILE\AppData\Local\nvim-data\site\autoload')
-
-  " Fuzzy find
-  Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-  Plug 'junegunn/fzf.vim'
-
-  " Neovim in firefox https://github.com/glacambre/firenvim
-  "Plug 'file://c:\dev\nvim\firenvim', { 'do': function('firenvim#install') }
-
-  " Powershell syntax highlighting
-  Plug 'PProvost/vim-ps1'
-else
-  call plug#begin('~/.local/share/nvim/plugged')
-  
-  Plug 'mbbill/undotree'
-
-  " Fuzzy find
-  Plug 'junegunn/fzf.vim'
-  set rtp+=~/.fzf
-  let $FZF_DEFAULT_OPTS = '--bind ctrl-a:select-all'
-
-  function! s:build_quickfix_list(lines)
-    call setqflist(map(copy(a:lines), '{ "filename": v:val }'))
-    copen
-    cc
-  endfunction
-
-  let g:fzf_action = {
-    \ 'ctrl-q': function('s:build_quickfix_list') }
-
-  " HTML edit
-  Plug 'mattn/emmet-vim'
-
-  " Colorschemes
-  " surround with quotes or brackets
-  Plug 'tpope/vim-surround'
-  " For repeating plugin actions
-  Plug 'tpope/vim-repeat'
-  " For incrementing dates properly
-  Plug 'tpope/vim-speeddating'
-  " Better comment support
-  Plug 'tpope/vim-commentary'
-  " Some useful normal mode mappings
-  "Plug 'tpope/vim-unimpaired'
-  " Alignment tool
-  Plug 'junegunn/vim-easy-align'
-  " Start interactive EasyAlign in visual mode (e.g. vipga)
-  xmap ga <Plug>(EasyAlign)
-  " Start interactive EasyAlign for a motion/text object (e.g. gaip)
-  nmap ga <Plug>(EasyAlign)
-
-  " Auto completion
-  if has('nvim')
-    " Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-  else
-    " if using venv - `pip install pynvim`
-    "Plug 'Shougo/deoplete.nvim'
-    Plug 'roxma/nvim-yarp'
-    Plug 'roxma/vim-hug-neovim-rpc'
-  endif
-  " let g:deoplete#enable_at_startup = 1
-  " " deoplete tab-complete
-  " :inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
-
-  " Docs generation
-  Plug 'kkoomen/vim-doge', { 'do': { -> doge#install() } }
-
-  " Linting
-  Plug 'w0rp/ale'
-  " ALE error navigation
-  :nnoremap ]e :ALENextWrap<cr>
-  :nnoremap [e :ALEPreviousWrap<cr>
-
-  let g:ale_linters = {
-  \ 'cs': ['OmniSharp'],
-  \ 'javascript': ['eslint'],
-  \ 'typescript': ['eslint'],
-  \ 'typescriptreact': ['eslint'],
-  \}
-
-  let g:ale_fixers = {
-  \ 'javascript': ['prettier'],
-  \ 'typescript': ['prettier'],
-  \ 'typescriptreact': ['prettier'],
-  \ 'css': ['prettier'],
-  \}
-
-  let g:ale_linters_explicit = 1
-  let g:ale_fix_on_save = 1
-
-  Plug 'hrsh7th/nvim-cmp'
-  Plug 'hrsh7th/cmp-nvim-lsp'
-
-  " Snippet support
-  Plug 'SirVer/ultisnips'
-  Plug 'honza/vim-snippets'
-  let g:UltiSnipsExpandTrigger="ƒ"
-  let g:UltiSnipsJumpForwardTrigger="<c-b>"
-  let g:UltiSnipsJumpBackwardTrigger="<c-z>"
-
-  " Required for nvim-typescript
-  Plug 'HerringtonDarkholme/yats.vim'
-  " Required for nvim-typescript
-  Plug 'Shougo/denite.nvim'
-
-  " Typescript support
-  Plug 'neovim/nvim-lspconfig'
-  Plug 'nvim-lua/plenary.nvim'
-  " Plug 'pmizio/typescript-tools.nvim'
-  "Plug 'mhartington/nvim-typescript', {'do': './install.sh'}
-  " Typescript syntax highlighting
-  "Plug 'leafgarland/typescript-vim'
-
-  " Neovim syntax highlighting
-  Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-  Plug 'nvim-treesitter/nvim-treesitter-textobjects'
-
-  " React prettify tsx
-  Plug 'prettier/vim-prettier', {
-    \ 'do': 'yarn install --frozen-lockfile --production',
-    \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'svelte', 'yaml', 'html'] }
-
-endif
-
-" Colorscheme
-Plug 'navarasu/onedark.nvim'
-
-" a nice one but not using right now
-" Plug 'bluz71/vim-moonfly-colors'
-
-" Directory navigation
-Plug 'scrooloose/nerdtree'
-:nnoremap <leader>no :NERDTreeToggle<cr>
-:nnoremap <leader>nf :NERDTreeFind<cr>
-
-" Git integration
-Plug 'tpope/vim-fugitive'
-set diffopt+=vertical
-
-" C# support
-Plug 'OmniSharp/omnisharp-vim'
-" Use the stdio version of OmniSharp-roslyn:
-let g:OmniSharp_server_stdio = 1
-" let g:OmniSharp_server_path = '/Users/mike/Downloads/omnisharp-osx/run'
-
-" Language Server Protocol manager (LSP)
-Plug 'williamboman/mason.nvim'
-
-" LSP configs
-" Plug 'neovim/nvim-lspconfig'
-
-" Initialize plugin system
-call plug#end()
-
 " ******************************** Colorscheme ********************************
 
 let g:colors = getcompletion('', 'color')
@@ -335,12 +176,6 @@ endfunc
 " nnoremap _ :exe "colo " .. PrevColors()<CR>
 
 colorscheme industry
-
-" Like Atom
-let g:onedark_config = {
-    \ 'style': 'warmer',
-\}
-silent! colorscheme onedark
 
 " **************************** Navigating windows *****************************
 
