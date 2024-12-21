@@ -206,7 +206,7 @@ colorscheme industry
 " :nnoremap <leader>K :vimgrep ' **/*.ts<S-Left><S-Left>'
 :nnoremap <leader>K :grep -r --exclude-dir=node_modules --exclude-dir=venv --exclude="*.d.ts" --include "*.ts" --include "*.tsx" --include "*.py" ' ./<S-Left><S-Left>'
 " replace word under cursor
-:nnoremap <Leader>s :%s/\<<C-r><C-w>\>/
+:nnoremap <leader><leader>s :%s/\<<C-r><C-w>\>/
 " find word under cursor
 :nnoremap <Leader>/ /\<<C-r><C-w>\><CR>
 
