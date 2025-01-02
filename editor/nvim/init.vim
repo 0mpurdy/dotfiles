@@ -457,6 +457,10 @@ autocmd Filetype xaml let b:match_words = '\s*<!--\s*#\s*region.*$:\s*<!--\s*#\s
 
 lua require('config')
 
+" When reloading init.vim, plugin config load hook doesn't run so just make
+" sure the colourscheme isn't overwritten
+silent! colorscheme onedark
+
 " ******************************* LSP mappings ********************************
 
 nnoremap K :lua vim.lsp.buf.hover()<cr>
