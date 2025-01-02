@@ -180,8 +180,8 @@ colorscheme industry
 " **************************** Navigating windows *****************************
 
 " map half page moves to ctrl + direction
-:nnoremap <C-j> <C-d>zz
-:nnoremap <C-k> <C-u>zz
+:nnoremap <C-d> <C-d>zz
+:nnoremap <C-u> <C-u>zz
 " map window moves to leader
 :nnoremap <leader>w <C-w>
 :nnoremap <leader>h <C-w>h
