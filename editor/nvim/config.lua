@@ -1,5 +1,8 @@
 -- Neovim Lua config file
 
+-- Should the mappings be optimised for ergodox?
+local ergodox = true
+
 -- ************************** Syntax highlighting *****************************
 
 vim.filetype.add({
@@ -149,7 +152,6 @@ require('lspconfig').pyright.setup { }
 -- require('lspconfig').tsserver.setup {}
 require('lspconfig').ts_ls.setup {}
 
-
 -- ******************************** LSP maps **********************************
 
 require'lspconfig'.lua_ls.setup({
@@ -185,63 +187,92 @@ require'lspconfig'.lua_ls.setup({
 })
 
 local cmp = require('cmp')
+local cmpMapping = {
+  ['<cr>'] = cmp.mapping.confirm {
+    behavior = cmp.ConfirmBehavior.Insert,
+    select = true,
+  },
+
+  ['<down>'] = function(fallback)
+    if not cmp.select_next_item() then
+      if vim.bo.buftype ~= 'prompt' and has_words_before() then
+        cmp.complete()
+      else
+        fallback()
+      end
+    end
+  end,
+
+  ['<up>'] = function(fallback)
+    if not cmp.select_prev_item() then
+      if vim.bo.buftype ~= 'prompt' and has_words_before() then
+        cmp.complete()
+      else
+        fallback()
+      end
+    end
+  end,
+}
+
+if ergodox then
+
+  cmpMapping['<c-n>'] = function(fallback)
+    if not cmp.select_next_item() then
+      if vim.bo.buftype ~= 'prompt' and has_words_before() then
+        cmp.complete()
+      else
+        fallback()
+      end
+    end
+  end
+
+  cmpMapping['<c-e>'] = function(fallback)
+    if not cmp.select_prev_item() then
+      if vim.bo.buftype ~= 'prompt' and has_words_before() then
+        cmp.complete()
+      else
+        fallback()
+      end
+    end
+  end
+
+else
+
+  cmpMapping['<c-j>'] = function(fallback)
+    if not cmp.select_next_item() then
+      if vim.bo.buftype ~= 'prompt' and has_words_before() then
+        cmp.complete()
+      else
+        fallback()
+      end
+    end
+  end
+
+  cmpMapping['<c-k>'] = function(fallback)
+    if not cmp.select_prev_item() then
+      if vim.bo.buftype ~= 'prompt' and has_words_before() then
+        cmp.complete()
+      else
+        fallback()
+      end
+    end
+  end
+
+end
+
 cmp.setup {
   sources = {
     { name = 'nvim_lsp' }
   },
-  mapping = {
-    ['<cr>'] = cmp.mapping.confirm {
-      behavior = cmp.ConfirmBehavior.Insert,
-      select = true,
-    },
-
-    ['<down>'] = function(fallback)
-      if not cmp.select_next_item() then
-        if vim.bo.buftype ~= 'prompt' and has_words_before() then
-          cmp.complete()
-        else
-          fallback()
-        end
-      end
-    end,
-
-    ['<up>'] = function(fallback)
-      if not cmp.select_prev_item() then
-        if vim.bo.buftype ~= 'prompt' and has_words_before() then
-          cmp.complete()
-        else
-          fallback()
-        end
-      end
-    end,
-
-    ['<c-j>'] = function(fallback)
-      if not cmp.select_next_item() then
-        if vim.bo.buftype ~= 'prompt' and has_words_before() then
-          cmp.complete()
-        else
-          fallback()
-        end
-      end
-    end,
-
-    ['<c-k>'] = function(fallback)
-      if not cmp.select_prev_item() then
-        if vim.bo.buftype ~= 'prompt' and has_words_before() then
-          cmp.complete()
-        else
-          fallback()
-        end
-      end
-    end,
-
-  }
+  mapping = cmpMapping,
 }
 
 vim.api.nvim_create_autocmd("LspAttach", {
   callback = function(args)
     local client = vim.lsp.get_client_by_id(args.data.client_id)
-    client.server_capabilities.semanticTokensProvider = nil
+    if client then
+      client.server_capabilities.semanticTokensProvider = nil
+    end
   end,
 });
 
