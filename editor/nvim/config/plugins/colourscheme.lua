@@ -34,4 +34,9 @@ return {
     'nvim-treesitter/nvim-treesitter-textobjects'
   },
 
+  -- log file highlighting
+  {
+    'mtdl9/vim-log-highlighting'
+  },
+
 }
