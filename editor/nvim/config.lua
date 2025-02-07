@@ -384,6 +384,22 @@ local function next_no_name()
   print('No "[No name]" buffer found')
 end
 
+local function reverseLines()
+  local vstart = vim.api.nvim_buf_get_mark(0, "<")
+  local vend = vim.api.nvim_buf_get_mark(0, ">")
+
+  local line_start = vstart[1] - 1
+  local line_end = vend[1]
+
+  for k, v in pairs(lines) do
+    lines[k] = string.reverse(v)
+  end
+
+  local lines = vim.api.nvim_buf_set_lines(0, line_start, line_end, true, lines)
+end
+
+vim.api.nvim_create_user_command("ReverseVLines", reverseLines, {})
+
 local function test()
   -- print(dump(vim.fn.getbufinfo(81)))
   vim.api.nvim_buf_set_lines(0, 0, 0, true, {dump(vim.fn.getbufinfo(89))})
