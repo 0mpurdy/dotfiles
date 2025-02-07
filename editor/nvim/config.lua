@@ -405,6 +405,16 @@ local function test()
   vim.api.nvim_buf_set_lines(0, 0, 0, true, {dump(vim.fn.getbufinfo(89))})
 end
 
+vim.api.nvim_create_user_command("AddTable", function ()
+  local row, col = unpack(vim.api.nvim_win_get_cursor(0))
+  local tableText = {
+    '| Before | After |',
+    '| --- | --- |',
+    '| | |',
+  }
+  vim.api.nvim_put(tableText, 'l', false, true)
+end, {})
+
 -- ******************************** Keymaps ***********************************
 
 local vlua = '"\'<.\'>lua<cr>"'
