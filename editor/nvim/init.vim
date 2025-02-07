@@ -472,3 +472,38 @@ nnoremap <leader>orr :lua vim.lsp.buf.rename()<cr>
 nnoremap ]] :lua vim.diagnostic.goto_next()<cr>
 nnoremap [[ :lua vim.diagnostic.goto_prev()<cr>
 
+function! VHtmlEscape()
+  let search = @/
+  let range = "'<,'>"
+  execute range . 'sno/&/&amp;/eg'
+  execute range . 'sno/</&lt;/eg'
+  execute range . 'sno/>/&gt;/eg'
+  execute range . 'sno/{/&#123;/eg'
+  execute range . 'sno/}/&#125;/eg'
+  nohl
+  let @/ = search
+endfunction
+
+function! VHtmlUnescape()
+  let search = @/
+  let range = "'<,'>"
+  execute range . 'sno/&amp;/&/eg'
+  execute range . 'sno/&lt;/</eg'
+  execute range . 'sno/&gt;/>/eg'
+  execute range . 'sno/&#123;/{/eg'
+  execute range . 'sno/&#125;/}/eg'
+  nohl
+  let @/ = search
+endfunction
+
+function! TestVHtmlUnescape()
+  let search = @/
+  let prefix = "%s/\%V"
+  execute prefix . '&amp;/&/eg'
+  execute prefix . '&lt;/</eg'
+  execute prefix . '&gt;/>/eg'
+  execute prefix . '&#123;/{/eg'
+  execute prefix . '&#125;/}/eg'
+  nohl
+  let @/ = search
+endfunction
