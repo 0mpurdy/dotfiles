@@ -309,7 +309,7 @@ local function reflow_window()
   if current_buf_name == "" or current_buf_name:find("^term") or current_buf_name:find("^fugitive") ~= nil then
     for key,value in pairs(vim.api.nvim_list_bufs()) do
       local buf_name = vim.api.nvim_buf_get_name(value)
-      if buf_name ~= "" and buf_name:find("^term") == nil and buf_name:find("^fugitive") == nil then
+      if buf_name ~= "" and buf_name:find("^term") == nil and buf_name:find("^fugitive") == nil and vim.api.nvim_buf_is_loaded(value) then
         vim.api.nvim_win_set_buf(0, value)
         break
       end
@@ -402,8 +402,11 @@ vim.api.nvim_create_user_command("ReverseVLines", reverseLines, {})
 
 local function test()
   -- print(dump(vim.fn.getbufinfo(81)))
-  vim.api.nvim_buf_set_lines(0, 0, 0, true, {dump(vim.fn.getbufinfo(89))})
+  -- vim.api.nvim_buf_set_lines(0, 0, 0, true, {dump(vim.fn.getbufinfo(89))})
+  print('Test success 2')
 end
+
+vim.api.nvim_create_user_command("Test", test, {})
 
 vim.api.nvim_create_user_command("AddTable", function ()
   local row, col = unpack(vim.api.nvim_win_get_cursor(0))
@@ -430,6 +433,8 @@ vim.keymap.set("v", "<leader><leader>px", ":put =execute(" .. vlua ..")", {norem
 vim.keymap.set("n", "<leader>x", ":.lua<cr>", {noremap=true})
 vim.keymap.set("v", "<leader>x", ":lua<cr>", {noremap=true})
 vim.keymap.set("n", "<leader><leader>cl", ":let @+ = execute('luafile %')<cr>", {noremap=true})
+
+vim.keymap.set("n", "<leader>sl", ":Git log --graph --decorate --abbrev-commit --all --date=format:'%a' --pretty=format:\"%h %ae %ad %aI %d%n%n%s%n\"<cr>", {noremap=true})
 
 -- ********************************* Bugs *************************************
 
