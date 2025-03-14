@@ -14,7 +14,8 @@ set softtabstop=2   " with expand tab not set combination of spaces will be used
 
 " *********************************** Misc ************************************
 
-set number relativenumber         " use hybrid line numbers (https://jeffkreeftmeijer.com/vim-number/)
+" could use hybrid line numbers (https://jeffkreeftmeijer.com/vim-number/)
+set number norelativenumber
 set splitright                    " new windows in a vertical split open to the right
 set hidden                        " don't ask to save before switching buffers
 set directory^=$HOME/.vim/tmp//   " Use central location for swp files
@@ -190,6 +191,9 @@ colorscheme industry
 :nnoremap <leader>l <C-w>l
 :nnoremap <leader>c <C-w>c
 
+" close buffer
+:nnoremap <leader>q :bd<cr>
+
 " Open visually selected file path in split to the left
 :vnoremap <leader>o "1y<C-w>h:e <C-r>1<cr>
 
@@ -204,11 +208,11 @@ colorscheme industry
 " find word in all files
 " :nnoremap <leader>K :grep -r --exclude-dir=node_modules --exclude="*.d.ts" --include "*.ts" --include "*.tsx" --include "*.py" ' ./src/ ./e2e<S-Left><S-Left><S-Left>'
 " :nnoremap <leader>K :vimgrep ' **/*.ts<S-Left><S-Left>'
-:nnoremap <leader>K :grep -r --exclude-dir=node_modules --exclude-dir=venv --exclude="*.d.ts" --include "*.ts" --include "*.tsx" --include "*.py" ' ./<S-Left><S-Left>'
+:nnoremap <leader>K :grep -r --exclude-dir=node_modules --exclude-dir=venv --exclude="*.d.ts" ' ./<S-Left><S-Left>'
 " replace word under cursor
 :nnoremap <leader><leader>s :%s/\<<C-r><C-w>\>/
 " find word under cursor
-:nnoremap <Leader>/ /\<<C-r><C-w>\><CR>
+:nnoremap <leader>/ /\<<C-r><C-w>\><CR>
 
 " ************************* Neovim terminal mappings **************************
 
