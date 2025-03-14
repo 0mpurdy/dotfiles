@@ -39,6 +39,7 @@
 - Google Drive
 - Affinity suite
 - Spotify
+- [Boop](https://github.com/IvanMathy/Boop) - install from mac app store
 
 - Install [Android Studio][android-studio]
 - Install [pandoc][pandoc] (use brew)
