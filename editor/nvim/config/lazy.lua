@@ -32,6 +32,7 @@ require("lazy").setup({
     { import = 'config.plugins.linting' },
     { import = 'config.plugins.lsp' },
     { import = 'config.plugins.powershell' },
+    { import = 'config.plugins.python' },
     { import = 'config.plugins.tools' },
     { import = 'config.plugins.tpope' },
     { import = 'config.plugins.typescript' },

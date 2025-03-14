@@ -374,7 +374,7 @@ endfunction
 " F1 to auto format file
 autocmd FileType python nnoremap <F1> :w<CR>:!autopep8 -i --aggressive --aggressive %<CR>
 " autocmd FileType python nnoremap <leader>e :w<CR>:!autopep8 -i %<CR>
-autocmd FileType python nnoremap <leader>e :w<CR>:!black %<CR>
+autocmd FileType python nnoremap <leader>e :w<CR>:!isort %<CR>:!black %<CR>
 " F4 to run current file
 autocmd FileType python nnoremap <F4> :w<CR>:vsp term://python3 %<CR>i
 " F5 to run current dir
