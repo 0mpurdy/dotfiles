@@ -63,7 +63,8 @@ set listchars=eol:¬,tab:>·,trail:~,extends:>,precedes:<,space:␣
 :nnoremap <leader>it "=strftime('%FT%T%z')<cr>p
 
 " insert random UUID
-:nnoremap <leader>iu :r !uuidgen<cr>
+:nnoremap <leader>iu "=trim(system('uuidgen\|tr "[A-Z]" "[a-z]"'))<cr>p
+:nnoremap <leader>iU :r !uuidgen<cr>
 :nnoremap <leader>iju :r !uuidgen\|sed 's/.*/"uuid": "&",/'\|tr "[A-Z]" "[a-z]"<cr>
 
 " macro to convert PR link to markdown
