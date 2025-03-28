@@ -2,7 +2,10 @@ return {
 
   -- UI for vim undo tree
   {
-    'mbbill/undotree'
+    'mbbill/undotree',
+    init = function()
+      vim.keymap.set("n", "<leader>su", ":UndotreeToggle<CR>")
+    end
   },
 
   -- Alignment tool
@@ -72,4 +75,14 @@ return {
     end
   },
 
+  -- markdown preview
+  {
+    "iamcco/markdown-preview.nvim",
+    cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
+    build = "cd app && yarn install",
+    init = function()
+      vim.g.mkdp_filetypes = { "markdown" }
+    end,
+    ft = { "markdown" },
+  },
 }
