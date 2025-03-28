@@ -81,3 +81,8 @@ autoload -U +X compinit && compinit
 # requires setting up AWS CLI https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html
 alias k='kubectl'
 complete -o default -F __start_kubectl k
+
+# * AWS statusline ***
+
+source ~/dev/kube-ps1/kube-ps1.sh
+PROMPT='$(kube_ps1)'$PROMPT
