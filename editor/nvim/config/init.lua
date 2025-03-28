@@ -434,7 +434,8 @@ vim.keymap.set("n", "<leader>x", ":.lua<cr>", {noremap=true})
 vim.keymap.set("v", "<leader>x", ":lua<cr>", {noremap=true})
 vim.keymap.set("n", "<leader><leader>cl", ":let @+ = execute('luafile %')<cr>", {noremap=true})
 
-vim.keymap.set("n", "<leader>sl", ":Git log --graph --decorate --abbrev-commit --all --date=format:'%a' --pretty=format:\"%h %ae %ad %aI %d%n%n%s%n\"<cr>", {noremap=true})
+vim.keymap.set("n", "<leader>sl", ":Git log --graph --decorate --abbrev-commit --all --date=format:'%a' --pretty=format:\"%h %an %d%n%n%s%n\"<cr>", {noremap=true})
+vim.keymap.set("n", "<leader>sal", ":Git log --graph --decorate --abbrev-commit --all --date=format:'%a' --pretty=format:\"%h %d%n%an %ae %ad %aI%n%cn %ce %cd %cI%n%n%s%n\"<cr>", {noremap=true})
 
 -- ********************************* Bugs *************************************
 
