@@ -221,6 +221,8 @@ colorscheme industry
 :nnoremap <leader>ot :terminal<CR>A
 " Map <Esc> to quitting the terminal
 :tnoremap <Esc><Esc> <C-\><C-n>
+" quick esc
+:tnoremap <leader><Esc> <Esc>
 
 " ********************************* Commands **********************************
 
