@@ -40,6 +40,8 @@
 - Affinity suite
 - Spotify
 - [Boop](https://github.com/IvanMathy/Boop) - install from mac app store
+- DBeaver
+- Kitty (Terminal emulator)
 
 - Install [Android Studio][android-studio]
 - Install [pandoc][pandoc] (use brew)
