@@ -9,6 +9,8 @@ setopt HIST_SAVE_NO_DUPS
 HISTSIZE=10000
 SAVEHIST=9000
 
+HISTORY_IGNORE='(cd ..|exit|ls|nvim|ll|clear)'
+
 # ********************************* Aliases ***********************************
 
 alias ecfg='nvim ~/.zshrc'
