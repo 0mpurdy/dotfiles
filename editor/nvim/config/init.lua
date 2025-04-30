@@ -403,7 +403,13 @@ vim.api.nvim_create_user_command("ReverseVLines", reverseLines, {})
 local function test()
   -- print(dump(vim.fn.getbufinfo(81)))
   -- vim.api.nvim_buf_set_lines(0, 0, 0, true, {dump(vim.fn.getbufinfo(89))})
-  print('Test success 2')
+  print('Test success')
+
+  local lineNum = vim.api.nvim_win_get_cursor(0)
+  local row, col = unpack(lineNum)
+  local bufname = vim.api.nvim_buf_get_name(0)
+
+  vim.fn.setreg("+", bufname .. "#" .. row)
 end
 
 vim.api.nvim_create_user_command("Test", test, {})
