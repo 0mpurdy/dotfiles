@@ -86,3 +86,9 @@ complete -o default -F __start_kubectl k
 
 source ~/dev/kube-ps1/kube-ps1.sh
 PROMPT='$(kube_ps1)'$PROMPT
+
+# ***************************** Date countdown ********************************
+
+let SIGNIFICANT_DATE=$(date -jf '%Y%m%d' '20000101' +%s)
+let DIFF=$((($SIGNIFICANT_DATE-$EPOCHSECONDS)/86400))
+echo "$DIFF days"
