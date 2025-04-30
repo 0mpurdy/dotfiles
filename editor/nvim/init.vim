@@ -478,7 +478,7 @@ nnoremap K :lua vim.lsp.buf.hover()<cr>
 nnoremap <leader>olk :lua vim.lsp.buf.signature_help()<cr>
 nnoremap <leader>old :lua vim.lsp.buf.definition()<cr>
 nnoremap <leader>olt :lua vim.lsp.buf.type_definition()<cr>
-nnoremap <leader>of :lua vim.lsp.buf.references()<cr>
+nnoremap <leader>olf :lua vim.lsp.buf.references()<cr>
 nnoremap <leader>orr :lua vim.lsp.buf.rename()<cr>
 nnoremap ]] :lua vim.diagnostic.goto_next()<cr>
 nnoremap [[ :lua vim.diagnostic.goto_prev()<cr>
