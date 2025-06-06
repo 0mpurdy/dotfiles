@@ -447,3 +447,7 @@ vim.keymap.set("n", "<leader>sal", ":Git log --graph --decorate --abbrev-commit 
 
 vim.api.nvim_create_autocmd({ "FileType" }, { pattern = "[Dd]ockerfile" , group = optional_group, command = "TSBufDisable highlight" })
 vim.api.nvim_create_autocmd({ "FileType" }, { pattern = "*.lua" , command = "nnoremap <F5> :luafile %<cr>" })
+
+-- ******************************** Augment ***********************************
+
+vim.g.augment_workspace_folders = {'~/dev/dotfiles'}

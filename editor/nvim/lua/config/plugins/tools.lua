@@ -85,4 +85,14 @@ return {
     end,
     ft = { "markdown" },
   },
+
+  -- AI agent
+  {
+    'augmentcode/augment.vim',
+    init = function()
+      -- vim.g.augment_disable_tab_mapping = true
+      -- vim.keymap.set("i", "<c-y>", "<cmd>call augment#Accept()<cr>", {noremap=true})
+      vim.keymap.set("n", "<leader>ic", ":Augment chat ", {noremap=true})
+    end,
+  }
 }
