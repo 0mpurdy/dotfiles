@@ -42,7 +42,7 @@ let mapleader=" " " set leader to space
 :nnoremap <leader>p "+p
 :nnoremap <leader>r diw"0P
 
-" toggle list chars
+" toggle list chars (show whitespace characters)
 set listchars=eol:¬,tab:>·,trail:~,extends:>,precedes:<,space:␣
 :nnoremap <leader>= :set list!<cr>
 
