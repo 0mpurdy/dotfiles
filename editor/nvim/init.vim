@@ -372,38 +372,6 @@ function! CssToMarkdown()
   :'<,'>s/\(.\)$/\1 |/g
 endfunction
 
-" ************************* Python specific settings **************************
-
-" F1 to auto format file
-autocmd FileType python nnoremap <F1> :w<CR>:!autopep8 -i --aggressive --aggressive %<CR>
-" autocmd FileType python nnoremap <leader>e :w<CR>:!autopep8 -i %<CR>
-autocmd FileType python nnoremap <leader>e :w<CR>:!isort %<CR>:!black %<CR>
-" autocmd FileType python nnoremap <leader>e :w<CR>:!ruff check --select I --fix % && ruff format %<CR>
-" Probably slow, but for manual just apply all
-" autocmd FileType python nnoremap <leader>e :w<CR>:!isort %<CR>:!black %<CR>:!ruff check --select I --fix % && ruff format %<CR>
-" F4 to run current file
-autocmd FileType python nnoremap <F4> :w<CR>:vsp term://python3 %<CR>i
-" F5 to run current dir
-autocmd FileType python nnoremap <F5> :w<CR>:vsp term://python3 __main__.py<CR>i
-" F6 to run unit tests
-autocmd FileType python nnoremap <F6> :w<CR>:vsp term://pytest -v -m 'not long'<CR>
-" F7 to run single test with debugging
-autocmd FileType python nnoremap <F7> :w<CR>:vsp term://pytest -v --pdb %<CR>
-" F8 to run all tests
-autocmd FileType python nnoremap <F8> :w<CR>:vsp term://pytest -v<CR>
-" F9 to run code coverage
-autocmd FileType python nnoremap <F9> :w<CR>:vsp term://pytest --cov=. --cov-report term-missing:skip-covered<CR>
-" F10 to run code coverage for single file
-autocmd FileType python nnoremap <F10> :w<CR>:vsp term://pytest % --cov=. --cov-report term-missing<CR>
-
-" <leader>K to vimgrep
-" autocmd FileType python nnoremap <leader>K :vimgrep ' **/*.py<S-Left><S-Left>'
-
-" Ctrl + / to comment
-autocmd FileType python nnoremap <C-_> 0i# <Esc>j
-" + to uncomment
-autocmd FileType python nnoremap + 02xj
-
 " ************************** Rust specific settings ***************************
 
 " F5 to run current file
