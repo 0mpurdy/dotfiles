@@ -87,7 +87,7 @@ nnoremap <leader>mdL ?\[.*\](<cr>f("+yi)
 vnoremap <leader>gc <esc>`<i{/*<esc>`>a*/}<esc>
 
 " fuzzy search
-command! -bang -nargs=* Agi call fzf#vim#ag(<q-args>, '--ignore=node_modules --ignore=package-lock.json', fzf#vim#with_preview(), <bang>0)
+command! -bang -nargs=* Agi call fzf#vim#ag(<q-args>, '--ignore=node_modules --ignore=package-lock.json --ignore=build/', fzf#vim#with_preview(), <bang>0)
 :nnoremap <leader>a :Agi<cr>
 :vnoremap <leader>a y:Agi <c-r>0<cr>
 
