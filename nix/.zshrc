@@ -9,6 +9,9 @@ setopt HIST_SAVE_NO_DUPS
 HISTSIZE=10000
 SAVEHIST=9000
 
+# don't save current session history:
+# unset HISTFILE
+
 HISTORY_IGNORE='(cd ..|exit|ls|nvim|ll|clear)'
 
 # ********************************* Aliases ***********************************
