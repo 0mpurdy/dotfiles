@@ -222,7 +222,7 @@ colorscheme industry
 " Map <Esc> to quitting the terminal
 :tnoremap <Esc><Esc> <C-\><C-n>
 " quick esc
-:tnoremap <leader><Esc> <Esc>
+:tnoremap <S-Esc> <Esc>
 
 " ********************************* Commands **********************************
 
