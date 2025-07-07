@@ -65,6 +65,7 @@ preexec() { echo -ne '\e[5 q' ;} # Use beam shape cursor for each new prompt.
 # requires brew install bash-completion
 autoload -U +X bashcompinit && bashcompinit
 autoload -U +X compinit && compinit
+source $(brew --prefix)/etc/bash_completion.d/az
 
 # When using a separate local admin account, needed the following for completion items 
 # 
