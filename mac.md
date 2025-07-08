@@ -16,6 +16,8 @@
 
 ## Apps
 
+See  [[apps]] for generic apps
+
 - Screen management
   + Magnet
   + OR Rectangle
@@ -25,63 +27,10 @@
   + Keynote
   + iMovie
   + XCode
-- Chrome
 - [Homebrew][homebrew]
-- Python (use homebrew)
-- NodeJS (use [nvm][nvm])
-  + Install NPM packages
-    * Typescript
-- Neovim (use dotfiles script)
 - [iTerm][iterm]
-- [GitKraken][gitkraken]
-- Slack
-- WhatsApp
-- Google Drive
-- Affinity suite
-- Spotify
 - [Boop](https://github.com/IvanMathy/Boop) - install from mac app store
-- DBeaver
 - Kitty (Terminal emulator)
 
-- Install [Android Studio][android-studio]
-- Install [pandoc][pandoc] (use brew)
-- Install bash_completion (use brew)
-
-- Install Visual Studio
-
-Omnisharp for Neovim
-
-[Server](https://github.com/OmniSharp/omnisharp-roslyn/blob/master/BUILD.md)
-
-[android-studio]: https://developer.android.com/studio/
-[github-ssh]: https://help.github.com/articles/connecting-to-github-with-ssh/
-[gitkraken]: https://www.gitkraken.com
 [homebrew]: https://brew.sh
 [iterm]: https://www.iterm2.com
-[nvm]: https://github.com/creationix/nvm
-[pandoc]: https://pandoc.org/installing.html#macos
-
-## For C# .NET MAUI dev
-
-Must have
-
- - Install XCode (nice to use [xcodes][xcodes])
- - Install Visual Studio for mac
-
-Nice to have
-
- - Install [Android Studio][android-studio]
-
-[xcodes]: https://www.xcodes.app
-[android-studio]: https://developer.android.com/studio/
-
-## For web dev
-
- - Install nodejs (use [nvm][nvm])
-
-[nvm]: https://github.com/creationix/nvm
-
-## For AWS
-
-- Shell context hint - [jonmosco/kube-ps1](https://github.com/jonmosco/kube-ps1)
-- Shell context switch - [ahmetb/kubectx](https://github.com/ahmetb/kubectx)

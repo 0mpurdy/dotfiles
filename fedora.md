@@ -29,6 +29,6 @@ Edit `~/.bash_profile` to set the default terminal emulator for i3
 export TERMINAL=gnome-terminal
 ```
 
-Install [nvm](https://github.com/creationix/nvm)
+See [[apps]]
 
 [i3-mouse]: https://www.reddit.com/r/i3wm/comments/3btki2/use_the_mouse_cursor_from_the_keyboard/
