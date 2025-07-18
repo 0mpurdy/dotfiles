@@ -62,6 +62,11 @@ preexec() { echo -ne '\e[5 q' ;} # Use beam shape cursor for each new prompt.
 
 # ***************************** CLI completions *******************************
 
+# https://docs.docker.com/engine/cli/completion/#zsh
+FPATH="$HOME/.docker/completions:$FPATH"
+autoload -Uz compinit
+compinit
+
 # requires brew install bash-completion
 autoload -U +X bashcompinit && bashcompinit
 autoload -U +X compinit && compinit
