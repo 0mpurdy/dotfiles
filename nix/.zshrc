@@ -67,13 +67,15 @@ autoload -U +X bashcompinit && bashcompinit
 autoload -U +X compinit && compinit
 source $(brew --prefix)/etc/bash_completion.d/az
 
-# When using a separate local admin account, needed the following for completion items 
-# 
+# When using a separate local admin account, needed the following for
+# completion items (will need to run these to set back to the admin account
+# before installing or updating with brew)
+
 # sudo chown -R mpurdy:staff "$(brew --prefix)/share"
 # sudo chown -R mpurdy:staff /usr/local/Cellar
-#
-# May also need this
-#
+
+# May also need this after installing anything
+
 # sudo chown -R mpurdy:staff /usr/local/Homebrew/completions/zsh/_brew
 # sudo chown -R mpurdy:staff /usr/local/share/aclocal /usr/local/share/info /usr/local/share/man/man3 /usr/local/share/zsh /usr/local/share/zsh/site-functions
 # sudo chmod -R g-w /usr/local/share
