@@ -25,21 +25,27 @@ return {
           \ 'ctrl-q': function('s:build_quickfix_list') }
       ]])
 
-      local function silverSearchInDir(dir)
-        vim.api.nvim_call_function('fzf#vim#ag', { '', { dir = dir } })
+     local function ripgrepSearchInDir(dir)
+        local rg_command = 'rg --column --line-number --no-heading --color=always --smart-case ""'
+        vim.api.nvim_call_function('fzf#vim#grep', { rg_command, 1, { dir = dir } })
+      end
+
+     local function ripgrepSearchFilesInDir(dir)
+        local rg_command = 'rg --files'
+        vim.api.nvim_call_function('fzf#vim#grep', { rg_command, 1, { dir = dir } })
       end
 
       -- search config
       vim.keymap.set('n', '<Leader>sc', ':Files ' .. vim.fn.stdpath('config') .. '<cr>', {noremap=true})
-      vim.keymap.set('n', '<Leader>sic', function() silverSearchInDir(vim.fn.stdpath('config')) end, {noremap=true})
+      vim.keymap.set('n', '<Leader>sic', function() ripgrepSearchInDir(vim.fn.stdpath('config')) end, {noremap=true})
 
       -- search dotfiles
       local dotfilesDir = '~/dev/dotfiles'
       vim.keymap.set('n', '<Leader>sd', ':Files ' .. dotfilesDir .. '<cr>', {noremap=true})
-      vim.keymap.set('n', '<Leader>sid', function() silverSearchInDir(dotfilesDir) end, {noremap=true})
+      vim.keymap.set('n', '<Leader>sid', function() ripgrepSearchInDir(dotfilesDir) end, {noremap=true})
 
       -- search working dir
-      vim.keymap.set('n', '<Leader>sw', ':Files ' .. vim.fn.getcwd() .. '<cr>', {noremap=true})
+      vim.keymap.set('n', '<Leader>sw', function() ripgrepSearchFilesInDir(vim.fn.getcwd()) end, {noremap=true})
 
       -- search runtime path
       local runtimeFolders = ''

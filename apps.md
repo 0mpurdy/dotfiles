@@ -24,6 +24,7 @@ See [[mac#apps]] for mac specific apps
 - NodeJS (use [nvm][nvm])
   + Install NPM packages
     * Typescript
+- [ripgrep][ripgrep]
 
 ### For C# .NET MAUI dev
 
@@ -57,4 +58,5 @@ Nice to have
 [gitkraken]: https://www.gitkraken.com
 [nvm]: https://github.com/creationix/nvm
 [pandoc]: https://pandoc.org/installing.html#macos
+[ripgrep]: https://github.com/BurntSushi/ripgrep
 [xcodes]: https://www.xcodes.app
