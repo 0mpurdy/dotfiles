@@ -426,6 +426,18 @@ vim.api.nvim_create_user_command("AddTable", function ()
   vim.api.nvim_put(tableText, 'l', false, true)
 end, {})
 
+vim.api.nvim_create_user_command('PasteWithCodeFence', function()
+  vim.api.nvim_put({ '', '```' }, 'l', true, true)
+
+  local lines = {}
+  for s in vim.fn.getreg('+'):gmatch("[^\r\n]+") do
+      table.insert(lines, s)
+  end
+
+  vim.api.nvim_put(lines, 'l', false, true)
+  vim.api.nvim_put({ '```' }, 'l', false, true)
+end, {})
+
 -- ******************************** Keymaps ***********************************
 
 local vlua = '"\'<.\'>lua<cr>"'
