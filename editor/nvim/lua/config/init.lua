@@ -443,6 +443,14 @@ vim.keymap.set("n", "<leader><leader>cl", ":let @+ = execute('luafile %')<cr>", 
 vim.keymap.set("n", "<leader>sl", ":Git log --graph --decorate --abbrev-commit --all --date=format:'%a' --pretty=format:\"%h %an %d%n%n%s%n\"<cr>", {noremap=true})
 vim.keymap.set("n", "<leader>sal", ":Git log --graph --decorate --abbrev-commit --all --date=format:'%a' --pretty=format:\"%h %d%n%an %ae %ad %aI%n%cn %ce %cd %cI%n%n%s%n\"<cr>", {noremap=true})
 
+-- Visual selection maps
+vim.keymap.set("n", "<Leader>V", "$v0", {noremap=true})
+vim.keymap.set("v", "<Leader>{", "?{<cr>j", {noremap=true})
+vim.keymap.set("v", "<Leader>}", "/}<cr>k", {noremap=true})
+
+-- Yank maps
+vim.keymap.set("n", "<Leader>Y", "$v0\"+y", {noremap=true})
+
 -- ********************************* Bugs *************************************
 
 vim.api.nvim_create_autocmd({ "FileType" }, { pattern = "[Dd]ockerfile" , group = optional_group, command = "TSBufDisable highlight" })
