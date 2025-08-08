@@ -47,6 +47,9 @@ return {
       -- search working dir
       vim.keymap.set('n', '<Leader>sw', function() ripgrepSearchFilesInDir(vim.fn.getcwd()) end, {noremap=true})
 
+      -- search current file
+      vim.keymap.set('n', '<Leader>sif', ':BLines<cr>', {noremap=true})
+
       -- search runtime path
       local runtimeFolders = ''
       for _, folder in ipairs(vim.api.nvim_list_runtime_paths()) do
