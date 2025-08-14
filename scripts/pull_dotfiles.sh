@@ -18,5 +18,4 @@ docopy "${HOME}/.vimrc" "${dotpath}/editor/.vimrc"
 docopy "${HOME}/.profile" "${dotpath}/nix/.profile"
 docopy "${HOME}/.config/nvim/" "${dotpath}/editor/nvim/"
 
-rm -rf "${dotpath}/editor/nvim/lua/plugins"
 rm -rf "${dotpath}/editor/nvim/lazy-lock.json"
