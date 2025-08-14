@@ -427,7 +427,9 @@ vim.api.nvim_create_user_command("AddTable", function ()
 end, {})
 
 vim.api.nvim_create_user_command('PasteWithCodeFence', function()
-  vim.api.nvim_put({ '', '```' }, 'l', true, true)
+  vim.api.nvim_put({ '', '' }, 'l', true, true)
+  vim.cmd.normal('k')
+  vim.api.nvim_put({ '```' }, 'l', false, true)
 
   local lines = {}
   for s in vim.fn.getreg('+'):gmatch("[^\r\n]+") do
