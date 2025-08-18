@@ -1,7 +1,7 @@
 -- Neovim Lua config file
 
 -- Should the mappings be optimised for ergodox?
-local ergodox = true
+local ergodox = false
 
 -- ************************** Syntax highlighting *****************************
 
@@ -156,9 +156,15 @@ require('lspconfig').gopls.setup {}
 
 -- ****************************** Completions *********************************
 
+local has_words_before = function()
+    unpack = unpack or table.unpack
+    local line, col = unpack(vim.api.nvim_win_get_cursor(0))
+    return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
+end
+
 local cmp = require('cmp')
 local cmpMapping = {
-  ['<cr>'] = cmp.mapping.confirm {
+  ['<c-space>'] = cmp.mapping.confirm {
     behavior = cmp.ConfirmBehavior.Insert,
     select = true,
   },
@@ -184,50 +190,32 @@ local cmpMapping = {
   end,
 }
 
+local next_completion = function(fallback)
+    if not cmp.select_next_item() then
+      if vim.bo.buftype ~= 'prompt' and has_words_before() then
+        cmp.complete()
+      else
+        fallback()
+      end
+    end
+  end
+
+local previous_completion = function(fallback)
+    if not cmp.select_prev_item() then
+      if vim.bo.buftype ~= 'prompt' and has_words_before() then
+        cmp.complete()
+      else
+        fallback()
+      end
+    end
+  end
+
 if ergodox then
-
-  cmpMapping['<c-n>'] = function(fallback)
-    if not cmp.select_next_item() then
-      if vim.bo.buftype ~= 'prompt' and has_words_before() then
-        cmp.complete()
-      else
-        fallback()
-      end
-    end
-  end
-
-  cmpMapping['<c-e>'] = function(fallback)
-    if not cmp.select_prev_item() then
-      if vim.bo.buftype ~= 'prompt' and has_words_before() then
-        cmp.complete()
-      else
-        fallback()
-      end
-    end
-  end
-
+  cmpMapping['<c-n>'] = next_completion
+  cmpMapping['<c-e>'] = previous_completion
 else
-
-  cmpMapping['<c-j>'] = function(fallback)
-    if not cmp.select_next_item() then
-      if vim.bo.buftype ~= 'prompt' and has_words_before() then
-        cmp.complete()
-      else
-        fallback()
-      end
-    end
-  end
-
-  cmpMapping['<c-k>'] = function(fallback)
-    if not cmp.select_prev_item() then
-      if vim.bo.buftype ~= 'prompt' and has_words_before() then
-        cmp.complete()
-      else
-        fallback()
-      end
-    end
-  end
-
+  cmpMapping['<c-j>'] = next_completion
+  cmpMapping['<c-k>'] = previous_completion
 end
 
 cmp.setup {
@@ -237,6 +225,10 @@ cmp.setup {
   mapping = cmpMapping,
 }
 
+local on_attach = function(_, bufnr)
+  vim.bo[bufnr].omnifunc = 'v:lua.vim.lsp.omnifunc'
+end
+
 vim.api.nvim_create_autocmd("LspAttach", {
   callback = function(args)
     local client = vim.lsp.get_client_by_id(args.data.client_id)
@@ -245,14 +237,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
     end
   end,
 });
-
-local on_attach = function(_, bufnr)
-  local function buf_set_option(...)
-    vim.api.nvim_buf_set_option(bufnr, ...)
-  end
-
-  buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
-end
 
 -- ******************************** LSP maps **********************************
 
@@ -285,7 +269,8 @@ require'lspconfig'.lua_ls.setup({
   end,
   settings = {
     Lua = {}
-  }
+  },
+  on_attach = on_attach,
 })
 
 -- ******************************* Functions **********************************
@@ -444,6 +429,32 @@ end, {})
 
 -- ******************************** Keymaps ***********************************
 
+-- local function get_visual_selection()
+--   local s_start = vim.fn.getpos("'<")
+--   local s_end = vim.fn.getpos("'>")
+--   local n_lines = math.abs(s_end[2] - s_start[2]) + 1
+--   local lines = vim.api.nvim_buf_get_lines(0, s_start[2] - 1, s_end[2], false)
+--   lines[1] = string.sub(lines[1], s_start[3], -1)
+--   if n_lines == 1 then
+--     lines[n_lines] = string.sub(lines[n_lines], 1, s_end[3] - s_start[3] + 1)
+--   else
+--     lines[n_lines] = string.sub(lines[n_lines], 1, s_end[3])
+--   end
+--   return table.concat(lines, '\n')
+-- end
+
+-- local function search_visual_selection()
+--   -- exit out of visual mode
+--   local esc_key = vim.api.nvim_replace_termcodes("<esc>", true, false, true)
+--   vim.api.nvim_feedkeys(esc_key, 'n', false)
+
+--   local visually_selected_text = get_visual_selection()
+
+--   print(visually_selected_text)
+-- end
+
+-- vim.keymap.set("v", "<leader>/", search_visual_selection, {noremap=true})
+
 local vlua = '"\'<.\'>lua<cr>"'
 
 -- vim.keymap.set('n', '<Leader>gd', '<Plug>(doge-generate)')
@@ -476,4 +487,8 @@ vim.api.nvim_create_autocmd({ "FileType" }, { pattern = "*.lua" , command = "nno
 
 -- ******************************** Augment ***********************************
 
-vim.g.augment_workspace_folders = {'~/dev/dotfiles'}
+vim.g.augment_workspace_folders = {'~/dev/goldeneye-research/'}
+
+-- ********************************* Work *************************************
+
+require('pytilia')
