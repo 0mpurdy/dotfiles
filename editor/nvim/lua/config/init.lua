@@ -218,11 +218,20 @@ else
   cmpMapping['<c-k>'] = previous_completion
 end
 
+-- https://github.com/hrsh7th/nvim-cmp?tab=readme-ov-file#recommended-configuration
 cmp.setup {
-  sources = {
-    { name = 'nvim_lsp' }
+  snippet = {
+    -- REQUIRED - you must specify a snippet engine
+    expand = function(args)
+      vim.fn["UltiSnips#Anon"](args.body) -- For `ultisnips` users.
+    end,
   },
   mapping = cmpMapping,
+  sources = cmp.config.sources({
+    { name = 'nvim_lsp' }
+  }, {
+    { name = 'buffer' }
+  }),
 }
 
 local on_attach = function(_, bufnr)
@@ -238,9 +247,12 @@ vim.api.nvim_create_autocmd("LspAttach", {
   end,
 });
 
+local completion_capabilities = require('cmp_nvim_lsp').default_capabilities()
+
 -- ******************************** LSP maps **********************************
 
 require'lspconfig'.lua_ls.setup({
+  capabilities = completion_capabilities,
   on_init = function(client)
     local path = client.workspace_folders[1].name
     if vim.loop.fs_stat(path..'/.luarc.json') or vim.loop.fs_stat(path..'/.luarc.jsonc') then
