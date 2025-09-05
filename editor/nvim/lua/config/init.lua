@@ -446,31 +446,41 @@ end, {})
 
 -- ******************************** Keymaps ***********************************
 
--- local function get_visual_selection()
---   local s_start = vim.fn.getpos("'<")
---   local s_end = vim.fn.getpos("'>")
---   local n_lines = math.abs(s_end[2] - s_start[2]) + 1
---   local lines = vim.api.nvim_buf_get_lines(0, s_start[2] - 1, s_end[2], false)
---   lines[1] = string.sub(lines[1], s_start[3], -1)
---   if n_lines == 1 then
---     lines[n_lines] = string.sub(lines[n_lines], 1, s_end[3] - s_start[3] + 1)
---   else
---     lines[n_lines] = string.sub(lines[n_lines], 1, s_end[3])
---   end
---   return table.concat(lines, '\n')
--- end
+-- return a representation of the selected text
+-- suitable for use as a search pattern
+--
+-- Adapted from https://vi.stackexchange.com/a/41425
+local function get_visual_selection(escape)
+    local old_reg = vim.fn.getreg("v")
+    vim.cmd('normal! gv"vy')
+    local raw_search = vim.fn.getreg("v")
+    vim.fn.setreg("v", old_reg)
+    if escape then
+        local escaped = vim.fn.escape(raw_search, '\\/.*$^~[]')
+        return vim.fn.substitute(escaped, "\n", '\\n', "g")
+    end
+    return raw_search
+end
 
--- local function search_visual_selection()
---   -- exit out of visual mode
---   local esc_key = vim.api.nvim_replace_termcodes("<esc>", true, false, true)
---   vim.api.nvim_feedkeys(esc_key, 'n', false)
+local function search_visual_selection()
+  -- exit out of visual mode
+  local esc_key = vim.api.nvim_replace_termcodes("<esc>", true, false, true)
+  vim.api.nvim_feedkeys(esc_key, 'n', false)
 
---   local visually_selected_text = get_visual_selection()
+  local visually_selected_text = ""
 
---   print(visually_selected_text)
--- end
+  vim .schedule(function ()
+    visually_selected_text = get_visual_selection()
 
--- vim.keymap.set("v", "<leader>/", search_visual_selection, {noremap=true})
+    -- Set the search register and perform the search
+    vim.fn.setreg("/", visually_selected_text)
+    vim.cmd("normal! n")
+  end)
+
+  vim.schedule(function() vim.notify(visually_selected_text) end)
+end
+
+vim.keymap.set("x", "<leader>/", search_visual_selection, {noremap=true})
 
 local vlua = '"\'<.\'>lua<cr>"'
 
