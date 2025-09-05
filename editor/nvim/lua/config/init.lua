@@ -17,6 +17,11 @@ require('config.lazy')
 
 require('mason').setup()
 
+-- pyright
+-- typescript-language-server
+-- gopls
+-- lua-language-server
+
 -- ********************* Plugins - Syntax Highlighting ************************
 
 require'nvim-treesitter.configs'.setup {
