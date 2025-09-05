@@ -35,6 +35,11 @@ return {
         vim.api.nvim_call_function('fzf#vim#grep', { rg_command, 1, { dir = dir } })
       end
 
+     local function ripgrepSearchAllFilesInDir(dir)
+        local rg_command = 'rg --files --no-ignore-vcs'
+        vim.api.nvim_call_function('fzf#vim#grep', { rg_command, 1, { dir = dir } })
+      end
+
       -- search config
       vim.keymap.set('n', '<Leader>sc', ':Files ' .. vim.fn.stdpath('config') .. '<cr>', {noremap=true})
       vim.keymap.set('n', '<Leader>sic', function() ripgrepSearchInDir(vim.fn.stdpath('config')) end, {noremap=true})
@@ -46,6 +51,7 @@ return {
 
       -- search working dir
       vim.keymap.set('n', '<Leader>sw', function() ripgrepSearchFilesInDir(vim.fn.getcwd()) end, {noremap=true})
+      vim.keymap.set('n', '<Leader>saw', function() ripgrepSearchAllFilesInDir(vim.fn.getcwd()) end, {noremap=true})
 
       -- search current file
       vim.keymap.set('n', '<Leader>sif', ':BLines<cr>', {noremap=true})
