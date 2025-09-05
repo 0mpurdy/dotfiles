@@ -122,14 +122,14 @@ nnoremap gdl :diffget //3<cr>
 :nnoremap , @q
 :nnoremap Y y$
 
-function! Test()
-  if has('win32')
-    :exe 'norm i' . expand('$USERNAME') . " is testing"
-    echo "test"
-  else
-    :norm itesting
-  endif
-endfunction
+" function! Test()
+"   if has('win32')
+"     :exe 'norm i' . expand('$USERNAME') . " is testing"
+"     echo "test"
+"   else
+"     :norm itesting
+"   endif
+" endfunction
 
 " function! ReplaceConsole()
 "     :bd!
