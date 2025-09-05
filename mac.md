@@ -31,6 +31,14 @@ See  [[apps]] for generic apps
 - [iTerm][iterm]
 - [Boop](https://github.com/IvanMathy/Boop) - install from mac app store
 - Kitty (Terminal emulator)
+- [Git stats] (`brew install git-quick-stats`)
+
+  zshrc config
+
+  ```
+  export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
+  ```
 
 [homebrew]: https://brew.sh
 [iterm]: https://www.iterm2.com
+[Git stats]: https://github.com/git-quick-stats/git-quick-stats
