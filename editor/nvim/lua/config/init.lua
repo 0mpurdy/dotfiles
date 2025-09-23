@@ -134,30 +134,32 @@ require'nvim-treesitter.configs'.setup {
 
 -- **************************** Plugins - Python ******************************
 
-require('lspconfig').pyright.setup { }
+vim.lsp.enable('pyright')
 
--- require('lspconfig').pylsp.setup { 
---   settings = { 
---     pylsp = { 
---       plugins = { 
+-- vim.lsp.config.pylsp = {
+--   settings = {
+--     pylsp = {
+--       plugins = {
 --         pylint = {
 --           enabled = false
---         }, 
---         pycodestyle = { 
---           enabled = "false" 
---         }, 
---       }, 
---     }, 
---   }, 
+--         },
+--         pycodestyle = {
+--           enabled = false
+--         },
+--       },
+--     },
+--   },
 -- }
 
 -- ************************** Plugins - Typescript ****************************
 
--- require("typescript-tools").setup {}
--- require('lspconfig').tsserver.setup {}
-require('lspconfig').ts_ls.setup {}
+-- vim.lsp.enable('typescript-tools')
+-- vim.lsp.enable('tsserver')
+vim.lsp.enable('ts_ls')
 
-require('lspconfig').gopls.setup {}
+-- **************************** Plugins - golang ******************************
+
+vim.lsp.enable('gopls')
 
 -- ****************************** Completions *********************************
 
@@ -256,9 +258,13 @@ local completion_capabilities = require('cmp_nvim_lsp').default_capabilities()
 
 -- ******************************** LSP maps **********************************
 
-require'lspconfig'.lua_ls.setup({
+vim.lsp.config.lua_ls = {
   capabilities = completion_capabilities,
   on_init = function(client)
+    if not client.workspace_folders or #client.workspace_folders == 0 then
+      return
+    end
+
     local path = client.workspace_folders[1].name
     if vim.loop.fs_stat(path..'/.luarc.json') or vim.loop.fs_stat(path..'/.luarc.jsonc') then
       return
@@ -288,7 +294,9 @@ require'lspconfig'.lua_ls.setup({
     Lua = {}
   },
   on_attach = on_attach,
-})
+}
+
+vim.lsp.enable('lua_ls')
 
 -- ******************************* Functions **********************************
 
