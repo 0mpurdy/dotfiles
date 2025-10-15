@@ -20,6 +20,7 @@ URL for getting script: https://github.com/git/git/blob/master/contrib/completio
 ```.gitconfig
 [alias]
 	lola = log --graph --decorate --abbrev-commit --all --date=local --pretty=format:\"%C(auto)%h%d %C(blue)%an %C(green)%cd %C(red)%GG %C(reset)%s\" --date=local
+	refdate = reflog --format=\"%C(auto)%h %C(green)%cd %C(reset)%gs %C(auto)%d%C(reset)\"
 [rebase]
 	autoSquash = true
 ```
