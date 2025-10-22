@@ -51,6 +51,7 @@ return {
 
       -- search working dir
       vim.keymap.set('n', '<Leader>sw', function() ripgrepSearchFilesInDir(vim.fn.getcwd()) end, {noremap=true})
+      vim.keymap.set('n', '<Leader>siw', function() ripgrepSearchInDir(vim.fn.getcwd()) end, {noremap=true})
       vim.keymap.set('n', '<Leader>saw', function() ripgrepSearchAllFilesInDir(vim.fn.getcwd()) end, {noremap=true})
 
       -- search current file
