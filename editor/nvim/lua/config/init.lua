@@ -171,7 +171,7 @@ end
 
 local cmp = require('cmp')
 local cmpMapping = {
-  ['<c-space>'] = cmp.mapping.confirm {
+  ['<cr>'] = cmp.mapping.confirm {
     behavior = cmp.ConfirmBehavior.Insert,
     select = true,
   },
