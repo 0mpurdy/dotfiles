@@ -23,7 +23,7 @@ alias notes='cd ~/notes && nvim'
 
 alias ll='ls -lah'
 
-alias claude="~/.claude/local/claude"
+alias claude="~/.local/bin/claude"
 alias scratch-claude='cd ~/dev/scratch-claude && claude'
 
 # **************************** VIM mode terminal ******************************
