@@ -524,6 +524,10 @@ vim.api.nvim_create_autocmd({ "FileType" }, { pattern = "*.lua" , command = "nno
 
 vim.g.augment_workspace_folders = {'~/dev/goldeneye-research/'}
 
+-- *************************** Personal scripts *******************************
+
+require('mod/jsonify')
+
 -- ********************************* Work *************************************
 
 require('pytilia')
