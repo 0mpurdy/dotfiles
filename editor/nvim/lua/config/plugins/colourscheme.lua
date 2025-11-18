@@ -4,14 +4,9 @@ return {
   {
     'navarasu/onedark.nvim',
     config = function()
-      -- todo: revisit this with proper neovim syntax
-      vim.cmd([[
-        let g:onedark_config = {
-            \ 'style': 'warmer',
-        \}
-        silent! colorscheme onedark
-      ]])
-    end
+      vim.g.onedark_config = { style = 'warmer' }
+      vim.cmd.colorscheme('onedark')
+    end,
   },
   -- {
   --   -- a nice one but not using right now
