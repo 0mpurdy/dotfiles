@@ -450,6 +450,7 @@ vim.api.nvim_create_user_command('PasteWithCodeFence', function()
 
   vim.api.nvim_put(lines, 'l', false, true)
   vim.api.nvim_put({ '```' }, 'l', false, true)
+  vim.cmd.normal(vim.api.nvim_replace_termcodes('2k<c-v>4l6kd', true, false, true))
 end, {})
 
 -- ******************************** Keymaps ***********************************
