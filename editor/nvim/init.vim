@@ -155,6 +155,13 @@ function! CreateMockProvider()
   :norm 'aj
 endfunction
 
+function! ReaderMode()
+  :set numberwidth=6
+  :set columns=80
+  :set colorcolumn=
+  :set linebreak
+endfunction
+
 " ***************************** Plugins ***************************************
 
 let g:no_python_maps = 1
