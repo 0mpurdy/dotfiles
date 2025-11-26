@@ -106,3 +106,5 @@ PROMPT='$(kube_ps1)'$PROMPT
 let SIGNIFICANT_DATE=$(date -jf '%Y%m%d' '20000101' +%s)
 let DIFF=$((($SIGNIFICANT_DATE-$EPOCHSECONDS)/86400))
 echo "$DIFF days"
+
+# ******************************* Auto-added **********************************
