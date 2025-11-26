@@ -40,6 +40,3 @@ vim.keymap.set("n", "<leader>K", ":vimgrep ' **/*.py<S-Left><S-Left>'", {noremap
 vim.keymap.set("n", "<C-_>", "0i# <Esc>j", {noremap=true})
 -- + to uncomment
 vim.keymap.set("n", "+", "02xj", {noremap=true})
-
--- https://github.com/navarasu/onedark.nvim/issues/251
-vim.api.nvim_set_hl(0, "@spell", { link = "Comment" })
