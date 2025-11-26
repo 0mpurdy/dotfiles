@@ -19,8 +19,8 @@
 See  [[apps]] for generic apps
 
 - Screen management
-  + Magnet
-  + OR Rectangle
+  + ~~Magnet~~
+  + Rectangle
 - Apple software suite
   + Numbers
   + Pages
@@ -30,7 +30,6 @@ See  [[apps]] for generic apps
 - [Homebrew][homebrew]
 - [iTerm][iterm]
 - [Boop](https://github.com/IvanMathy/Boop) - install from mac app store
-- Kitty (Terminal emulator)
 - [Git stats] (`brew install git-quick-stats`)
 
   zshrc config

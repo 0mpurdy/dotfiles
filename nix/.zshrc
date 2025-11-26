@@ -61,7 +61,8 @@ preexec() { echo -ne '\e[5 q' ;} # Use beam shape cursor for each new prompt.
 
 # *********************************** FZF *************************************
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+# brew install fzf
+[ -x "$(command -v fzf)" ] && source <(fzf --zsh)
 
 # ***************************** CLI completions *******************************
 
@@ -73,7 +74,9 @@ compinit
 # requires brew install bash-completion
 autoload -U +X bashcompinit && bashcompinit
 autoload -U +X compinit && compinit
-source $(brew --prefix)/etc/bash_completion.d/az
+
+# https://learn.microsoft.com/en-us/cli/azure/?view=azure-cli-latest
+# source $(brew --prefix)/etc/bash_completion.d/az
 
 # When using a separate local admin account, needed the following for
 # completion items (will need to run these to set back to the admin account
@@ -98,6 +101,7 @@ complete -o default -F __start_kubectl k
 
 # * AWS statusline ***
 
+# https://github.com/jonmosco/kube-ps1
 source ~/dev/kube-ps1/kube-ps1.sh
 PROMPT='$(kube_ps1)'$PROMPT
 

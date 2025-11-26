@@ -89,6 +89,7 @@ return {
   -- AI agent
   {
     'augmentcode/augment.vim',
+    enabled = false,
     init = function()
       -- vim.g.augment_disable_tab_mapping = true
       -- vim.keymap.set("i", "<c-y>", "<cmd>call augment#Accept()<cr>", {noremap=true})
