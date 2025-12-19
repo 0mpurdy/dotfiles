@@ -7,12 +7,17 @@ See [[mac#apps]] for mac specific apps
 ## Generic
 
 - Chrome
+- Firefox
+  + Turn off manual setting for passwords to stop the annoying popups
 - Neovim (use dotfiles script)
 - Slack
 - WhatsApp
 - Google Drive
 - Affinity suite
 - Spotify
+- Obsidian
+  + Change link setting to markdown
+  + Change link setting to relative to vault root
 
 ## Code
 
