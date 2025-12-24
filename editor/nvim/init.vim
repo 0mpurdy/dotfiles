@@ -228,6 +228,7 @@ colorscheme industry
 
 " Open neovim terminal
 :nnoremap <leader>ot :terminal<CR>A
+:nnoremap <leader>oft :terminal cd %:p:h && $SHELL<CR>A
 " Map <Esc> to quitting the terminal
 :tnoremap <Esc><Esc> <C-\><C-n>
 " quick esc
