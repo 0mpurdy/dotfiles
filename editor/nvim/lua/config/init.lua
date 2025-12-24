@@ -439,8 +439,14 @@ vim.api.nvim_create_user_command("AddTable", function ()
 end, {})
 
 vim.api.nvim_create_user_command('PasteWithCodeFence', function()
-  vim.api.nvim_put({ '', '' }, 'l', true, true)
-  vim.cmd.normal('k')
+  local total_lines = vim.api.nvim_buf_line_count(0)
+  local current_line = vim.api.nvim_win_get_cursor(0)[1]
+  print(total_lines..' '..current_line..' == '..total_lines==current_line)
+
+  vim.api.nvim_put({ '' }, 'l', true, true)
+  if total_lines == current_line then
+    vim.api.nvim_put({ '' }, 'l', true, true)
+  end
   vim.api.nvim_put({ '```' }, 'l', false, true)
 
   local lines = {}
@@ -450,7 +456,12 @@ vim.api.nvim_create_user_command('PasteWithCodeFence', function()
 
   vim.api.nvim_put(lines, 'l', false, true)
   vim.api.nvim_put({ '```' }, 'l', false, true)
-  vim.cmd.normal(vim.api.nvim_replace_termcodes('2k<c-v>4l6kd', true, false, true))
+  if total_lines == current_line then
+    vim.cmd.normal('dd')
+  else
+    vim.cmd.normal('k')
+  end
+  vim.cmd.normal(vim.api.nvim_replace_termcodes('k<c-v>4l6kd', true, false, true))
 end, {})
 
 -- ******************************** Keymaps ***********************************
