@@ -502,6 +502,28 @@ end
 
 vim.keymap.set("x", "<leader>/", search_visual_selection, {noremap=true})
 
+local function filter_in_new_buffer()
+  -- exit out of visual mode
+  local esc_key = vim.api.nvim_replace_termcodes("<esc>", true, false, true)
+  vim.api.nvim_feedkeys(esc_key, 'n', false)
+
+  vim.schedule(function ()
+    local visually_selected_text = get_visual_selection() .. "\n"
+    vim.cmd('enew')
+
+    local lines = {}
+    for s in visually_selected_text:gmatch("(.-)\n") do
+        table.insert(lines, s)
+    end
+
+    vim.api.nvim_buf_set_lines(0, 0, -1, true, lines)
+
+    vim.api.nvim_feedkeys(':%!', 'n', false)
+  end)
+end
+
+vim.keymap.set("v", "<leader>!", filter_in_new_buffer, {noremap=true})
+
 local vlua = '"\'<.\'>lua<cr>"'
 
 -- vim.keymap.set('n', '<Leader>gd', '<Plug>(doge-generate)')
