@@ -95,7 +95,7 @@ complete -o default -F __start_kubectl k
 
 # https://github.com/jonmosco/kube-ps1
 source ~/dev/kube-ps1/kube-ps1.sh
-PROMPT='$(kube_ps1)'$PROMPT
+PROMPT='$(kube_ps1) %2~ %# '
 
 # ***************************** Date countdown ********************************
 
