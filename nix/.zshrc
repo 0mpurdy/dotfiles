@@ -83,6 +83,8 @@ autoload -U +X compinit && compinit
 # https://learn.microsoft.com/en-us/cli/azure/?view=azure-cli-latest
 # source $(brew --prefix)/etc/bash_completion.d/az
 
+complete -o nospace -C /usr/local/bin/terraform terraform
+
 # ********************************* AWS CLI ***********************************
 
 [[ $commands[kubectl] ]] && source <(kubectl completion zsh)
