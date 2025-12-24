@@ -258,7 +258,7 @@ local completion_capabilities = require('cmp_nvim_lsp').default_capabilities()
 
 -- ******************************** LSP maps **********************************
 
-vim.lsp.config.lua_ls = {
+vim.lsp.config("lua_ls", {
   capabilities = completion_capabilities,
   on_init = function(client)
     if not client.workspace_folders or #client.workspace_folders == 0 then
@@ -269,14 +269,17 @@ vim.lsp.config.lua_ls = {
     if vim.loop.fs_stat(path..'/.luarc.json') or vim.loop.fs_stat(path..'/.luarc.jsonc') then
       return
     end
-
-    client.config.settings.Lua = vim.tbl_deep_extend('force', client.config.settings.Lua, {
+  end,
+  settings = {
+    Lua = {
+      diagnostics = {
+        globals = { "vim" },
+      },
       runtime = {
         -- Tell the language server which version of Lua you're using
         -- (most likely LuaJIT in the case of Neovim)
         version = 'LuaJIT'
       },
-      -- Make the server aware of Neovim runtime files
       workspace = {
         checkThirdParty = false,
         library = {
@@ -288,13 +291,10 @@ vim.lsp.config.lua_ls = {
         -- or pull in all of 'runtimepath'. NOTE: this is a lot slower
         -- library = vim.api.nvim_get_runtime_file("", true)
       }
-    })
-  end,
-  settings = {
-    Lua = {}
+    },
   },
   on_attach = on_attach,
-}
+})
 
 vim.lsp.enable('lua_ls')
 
