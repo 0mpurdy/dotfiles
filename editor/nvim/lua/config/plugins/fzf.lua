@@ -12,6 +12,7 @@ return {
       vim.opt.rtp:append("~/.fzf")
 
       -- todo: revisit this with proper neovim syntax
+      -- https://github.com/junegunn/fzf.vim/issues/185
       vim.cmd([[
         let $FZF_DEFAULT_OPTS = '--bind ctrl-a:select-all'
 
