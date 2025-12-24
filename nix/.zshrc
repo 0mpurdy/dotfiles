@@ -26,6 +26,11 @@ alias ll='ls -lah'
 alias claude="~/.local/bin/claude"
 alias scratch-claude='cd ~/dev/scratch-claude && claude'
 
+function reset-aws-session {
+  unset AWS_ACCESS_KEY_ID AWS_SECRET_ACCESS_KEY AWS_SESSION_TOKEN
+  export $(aws configure export-credentials --format env)
+}
+
 # **************************** VIM mode terminal ******************************
 
 bindkey -v
