@@ -11,6 +11,12 @@ return {
     end
   },
 
+  -- Git browser integration
+  {
+    'tpope/vim-rhubarb',
+    enabled = false,
+  },
+
   -- surround with quotes or brackets
   {
     'tpope/vim-surround'
@@ -29,6 +35,12 @@ return {
   -- Better comment support
   {
     'tpope/vim-commentary'
+  },
+
+  -- powerful word substitution
+  {
+    'tpope/vim-abolish',
+    enabled = false,
   },
 
   -- Some useful normal mode mappings
