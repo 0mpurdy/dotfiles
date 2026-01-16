@@ -66,6 +66,8 @@ preexec() { echo -ne '\e[5 q' ;} # Use beam shape cursor for each new prompt.
 
 # ***************************** CLI completions *******************************
 
+PATH="$PATH:$HOME/dev/lua-5.5.0/bin"
+
 # https://docs.docker.com/engine/cli/completion/#zsh
 FPATH="$HOME/.docker/completions:$FPATH"
 autoload -Uz compinit
