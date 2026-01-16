@@ -583,6 +583,34 @@ vim.keymap.set("v", "<Leader>}", "/}<cr>k", {noremap=true})
 -- Yank maps
 vim.keymap.set("n", "<Leader>Y", "$v0\"+y", {noremap=true})
 
+local function paste_replace()
+  local new_line = vim.api.nvim_get_current_line()
+  local new_len = #new_line
+  local new_col = vim.api.nvim_win_get_cursor(0)[2]
+
+  -- If the line is empty or the cursor is at the last available character,
+  -- we use lowercase p to ensure the text is appended at the end.
+  if new_len == 0 or new_col >= new_len - 1 then
+    -- Use lowercase 'p' to paste after if at the end of the line
+    vim.cmd('normal! "0p')
+  else
+    -- Use uppercase 'P' to paste before
+    vim.cmd('normal! "0P')
+  end
+end
+
+-- Replace maps
+-- vim.keymap.set('n', '<leader>r', 'diw"0P', { desc = 'Replace word' })
+vim.keymap.set('n', '<leader>r', function()
+  vim.cmd('normal! diw')
+  paste_replace()
+end, { desc = 'Replace word' })
+-- vim.keymap.set('v', '<leader>r', 'd"0P', { desc = 'Replace visual selection' })
+vim.keymap.set('v', '<leader>r', function()
+  vim.cmd('normal! d')
+  paste_replace()
+end, { desc = 'Replace visual selection' })
+
 -- ********************************* Bugs *************************************
 
 vim.api.nvim_create_autocmd({ "FileType" }, { pattern = "[Dd]ockerfile" , group = optional_group, command = "TSBufDisable highlight" })
