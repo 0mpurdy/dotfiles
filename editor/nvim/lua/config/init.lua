@@ -466,6 +466,38 @@ vim.api.nvim_create_user_command('PasteWithCodeFence', function()
   vim.cmd.normal(vim.api.nvim_replace_termcodes('k<c-v>4l6kd', true, false, true))
 end, {})
 
+local function open_weekly_log()
+  -- find .git directory
+  local git_marker = vim.fs.find('.git', { path = vim.fn.getcwd(), upward = true })[1]
+
+  if not git_marker then
+    vim.notify("Not inside a git repository!", vim.log.levels.WARN)
+    return
+  end
+
+  -- vim.fs.find returns the path to .git, so we need the parent directory
+  local git_root = vim.fs.dirname(git_marker)
+
+  -- current week's monday
+  local now = os.date("*t")
+  local saturday = 7
+  local monday = 2
+  -- calculate how many days passed since Monday
+  local days_since_monday = (now.wday + (saturday - monday)) % saturday
+  now.day = now.day - days_since_monday
+
+  -- os.time() automatically handles month/year rollovers (e.g., if day becomes negative)
+  local monday_timestamp = os.time(now)
+  local monday_str = os.date("%Y-%m-%d", monday_timestamp)
+
+  local log_dir = git_root .. "/log"
+  local file_path = log_dir .. "/" .. monday_str .. ".md"
+
+  vim.cmd("edit " .. file_path)
+end
+
+vim.api.nvim_create_user_command("WeeklyLog", open_weekly_log, {})
+
 -- ******************************** Keymaps ***********************************
 
 -- return a representation of the selected text
