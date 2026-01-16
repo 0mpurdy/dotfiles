@@ -26,11 +26,6 @@ alias ll='ls -lah'
 alias claude="~/.local/bin/claude"
 alias scratch-claude='cd ~/dev/scratch-claude && claude'
 
-function reset-aws-session {
-  unset AWS_ACCESS_KEY_ID AWS_SECRET_ACCESS_KEY AWS_SESSION_TOKEN
-  export $(aws configure export-credentials --format env)
-}
-
 # **************************** VIM mode terminal ******************************
 
 bindkey -v
@@ -97,7 +92,14 @@ complete -o default -F __start_kubectl k
 
 # https://github.com/jonmosco/kube-ps1
 source ~/dev/kube-ps1/kube-ps1.sh
-PROMPT='$(kube_ps1) %2~ %# '
+PROMPT='$AWS_PROFILE $(kube_ps1) %2~ %# '
+
+function reset-aws-session {
+  unset AWS_ACCESS_KEY_ID AWS_SECRET_ACCESS_KEY AWS_SESSION_TOKEN
+  export $(aws configure export-credentials --format env)
+}
+
+export AWS_PROFILE=personal
 
 # ***************************** Date countdown ********************************
 
