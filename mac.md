@@ -16,7 +16,7 @@
 
 ## Apps
 
-See  [[apps]] for generic apps
+See  [apps](apps.md) for generic apps
 
 - Screen management
   + ~~Magnet~~
@@ -29,6 +29,8 @@ See  [[apps]] for generic apps
   + XCode
 - [Homebrew][homebrew]
 - [iTerm][iterm]
+  + Set up key bindings `<cmd><left>` for "Previous Tab" and `<cmd><right>` for
+    "Next tab"
 - [Boop](https://github.com/IvanMathy/Boop) - install from mac app store
 - [Git stats] (`brew install git-quick-stats`)
 
