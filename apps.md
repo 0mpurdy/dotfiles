@@ -2,7 +2,7 @@
 
 [[TOC]]
 
-See [[mac#apps]] for mac specific apps
+See [mac](mac.md#apps) for mac specific apps
 
 ## Generic
 
