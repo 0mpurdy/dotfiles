@@ -498,6 +498,13 @@ end
 
 vim.api.nvim_create_user_command("WeeklyLog", open_weekly_log, {})
 
+local function big_log_format()
+  vim.bo.filetype = 'log'
+  vim.wo.wrap = false
+end
+
+vim.api.nvim_create_user_command("BigLogFormat", big_log_format, {})
+
 -- ******************************** Keymaps ***********************************
 
 -- return a representation of the selected text
