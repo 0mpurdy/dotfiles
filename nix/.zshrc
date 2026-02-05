@@ -59,6 +59,17 @@ zle -N zle-line-init
 echo -ne '\e[5 q' # Use beam shape cursor on startup.
 preexec() { echo -ne '\e[5 q' ;} # Use beam shape cursor for each new prompt.
 
+# *********************************** git *************************************
+
+# password entry for GPG
+export GPG_TTY=$(tty)
+
+# configure gpg defaults
+function warm-gpg {
+  gpgconf --apply-profile ~/dev/dotfiles/gpg/default.gpgprof
+  echo "test" | gpg --clearsign
+}
+
 # *********************************** FZF *************************************
 
 # brew install fzf
