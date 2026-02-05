@@ -1,5 +1,11 @@
+[user]
+	name = Michael Purdy
+	email = 0mpurdy@gmail.com
 [alias]
-  lol = log --oneline --graph --decorate --all
-  lola = log --graph --decorate --abbrev-commit --all --date=local --pretty=format:\"%C(auto)%h%d %C(blue)%an %C(green)%cd %C(red)%GG %C(reset)%s\" --date=local
+	creds = "!git cherry-pick -n origin/main..creds && git restore --staged ."
+	lola = log --graph --decorate --abbrev-commit --all --date=local --pretty=format:\"%C(auto)%h %C(red)%G? %C(green)%cd %C(blue)%an %C(auto)%d %C(reset)%s\" --date=local
+	lolaf = log --graph --decorate --abbrev-commit --all --date=local --pretty=format:\"%C(auto)%h %C(red)%G? %C(green)%aI %C(blue)%an %ae %C(green)%cI %C(blue)%cn %ce %C(auto)%d %C(reset)%s\" --date=local
+	refdate = reflog --format=\"%C(auto)%h %C(green)%cd %C(reset)%gs %C(auto)%d%C(reset)\"
+	logsig = log --pretty=\"format:%C(auto)%h %C(red)%G? %C(blue)%aN %C(auto)%s %C(reset)%n%n%w(0,4,4)%C(green)%GG%C(reset)%w(0,0,0)\"
 [rebase]
 	autosquash = true
