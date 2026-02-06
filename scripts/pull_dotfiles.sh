@@ -17,5 +17,6 @@ docopy "${HOME}/.config/pan.css" "${dotpath}/pandoc/panread.css"
 docopy "${HOME}/.vimrc" "${dotpath}/editor/.vimrc"
 docopy "${HOME}/.profile" "${dotpath}/nix/.profile"
 docopy "${HOME}/.config/nvim/" "${dotpath}/editor/nvim/"
+docopy "${HOME}/.gnupg/gpg-agent.conf" "${dotpath}/gpg/default.conf"
 
 rm -rf "${dotpath}/editor/nvim/lazy-lock.json"

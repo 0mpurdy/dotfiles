@@ -1,5 +1,0 @@
-# gpgconf --apply-profile ~/dev/dotfiles/gpg/default.gpgprof
-[gpg-agent]
-# 8 hours
-default-cache-ttl 28800
-max-cache-ttl 28800
