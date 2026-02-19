@@ -25,6 +25,7 @@ alias ll='ls -lah'
 
 alias claude="~/.local/bin/claude"
 alias scratch-claude='cd ~/dev/scratch-claude && claude'
+alias oc="cd ~/dev/opencode-project && make opencode"
 
 # **************************** VIM mode terminal ******************************
 
