@@ -109,8 +109,25 @@ source ~/dev/kube-ps1/kube-ps1.sh
 PROMPT='$AWS_PROFILE $(kube_ps1) %2~ %# '
 
 function reset-aws-session {
-  unset AWS_ACCESS_KEY_ID AWS_SECRET_ACCESS_KEY AWS_SESSION_TOKEN
+  unset AWS_ACCESS_KEY_ID AWS_SECRET_ACCESS_KEY AWS_SESSION_TOKEN AWS_CREDENTIAL_EXPIRATION
   export $(aws configure export-credentials --format env)
+}
+
+function terraform-aws-session {
+  unset AWS_ACCESS_KEY_ID AWS_SECRET_ACCESS_KEY AWS_SESSION_TOKEN AWS_CREDENTIAL_EXPIRATION
+
+  AWS_ACCOUNT='replace-me'
+  ROLE_NAME='replace-me'
+  echo "Starting session for ${ROLE_NAME}"
+
+  SESSION_JSON=$(aws sts assume-role --role-arn "arn:aws:iam::${AWS_ACCOUNT}:role/${ROLE_NAME}" --role-session-name "mp-session")
+
+  export AWS_ACCESS_KEY_ID=$(jq -r '.Credentials.AccessKeyId' <<< $SESSION_JSON)
+  export AWS_SECRET_ACCESS_KEY=$(jq -r '.Credentials.SecretAccessKey' <<< $SESSION_JSON)
+  export AWS_SESSION_TOKEN=$(jq -r '.Credentials.SessionToken' <<< $SESSION_JSON)
+  export AWS_CREDENTIAL_EXPIRATION=$(jq -r '.Credentials.Expiration' <<< $SESSION_JSON)
+
+  echo "Expires ${AWS_CREDENTIAL_EXPIRATION}"
 }
 
 export AWS_PROFILE=personal
