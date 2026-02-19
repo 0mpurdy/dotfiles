@@ -38,9 +38,10 @@ return {
   },
 
   -- powerful word substitution
+  -- Smart case handling
   {
     'tpope/vim-abolish',
-    enabled = false,
+    enabled = true,
   },
 
   -- Some useful normal mode mappings
