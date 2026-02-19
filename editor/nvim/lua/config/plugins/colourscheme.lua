@@ -34,4 +34,9 @@ return {
     'mtdl9/vim-log-highlighting'
   },
 
+  -- Good enough syntax highlight for MDX in Neovim using Treesitter
+  {
+    "davidmh/mdx.nvim",
+    dependencies = {"nvim-treesitter/nvim-treesitter"}
+  }
 }
