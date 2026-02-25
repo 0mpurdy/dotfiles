@@ -12,7 +12,25 @@ SAVEHIST=9000
 # don't save current session history:
 # unset HISTFILE
 
-HISTORY_IGNORE='(cd ..|exit|ls|nvim|ll|clear)'
+joinByChar() {
+  local IFS="$1"
+  shift
+  echo "$*"
+}
+
+ignore_array=(
+  'cd ..'
+  'exit'
+  'eixt'
+  'ls'
+  'nvim'
+  'nivm'
+  'll'
+  'clear'
+)
+ignore_set=$(joinByChar '|' "${ignore_array[@]}")
+
+HISTORY_IGNORE="(${ignore_set})"
 
 # ********************************* Aliases ***********************************
 
