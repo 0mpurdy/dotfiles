@@ -35,11 +35,13 @@ let mapleader=" " " set leader to space
 :nnoremap <leader>v :vsp<CR>
 
 :vnoremap <leader>y "+y
+:vnoremap <leader>P "+P
 :vnoremap <leader>p "+p
 :vnoremap <leader>r d"0P
 
 :nnoremap <leader>y "+y
 :nnoremap <leader>:y :let @+=''<Left>
+:nnoremap <leader>P "+P
 :nnoremap <leader>p "+p
 :nnoremap <leader>r diw"0P
 
