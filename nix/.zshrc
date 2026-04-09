@@ -20,13 +20,14 @@ joinByChar() {
 
 ignore_array=(
   'cd ..'
-  'exit'
-  'eixt'
-  'ls'
-  'nvim'
-  'nivm'
-  'll'
   'clear'
+  'eixt'
+  'exit'
+  'fg'
+  'll'
+  'ls'
+  'nivm'
+  'nvim'
 )
 ignore_set=$(joinByChar '|' "${ignore_array[@]}")
 
