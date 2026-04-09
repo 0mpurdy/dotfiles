@@ -22,6 +22,35 @@ require('mason').setup()
 -- gopls
 -- lua-language-server
 
+-- ********************* Plugins - Syntax Highlighting ************************
+
+require('nvim-treesitter').setup {
+  -- Directory to install parsers and queries to (prepended to `runtimepath` to have priority)
+  install_dir = vim.fn.stdpath('data') .. '/site'
+}
+
+require('nvim-treesitter').install {
+    "bash",
+    "c_sharp",
+    "css",
+    "diff",
+    "dockerfile",
+    "html",
+    "javascript",
+    "json",
+    "lua",
+    "make",
+    "markdown",
+    "markdown_inline",
+    "python",
+    "query",
+    "tsx",
+    "typescript",
+    "vim",
+    "vimdoc",
+    "yaml"
+}
+
 -- **************************** Plugins - Python ******************************
 
 vim.lsp.enable('pyright')

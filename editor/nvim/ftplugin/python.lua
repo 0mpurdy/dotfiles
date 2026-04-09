@@ -40,3 +40,5 @@ vim.keymap.set("n", "<leader>K", ":vimgrep ' **/*.py<S-Left><S-Left>'", {noremap
 vim.keymap.set("n", "<C-_>", "0i# <Esc>j", {noremap=true})
 -- + to uncomment
 vim.keymap.set("n", "+", "02xj", {noremap=true})
+
+vim.treesitter.start()

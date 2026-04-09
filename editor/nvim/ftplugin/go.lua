@@ -25,3 +25,5 @@ end
 
 -- F4 to run current file
 vim.keymap.set("n", "<F4>", function() execute_go_for_file() end, {noremap=true})
+
+vim.treesitter.start()
