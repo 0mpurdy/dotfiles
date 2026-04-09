@@ -440,6 +440,65 @@ vim.api.nvim_create_user_command("AddTable", function ()
   vim.api.nvim_put(tableText, 'l', false, true)
 end, {})
 
+local function get_live_visual_selection()
+  -- Get the positions of the start of visual mode 'v' and the cursor '.'
+  local s_pos = vim.fn.getpos('v')
+  local e_pos = vim.fn.getpos('.')
+
+  -- Get the current mode to handle block/line/char correctly
+  local mode = vim.fn.mode()
+  local region = vim.fn.getregion(s_pos, e_pos, { type = mode })
+
+  return table.concat(region, "\n")
+end
+
+local function get_previous_visual_selection()
+  -- Get the marks (1-indexed)
+  local start_pos = vim.fn.getpos("'<")
+  local end_pos = vim.fn.getpos("'>")
+
+  -- Use nvim_buf_get_text (0-indexed, so we subtract 1)
+  -- end_pos[3] is the column; we use that directly for end-inclusive
+  local lines = vim.api.nvim_buf_get_text(
+    0,
+    start_pos[2] - 1,
+    start_pos[3] - 1,
+    end_pos[2] - 1,
+    end_pos[3],
+    {}
+  )
+
+  return {
+    ["start"]=start_pos,
+    ["end"]=end_pos,
+    ["text"]=table.concat(lines, "\n")
+  }
+end
+
+vim.api.nvim_create_user_command('FromUnixTimestamp', function()
+  -- local selection = get_visual_selection()
+  local selection = get_previous_visual_selection()
+
+  local iso_date = os.date("!%Y-%m-%dT%H:%M:%SZ", selection["text"])
+
+  vim.api.nvim_buf_set_text(
+        0,
+        selection["start"][2] - 1,
+        selection["start"][3] - 1,
+        selection["end"][2] - 1,
+        selection["end"][3],
+        { '"' .. iso_date .. '"' }
+      )
+  print(iso_date)
+end, {})
+
+vim.api.nvim_create_user_command('DecodeJWT', function()
+  vim.cmd([[%s/\./\r/g]])
+  vim.cmd(':1,1!base64 -d')
+  vim.cmd(':2,2!base64 -d')
+  vim.cmd(':2,2!jq')
+end, {})
+
 vim.api.nvim_create_user_command('PasteWithCodeFence', function()
   local total_lines = vim.api.nvim_buf_line_count(0)
   local current_line = vim.api.nvim_win_get_cursor(0)[1]
