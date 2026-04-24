@@ -18,5 +18,6 @@ docopy "${HOME}/.vimrc" "${dotpath}/editor/.vimrc"
 docopy "${HOME}/.profile" "${dotpath}/nix/.profile"
 docopy "${HOME}/.config/nvim/" "${dotpath}/editor/nvim/"
 docopy "${HOME}/.gnupg/gpg-agent.conf" "${dotpath}/gpg/default.conf"
+docopy "${HOME}/.opencode/" "${dotpath}/opencode/"
 
 rm -rf "${dotpath}/editor/nvim/lazy-lock.json"
