@@ -349,6 +349,22 @@ end
 
 vim.api.nvim_create_user_command("Test", test, {})
 
+vim.api.nvim_create_user_command('UrlDecodeLine', function()
+  -- Get the current line under the cursor
+  local line = vim.api.nvim_get_current_line()
+
+  -- Replace '+' with spaces
+  local decoded = line:gsub('+', ' ')
+
+  -- Replace '%XX' hex codes with their corresponding characters
+  decoded = decoded:gsub('%%(%x%x)', function(hex)
+    return string.char(tonumber(hex, 16))
+  end)
+
+  -- Replace the current line with the decoded string
+  vim.api.nvim_set_current_line(decoded)
+end, { desc = 'URL decode the current line' })
+
 vim.api.nvim_create_user_command("AddTable", function ()
   local row, col = unpack(vim.api.nvim_win_get_cursor(0))
   local tableText = {
@@ -394,21 +410,33 @@ local function get_previous_visual_selection()
   }
 end
 
-vim.api.nvim_create_user_command('FromUnixTimestamp', function()
-  -- local selection = get_visual_selection()
-  local selection = get_previous_visual_selection()
-
-  local iso_date = os.date("!%Y-%m-%dT%H:%M:%SZ", selection["text"])
-
+local function overwrite_previous_visual_selection(selection, lines)
   vim.api.nvim_buf_set_text(
         0,
         selection["start"][2] - 1,
         selection["start"][3] - 1,
         selection["end"][2] - 1,
         selection["end"][3],
-        { '"' .. iso_date .. '"' }
+        lines
       )
+end
+
+-- test value 1775830235
+vim.api.nvim_create_user_command('FromUnixTimestamp', function()
+  -- local selection = get_visual_selection()
+  local selection = get_previous_visual_selection()
+
+  local iso_date = os.date("!%Y-%m-%dT%H:%M:%SZ", selection["text"])
+
+  overwrite_previous_visual_selection(
+    selection,
+    { '"' .. iso_date .. '"' }
+  )
   print(iso_date)
+end, {})
+
+vim.api.nvim_create_user_command('FromPemCert', function()
+  vim.cmd(":%!openssl x509 -text -noout")
 end, {})
 
 vim.api.nvim_create_user_command('DecodeJWT', function()
