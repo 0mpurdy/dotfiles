@@ -86,7 +86,6 @@ export GPG_TTY=$(tty)
 
 # configure gpg defaults
 function warm-gpg {
-  gpgconf --apply-profile ~/dev/dotfiles/gpg/default.gpgprof
   echo "test" | gpg --clearsign
 }
 
