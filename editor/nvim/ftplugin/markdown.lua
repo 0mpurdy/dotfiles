@@ -17,4 +17,11 @@ end
 
 vim.keymap.set("n", "<leader>il", createDailyLog, {noremap=true})
 
+-- Execute mappings (for code blocks)
+vim.keymap.set("n", "<leader>xl", ":.lua<cr>", {noremap=true})
+vim.keymap.set("v", "<leader>xl", ":lua<cr>", {noremap=true})
+
+vim.keymap.set("n", "<leader>xb", ":.!bash<cr>", {noremap=true})
+vim.keymap.set("v", "<leader>xb", ":!bash<cr>", {noremap=true})
+
 vim.treesitter.start()

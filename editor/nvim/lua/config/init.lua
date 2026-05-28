@@ -503,8 +503,6 @@ vim.keymap.set("n", "<leader>wr", reflow_window, {noremap=true})
 -- vim.keymap.set("n", "<leader><leader>l", ":luafile %<cr>", {noremap=true})
 vim.keymap.set("n", "<leader><leader>l", ":source %<cr>", {noremap=true})
 vim.keymap.set("v", "<leader><leader>px", ":put =execute(" .. vlua ..")", {noremap=true})
-vim.keymap.set("n", "<leader>x", ":.lua<cr>", {noremap=true})
-vim.keymap.set("v", "<leader>x", ":lua<cr>", {noremap=true})
 vim.keymap.set("n", "<leader><leader>cl", ":let @+ = execute('luafile %')<cr>", {noremap=true})
 
 vim.keymap.set("n", "<leader>sl", ":Git log --graph --decorate --abbrev-commit --all --date=format:'%a' --pretty=format:\"%h %an %d%n%n%s%n\"<cr>", {noremap=true})

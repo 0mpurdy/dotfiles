@@ -19,7 +19,9 @@ vim.api.nvim_create_autocmd("BufWritePost", {
 })
 
 -- F4 to run current file
-vim.keymap.set("n", "<F4>", ":w<CR>:vsp term://python3 %<CR>i", {noremap=true})
+-- vim.keymap.set("n", "<F4>", ":w<CR>:vsp term://python3 %<CR>i", {noremap=true})
+-- current dir version
+vim.keymap.set("n", "<F4>", ":w<CR>:vsp | terminal cd %:p:h && uv run %:p<CR>i", {noremap=true})
 -- F5 to run current dir
 vim.keymap.set("n", "<F5>", ":w<CR>:vsp term://python3 __main__.py<CR>i", {noremap=true})
 -- F6 to run unit tests
