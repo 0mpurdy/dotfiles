@@ -362,10 +362,7 @@ vim.api.nvim_create_user_command('FromPemCert', function()
 end, {})
 
 vim.api.nvim_create_user_command('DecodeJWT', function()
-  vim.cmd([[%s/\./\r/g]])
-  vim.cmd(':1,1!base64 -d')
-  vim.cmd(':2,2!base64 -d')
-  vim.cmd(':2,2!jq')
+  vim.cmd([[%!jq -R 'split(".") | .[0],.[1] | @base64d | fromjson']])
 end, {})
 
 vim.api.nvim_create_user_command('PasteWithCodeFence', function()
