@@ -207,7 +207,10 @@ colorscheme industry
 :nnoremap <leader>q :bd<cr>
 
 " Open visually selected file path in split to the left
-:vnoremap <leader>o "1y<C-w>h:e <C-r>1<cr>
+:vnoremap <leader>oh "1y<C-w>h:e <C-r>1<cr>
+
+:vnoremap <leader>oo "1y:e <C-r>1<cr>
+:nnoremap <leader>oi) "1yi):e <C-r>1<cr>
 
 " ***************************** Find and replace ******************************
 
