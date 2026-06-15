@@ -11,6 +11,25 @@ vim.filetype.add({
   },
 })
 
+-- ******************************** Folding ***********************************
+
+vim.opt.foldlevel = 10
+vim.api.nvim_create_autocmd({ "FileType" }, {
+  callback = function()
+    -- check if treesitter has parser 
+    local ok, parser = pcall(vim.treesitter.get_parser, 0)
+
+    if ok and parser then
+      -- use treesitter folding
+      vim.opt.foldmethod = "expr"
+      vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+    else
+      -- use alternative foldmethod
+      vim.opt.foldmethod = "syntax"
+    end
+  end,
+})
+
 -- ******************************** Plugins ***********************************
 
 require('config.lazy')
