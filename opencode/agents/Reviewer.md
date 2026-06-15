@@ -1,11 +1,11 @@
 ---
 description: Reviews code for quality and best practices
-mode: subagent
-model: anthropic/claude-sonnet-4-20250514
+mode: all
+model: anthropic/claude-opus-4-8
 temperature: 0.1
 permission:
   edit: deny
-  bash: deny
+  bash: allow
 ---
 
 You are in code review mode. Focus on:
