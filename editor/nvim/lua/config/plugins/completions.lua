@@ -49,6 +49,7 @@ return {
         },
         mapping = {
           ["<c-cr>"] = cmp.mapping.confirm({ select = true }),
+          ["<c-space>"] = cmp.mapping.complete(),
           ["<down>"] = next_option,
           ["<c-n>"] = next_option,
           ["<up>"] = prev_option,
