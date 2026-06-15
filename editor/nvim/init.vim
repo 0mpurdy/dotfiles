@@ -465,8 +465,6 @@ nnoremap <leader>olf :lua vim.lsp.buf.references()<cr>
 nnoremap <leader>olh :lua vim.lsp.buf.hover()<cr>
 nnoremap <leader>orr :lua vim.lsp.buf.rename()<cr>
 nnoremap <leader>olc :lua vim.lsp.buf.code_action()<cr>
-nnoremap ]] :lua vim.diagnostic.goto_next()<cr>
-nnoremap [[ :lua vim.diagnostic.goto_prev()<cr>
 
 function! VHtmlEscape()
   let search = @/

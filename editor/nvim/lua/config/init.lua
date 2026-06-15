@@ -560,6 +560,9 @@ vim.keymap.set('v', '<leader>r', function()
   paste_replace()
 end, { desc = 'Replace visual selection' })
 
+vim.keymap.set("n", "]]", function() vim.diagnostic.jump({ count = 1, float = true }) end, {noremap=true})
+vim.keymap.set("n", "[[", function() vim.diagnostic.jump({ count = -1, float = true }) end, {noremap=true})
+
 -- ********************************* Bugs *************************************
 
 vim.api.nvim_create_autocmd({ "FileType" }, { pattern = "[Dd]ockerfile" , group = optional_group, command = "TSBufDisable highlight" })
