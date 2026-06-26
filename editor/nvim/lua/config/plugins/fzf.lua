@@ -45,6 +45,8 @@ return {
         vim.api.nvim_call_function('fzf#vim#grep', { rg_command, 1, { dir = dir } })
       end
 
+      vim.keymap.set('n', '<Leader>sh', ":History:<cr>", {noremap=true})
+
       -- search config
       vim.keymap.set('n', '<Leader>sc', ':Files ' .. vim.fn.stdpath('config') .. '<cr>', {noremap=true})
       vim.keymap.set('n', '<Leader>sic', function() ripgrepSearchInDir(vim.fn.stdpath('config')) end, {noremap=true})
