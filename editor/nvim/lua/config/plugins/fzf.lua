@@ -11,6 +11,10 @@ return {
     config = function(plugin)
       vim.opt.rtp:append("~/.fzf")
 
+      -- https://github.com/junegunn/fzf.vim/issues/75
+      -- S-Del -> C-A-X
+      vim.keymap.set('t', '<S-Del>', '<C-M-x>', { noremap = true })
+
       -- todo: revisit this with proper neovim syntax
       -- https://github.com/junegunn/fzf.vim/issues/185
       vim.cmd([[
