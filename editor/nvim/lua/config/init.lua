@@ -72,6 +72,10 @@ require('nvim-treesitter').install {
 
 -- **************************** Plugins - Python ******************************
 
+vim.lsp.config('pyright', {
+  root_markers = { 'pyrightconfig.json', '.venv', 'pyproject.toml', '.git' },
+})
+
 vim.lsp.enable('pyright')
 
 -- vim.lsp.config.pylsp = {
