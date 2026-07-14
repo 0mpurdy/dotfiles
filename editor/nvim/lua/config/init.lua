@@ -118,6 +118,8 @@ local completion_capabilities = require('cmp_nvim_lsp').default_capabilities()
 
 -- ******************************** LSP maps **********************************
 
+-- Install new LSPs using Mason, then enable them here
+
 vim.lsp.config("lua_ls", {
   capabilities = completion_capabilities,
   on_init = function(client)
@@ -159,6 +161,8 @@ vim.lsp.config("lua_ls", {
 vim.lsp.enable('lua_ls')
 
 vim.lsp.enable('terraformls')
+
+vim.lsp.enable('regal')
 
 -- ******************************* Functions **********************************
 
