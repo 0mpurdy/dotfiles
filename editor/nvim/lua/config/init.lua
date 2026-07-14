@@ -11,6 +11,14 @@ vim.filetype.add({
   },
 })
 
+vim.api.nvim_create_autocmd({"BufNewFile", "BufRead"}, {
+  group = vim.api.nvim_create_augroup('TfvarsSyntax', { clear = true }),
+  pattern = { "*.tfvars", "*.tfvars.example", "tfvars.example" },
+  callback = function()
+    vim.bo.syntax = "terraform"
+  end
+})
+
 -- ******************************** Folding ***********************************
 
 vim.opt.foldlevel = 10
