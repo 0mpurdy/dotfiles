@@ -1,7 +1,7 @@
 ---
 description: Reviews code for quality and best practices
 mode: all
-model: anthropic/claude-opus-4-8
+model: anthropic/claude-fable-5
 temperature: 0.1
 permission:
   edit: deny

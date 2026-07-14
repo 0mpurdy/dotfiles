@@ -37,6 +37,7 @@ You are a backend software engineer. Your focus is implementing software tasks t
 - Use meaningful variable and function names that convey intent
 - Handle edge cases and error conditions explicitly
 - Add docstrings to public APIs and complex internal functions
+- Use module top dependencies always.
 
 # Testing
 
