@@ -392,6 +392,13 @@ vim.api.nvim_create_user_command('FromUnixTimestamp', function()
   print(iso_date)
 end, {})
 
+vim.api.nvim_create_user_command('DateSort', function(opts)
+  local range = opts.line1 .. ',' .. opts.line2
+  vim.cmd(range .. [[sort r /\d\{4}-\d\{2}-\d\{2} \d\{2}:\d\{2}:\d\{2}/]])
+end, {
+  range = true,
+})
+
 vim.api.nvim_create_user_command('FromPemCert', function()
   vim.cmd(":%!openssl x509 -text -noout")
 end, {})
