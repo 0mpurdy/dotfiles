@@ -1,5 +1,7 @@
 vim.api.nvim_create_autocmd("BufWritePre", {
   desc = "Format Rego code on save using opa fmt",
+  buffer = 0,
+  group = vim.api.nvim_create_augroup('rego_format', { clear = true }),
   callback = function(ev)
     local buf = ev.buf
     local lines = vim.api.nvim_buf_get_lines(buf, 0, -1, false)
