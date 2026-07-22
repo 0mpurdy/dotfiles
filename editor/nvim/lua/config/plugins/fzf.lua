@@ -11,6 +11,8 @@ return {
     config = function(plugin)
       vim.opt.rtp:append("~/.fzf")
 
+      local default_command = nil
+
       -- https://github.com/junegunn/fzf.vim/issues/75
       -- S-Del -> C-A-X
       vim.keymap.set('t', '<S-Del>', '<C-M-x>', { noremap = true })
@@ -36,13 +38,15 @@ return {
       end
 
      local function ripgrepSearchFilesInDir(dir)
-        local rg_command = 'rg --files'
-        vim.api.nvim_call_function('fzf#vim#grep', { rg_command, 1, { dir = dir } })
+        vim.env.FZF_DEFAULT_COMMAND = 'rg --files --ignore-file ~/.globalrgignore'
+        vim.api.nvim_call_function('fzf#vim#files', { dir })
+        vim.env.FZF_DEFAULT_COMMAND = default_command
       end
 
      local function ripgrepSearchAllFilesInDir(dir)
-        local rg_command = 'rg --files --no-ignore-vcs'
-        vim.api.nvim_call_function('fzf#vim#grep', { rg_command, 1, { dir = dir } })
+        vim.env.FZF_DEFAULT_COMMAND = 'rg --files --no-ignore-vcs --hidden --ignore-file ~/.globalrgignore'
+        vim.api.nvim_call_function('fzf#vim#files', { dir })
+        vim.env.FZF_DEFAULT_COMMAND = default_command
       end
 
       vim.keymap.set('n', '<Leader>sh', ":History:<cr>", {noremap=true})

@@ -1,0 +1,9 @@
+# Common generated development files
+.git/*
+node_modules
+.venv
+.pytest_cache
+__pycache__
+.ruff_cache
+.react_router
+.terraform
