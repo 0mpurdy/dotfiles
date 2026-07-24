@@ -50,7 +50,7 @@ set listchars=eol:¬,tab:>·,trail:~,extends:>,precedes:<,space:␣
 :nnoremap <leader>= :set list!<cr>
 
 " FZF Fuzzy find shortcut
-:nnoremap <leader>f :GFiles<CR>
+:nnoremap <leader>sf :GFiles<CR>
 :nnoremap <leader>b :Buffers<CR>
 
 " Tail log file

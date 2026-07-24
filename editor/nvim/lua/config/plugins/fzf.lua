@@ -49,7 +49,7 @@ return {
         vim.env.FZF_DEFAULT_COMMAND = default_command
       end
 
-      vim.keymap.set('n', '<Leader>sh', ":History:<cr>", {noremap=true})
+      vim.keymap.set('n', '<Leader>s:', ":History:<cr>", {noremap=true})
 
       -- search config
       vim.keymap.set('n', '<Leader>sc', ':Files ' .. vim.fn.stdpath('config') .. '<cr>', {noremap=true})
