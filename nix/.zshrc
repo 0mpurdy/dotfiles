@@ -28,6 +28,7 @@ ignore_array=(
   'ls'
   'nivm'
   'nvim'
+  'git clean -xdf'
 )
 ignore_set=$(joinByChar '|' "${ignore_array[@]}")
 
