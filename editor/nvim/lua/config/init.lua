@@ -554,6 +554,7 @@ vim.keymap.set("v", "<Leader>}", "/}<cr>k", {noremap=true})
 
 -- Yank maps
 vim.keymap.set("n", "<Leader>Y", "$v0\"+y", {noremap=true})
+vim.keymap.set("n", "<Leader>%y", function() vim.fn.setreg('+', vim.fn.expand('%')) end, { noremap=true, desc = "Copy relative file path to clipboard" })
 
 local function paste_replace()
   local new_line = vim.api.nvim_get_current_line()
