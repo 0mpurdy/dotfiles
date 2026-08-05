@@ -1,6 +1,10 @@
 dotpath="${HOME}/dev/dotfiles"
 
-docopy() {
+doreplace() {
+  if [ -d "${2}" ]; then
+    rm -rf "${2}"
+  fi
+
   if [ ! -f $1 ] && [ ! -d $1 ]; then
     echo "Could not find \"$1\""
   else
@@ -9,12 +13,12 @@ docopy() {
   fi
 }
 
-docopy "${dotpath}/nix/.bashrc" "${HOME}/.bashrc"
-docopy "${dotpath}/nix/.zshrc" "${HOME}/.zshrc"
-docopy "${dotpath}/nix/.bash_aliases" "${HOME}/.bash_aliases"
-docopy "${dotpath}/nix/.globalrgignore" "${HOME}/.globalrgignore"
-docopy "${dotpath}/editor/.vimrc" "${HOME}/.vimrc"
-docopy "${dotpath}/nix/.profile" "${HOME}/.profile"
-docopy "${dotpath}/editor/nvim/." "${HOME}/.config/nvim/"
-docopy "${dotpath}/gpg/default.conf" "${HOME}/.gnupg/gpg-agent.conf"
-docopy "${dotpath}/opencode/." "${HOME}/.opencode/"
+doreplace "${dotpath}/nix/.bashrc" "${HOME}/.bashrc"
+doreplace "${dotpath}/nix/.zshrc" "${HOME}/.zshrc"
+doreplace "${dotpath}/nix/.bash_aliases" "${HOME}/.bash_aliases"
+doreplace "${dotpath}/nix/.globalrgignore" "${HOME}/.globalrgignore"
+doreplace "${dotpath}/editor/.vimrc" "${HOME}/.vimrc"
+doreplace "${dotpath}/nix/.profile" "${HOME}/.profile"
+doreplace "${dotpath}/editor/nvim/." "${HOME}/.config/nvim/"
+doreplace "${dotpath}/gpg/default.conf" "${HOME}/.gnupg/gpg-agent.conf"
+doreplace "${dotpath}/opencode/." "${HOME}/.opencode/"
