@@ -1,7 +1,7 @@
 ---
 description: Focused research
 mode: all
-model: anthropic/claude-opus-4-8
+model: anthropic/claude-opus-5
 temperature: 0.1
 tools:
   write: false
