@@ -178,6 +178,8 @@ vim.lsp.enable('regal')
 
 -- ******************************* Functions **********************************
 
+require('config.user_commands')
+
 function dump(o)
    if type(o) == 'table' then
       local s = '{ '
