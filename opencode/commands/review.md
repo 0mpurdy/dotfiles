@@ -16,7 +16,7 @@ Comments can include suggested replacements, but simply include them as syntax h
 
 When doing a follow-up review only add a follow up comment to a thread if it is NOT resolved. Do not comment to confirm resolution.
 
-Do not attempt to resolve threads, just report which can be reslved manually by the user. Simple ordered checklist with ✅ or ❌
+Do not attempt to resolve threads, just report which can be resolved manually by the user. Simple ordered checklist with ✅ or ❌. Each item in the checklist should be labelled with exactly the first 60 or so characters from the first comment on the thread. The list should be in the same order that the comments appear in the PR UI.
 
 Finish your output with
 
