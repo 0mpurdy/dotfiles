@@ -3,10 +3,6 @@ description: Implements backend changes
 mode: all
 model: anthropic/claude-haiku-4-5-20251001
 temperature: 0.3
-tools:
-  write: true
-  edit: true
-  bash: true
 permission:
   edit: allow
   bash: allow

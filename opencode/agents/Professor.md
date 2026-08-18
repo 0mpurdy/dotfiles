@@ -3,10 +3,9 @@ description: Focused research
 mode: all
 model: anthropic/claude-opus-5
 temperature: 0.1
-tools:
-  write: false
-  edit: false
-  bash: false
+permission:
+  edit: deny
+  bash: deny
 ---
 
 ## Role
