@@ -1,6 +1,6 @@
 ---
 description: Implements code changes
-mode: all
+mode: primary
 model: anthropic/claude-opus-5
 temperature: 0.1
 permission:
