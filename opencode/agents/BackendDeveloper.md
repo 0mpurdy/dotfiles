@@ -1,6 +1,6 @@
 ---
 description: Implements backend changes
-mode: all
+mode: subagent
 model: anthropic/claude-haiku-4-5-20251001
 temperature: 0.3
 permission:
