@@ -118,7 +118,13 @@ complete -o nospace -C /usr/local/bin/terraform terraform
 [[ $commands[kubectl] ]] && source <(kubectl completion zsh)
 
 # requires setting up AWS CLI https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html
-alias k='kubectl'
+function set-kubernetes-aliases() {
+  alias k='kubectl'
+  alias ktx='kubectx'
+  alias kns='kubens'
+}
+set-kubernetes-aliases
+
 complete -o default -F __start_kubectl k
 
 # * AWS statusline ***
