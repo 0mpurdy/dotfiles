@@ -228,6 +228,14 @@ local function reflow_window()
   vim.cmd.normal(vim.api.nvim_replace_termcodes("G<c-w>h", true, true, true))
 end
 
+local function reflow_current_window()
+  vim.cmd("NERDTreeClose")
+  vim.cmd("only")
+  vim.cmd("vsplit")
+  vim.cmd('terminal cd %:p:h && $SHELL')
+  vim.cmd('startinsert')
+end
+
 local function next_terminal()
   -- search for the next terminal buffer after the current one in the list
   local current_buf_name = vim.api.nvim_buf_get_name(0)
@@ -540,6 +548,7 @@ local vlua = '"\'<.\'>lua<cr>"'
 vim.keymap.set("n", "<Leader>nt", next_terminal, {noremap=true})
 vim.keymap.set("n", "<Leader>nnn", next_no_name, {noremap=true})
 vim.keymap.set("n", "<leader>wr", reflow_window, {noremap=true})
+vim.keymap.set("n", "<leader>wcr", reflow_current_window, {noremap=true})
 -- don't know what the difference is between these two tbh
 -- vim.keymap.set("n", "<leader><leader>l", ":luafile %<cr>", {noremap=true})
 vim.keymap.set("n", "<leader><leader>l", ":source %<cr>", {noremap=true})
