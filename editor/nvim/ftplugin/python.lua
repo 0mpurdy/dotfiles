@@ -1,4 +1,3 @@
-
 -- F1 to auto format file
 vim.keymap.set("n", "<F1>", ":w<CR>:!autopep8 -i --aggressive --aggressive %<CR>", {noremap=true})
 
@@ -12,9 +11,29 @@ vim.keymap.set("n", "<leader>e", ":w<CR>:!ruff check --select I --fix % && ruff 
 vim.api.nvim_create_autocmd("BufWritePost", {
   group = vim.api.nvim_create_augroup('ruff_format_on_save', { clear = true }),
   callback = function(opts)
-    if vim.bo[opts.buf].filetype == 'python' then
-      vim.api.nvim_command("silent! !ruff check --select I --fix % && ruff format %")
-		end
+    local root_dir = nil
+
+      local get_clients = vim.lsp.get_clients
+      local clients = get_clients({ bufnr = opts.buf, name = 'pyright' })
+
+      if clients and #clients > 0 then
+        root_dir = clients[1].config.root_dir
+      end
+
+      if root_dir then
+        -- Escape the root directory path to prevent shell injection/errors with spaces
+        local safe_dir = vim.fn.shellescape(root_dir)
+
+        -- Use %:p to get the ABSOLUTE path of the file since we are changing directories
+        local cmd = string.format(
+          "silent! !cd %s && uv run ruff check --select I --fix %%:p && uv run ruff format %%:p", 
+          safe_dir
+        )
+        vim.api.nvim_command(cmd)
+      else
+        -- Fallback if Pyright isn't attached
+        vim.api.nvim_command("silent! !uv run ruff check --select I --fix %:p && uv run ruff format %:p")
+      end
   end
 })
 
