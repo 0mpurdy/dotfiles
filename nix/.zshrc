@@ -34,6 +34,10 @@ ignore_set=$(joinByChar '|' "${ignore_array[@]}")
 
 HISTORY_IGNORE="(${ignore_set})"
 
+# ********************************** Path *************************************
+
+PATH="$PATH:$HOME/.local/bin"
+
 # ********************************* Aliases ***********************************
 
 alias ecfg='nvim ~/.zshrc'
