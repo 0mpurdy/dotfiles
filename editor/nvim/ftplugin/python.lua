@@ -8,8 +8,11 @@ vim.keymap.set("n", "<leader>e", ":w<CR>:!ruff check --select I --fix % && ruff 
 -- vim.keymap.set("n", "<leader>e", ":w<CR>:!isort %<CR>:!black %<CR>:!ruff check --select I --fix % && ruff format %<CR>", {noremap=true})
 
 -- " Format on save
+local group = vim.api.nvim_create_augroup('ruff_format_on_save', { clear = false })
+vim.api.nvim_clear_autocmds({ group = group, buffer = 0 })
 vim.api.nvim_create_autocmd("BufWritePost", {
-  group = vim.api.nvim_create_augroup('ruff_format_on_save', { clear = true }),
+  group = group,
+  buffer = 0,
   callback = function(opts)
     local root_dir = nil
 
