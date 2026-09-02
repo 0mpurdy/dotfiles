@@ -30,6 +30,9 @@ In the overall comment
 
 - Make no mention of the quality of the code.
 - Do not duplicate any of the details of the inline comments
+- Do not mention the files that were reviewed
+- You may include a recommendation "Approve" or "Fix the 3 blocking issues before re-reviewing"
+- If there are unanswered questions in the commit description you may repeat them here
 - Include a trailer in the review description:
 
   > 🤖 Generated with [OpenCode](https://opencode.ai/), Model: [Fable 5](https://www.anthropic.com/claude/fable)
