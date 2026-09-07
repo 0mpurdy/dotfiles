@@ -49,6 +49,9 @@ require('mason').setup()
 -- gopls
 -- lua-language-server
 
+-- builtin?
+vim.cmd.packadd("nvim.undotree")
+
 -- ********************* Plugins - Syntax Highlighting ************************
 
 require('nvim-treesitter').setup {

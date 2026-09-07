@@ -1,13 +1,5 @@
 return {
 
-  -- UI for vim undo tree
-  {
-    'mbbill/undotree',
-    init = function()
-      vim.keymap.set("n", "<leader>su", ":UndotreeToggle<CR>")
-    end
-  },
-
   -- Alignment tool
   {
     'junegunn/vim-easy-align',
