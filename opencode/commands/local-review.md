@@ -1,7 +1,5 @@
 ---
 description: Review the local changes on the current branch
-agent: Reviewer
-model: anthropic/claude-fable-5
 ---
 
 Review the local changes: the diff of the current branch against the latest merge commit, plus any uncommitted changes. $1 may narrow the scope or name a different base ref.

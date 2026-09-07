@@ -1,7 +1,5 @@
 ---
 description: Review a GitHub PR
-agent: Reviewer
-model: anthropic/claude-fable-5
 ---
 
 Using the github MCP review the PR: $1

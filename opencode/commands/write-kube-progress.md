@@ -1,7 +1,5 @@
 ---
 description: Write k8s progress
-agent: Build
-model: anthropic/claude-sonnet-5
 ---
 
 Another agent may be working in the background implementing some changes and similarly writing progress, be careful not to interfere with what they may be doing.

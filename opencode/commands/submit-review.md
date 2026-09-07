@@ -1,7 +1,5 @@
 ---
 description: Submit a completed review
-agent: Reviewer
-model: anthropic/claude-fable-5
 ---
 
 This assumes that a review has been completed using the `/review` skill and that the user has explicitly requested finalizing the review.
