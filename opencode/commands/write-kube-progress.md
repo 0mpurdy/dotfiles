@@ -10,4 +10,4 @@ For work involving git, use the git commit skill then write a format-patch style
 
 After completion give the kubectl command to pull the file off your pod (or pvc). (Use $HOSTNAME to figure out your exact hostname in the command. The namespace is `mp`)
 
-e.g. `kubectl cp mp/mp-opencode-846b78c6c6-pfb5d:agent-output/support-messaging-plan.md ./support-messaging-plan.md`
+e.g. `kubectl cp mp/mp-opencode-846b78c6c6-pfb5d:/agent-output/support-messaging-plan.md ./support-messaging-plan.md`

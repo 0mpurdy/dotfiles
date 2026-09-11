@@ -22,6 +22,10 @@ Finish your output with
 Overall review comment:
 
 ***
+
+---
+
+Link to PR: https://github.com/example/000
 ```
 
 In the overall comment
