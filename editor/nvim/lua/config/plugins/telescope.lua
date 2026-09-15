@@ -14,6 +14,11 @@ return {
       vim.keymap.set('n', '<leader>b', builtin.buffers, { desc = 'Telescope buffers', noremap = true })
       vim.keymap.set('n', '<leader>sc', builtin.command_history, { desc = 'Telescope command history', noremap = true })
       vim.keymap.set('n', '<leader>sh', builtin.help_tags, { desc = 'Telescope help tags', noremap = true })
+      vim.keymap.set('n', '<Leader>a', builtin.live_grep, { desc = 'Telescope live grep', noremap = true })
+      vim.keymap.set('v', '<Leader>a', function()
+        vim.cmd('normal! "my')
+        builtin.grep_string({ search = vim.fn.getreg('m') })
+      end, { noremap = true })
 
       -- search config
       local configDir = vim.fn.stdpath('config')

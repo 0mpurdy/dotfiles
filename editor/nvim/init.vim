@@ -87,8 +87,6 @@ vnoremap <leader>gc <esc>`<i{/*<esc>`>a*/}<esc>
 
 " fuzzy search
 command! -bang -nargs=* Agi call fzf#vim#ag(<q-args>, '--ignore=node_modules --ignore=package-lock.json --ignore=build/', fzf#vim#with_preview(), <bang>0)
-:nnoremap <leader>a :Rg<cr>
-:vnoremap <leader>a y:Rg <c-r>0<cr>
 
 " Git mappings
 nnoremap <leader>gl :Gclog %<cr>

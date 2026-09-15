@@ -52,6 +52,8 @@ return {
       vim.keymap.set('n', '<Leader>sf', ':GFiles<cr>', {noremap=true})
       vim.keymap.set('n', '<Leader>b', ':Buffers<cr>', {noremap=true})
       vim.keymap.set('n', '<Leader>s:', ":History:<cr>", {noremap=true})
+      vim.keymap.set('n', '<Leader>a', ":Rg<cr>", {noremap=true})
+      vim.keymap.set('v', '<Leader>a', "y:Rg <c-r>0<cr>", {noremap=true})
 
       -- search config
       vim.keymap.set('n', '<Leader>sc', ':Files ' .. vim.fn.stdpath('config') .. '<cr>', {noremap=true})
