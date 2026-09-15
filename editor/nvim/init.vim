@@ -49,10 +49,6 @@ let mapleader=" " " set leader to space
 set listchars=eol:¬,tab:>·,trail:~,extends:>,precedes:<,space:␣
 :nnoremap <leader>= :set list!<cr>
 
-" FZF Fuzzy find shortcut
-:nnoremap <leader>sf :GFiles<CR>
-:nnoremap <leader>b :Buffers<CR>
-
 " Tail log file
 :nnoremap <leader>G Gkzt
 

@@ -49,6 +49,8 @@ return {
         vim.env.FZF_DEFAULT_COMMAND = default_command
       end
 
+      vim.keymap.set('n', '<Leader>sf', ':GFiles<cr>', {noremap=true})
+      vim.keymap.set('n', '<Leader>b', ':Buffers<cr>', {noremap=true})
       vim.keymap.set('n', '<Leader>s:', ":History:<cr>", {noremap=true})
 
       -- search config
