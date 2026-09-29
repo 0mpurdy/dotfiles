@@ -26,7 +26,7 @@ TIC-000
 
 # Trailer
 
-LLM generated commits should include trailer for as many relevant co-authors as required.
+LLM generated commits should include trailer for as many relevant co-authors as required. Include both the model and the harness.
 
 For example the OpenCode tool using Claude Opus 4.6 would use a trailer such as:
 

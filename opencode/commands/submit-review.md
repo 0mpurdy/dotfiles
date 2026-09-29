@@ -6,6 +6,8 @@ This assumes that a review has been completed using the `/review` skill and that
 
 If those assumptions do not hold, stop.
 
+Check if any comments have been deleted or edited from the pending review from what you would expect, if there are - adjust the overall comment and confirm again before submitting. Assume that their removal is intentional, but enumerate them for completenes.
+
 Submit the review, in the main review comment:
 
 - Make no mention of the quality of the code.
