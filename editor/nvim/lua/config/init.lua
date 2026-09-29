@@ -571,32 +571,31 @@ vim.keymap.set("n", "<Leader>Y", "$v0\"+y", {noremap=true})
 vim.keymap.set("n", "<Leader>%y", function() vim.fn.setreg('+', vim.fn.expand('%')) end, { noremap=true, desc = "Copy relative file path to clipboard" })
 
 local function paste_replace()
-  local new_line = vim.api.nvim_get_current_line()
-  local new_len = #new_line
-  local new_col = vim.api.nvim_win_get_cursor(0)[2]
-
-  -- If the line is empty or the cursor is at the last available character,
-  -- we use lowercase p to ensure the text is appended at the end.
-  if new_len == 0 or new_col >= new_len - 1 then
-    -- Use lowercase 'p' to paste after if at the end of the line
-    vim.cmd('normal! "0p')
+  local esc = vim.api.nvim_replace_termcodes("<Esc>", true, false, true)
+  -- Visual mode: use the selection. Normal mode: use the word under the cursor.
+  -- Either way, leave visual mode so the '< and '> marks describe the region.
+  if vim.fn.mode():match("[vV]") then
+    vim.cmd("normal! " .. esc)
   else
-    -- Use uppercase 'P' to paste before
-    vim.cmd('normal! "0P')
+    vim.cmd("normal! viw" .. esc)
   end
+
+  local start, finish = vim.fn.getpos("'<"), vim.fn.getpos("'>")
+  local start_row, start_col, end_row = start[2] - 1, start[3] - 1, finish[2] - 1
+  local last = vim.fn.getline(finish[2])
+  -- '> is inclusive and may point past the end (e.g. after v$):
+  -- clamp it, then step to the end of a possibly multibyte character.
+  local finish_index = math.min(finish[3] - 1, #last - 1)
+  local finish_col = finish_index + vim.str_utf_end(last, finish_index + 1) + 1
+
+  vim.api.nvim_buf_set_text(0, start_row, start_col, end_row, finish_col, vim.split(vim.fn.getreg("0"), "\n"))
+  vim.api.nvim_win_set_cursor(0, { start_row + 1, start_col })
 end
 
 -- Replace maps
 -- vim.keymap.set('n', '<leader>r', 'diw"0P', { desc = 'Replace word' })
-vim.keymap.set('n', '<leader>r', function()
-  vim.cmd('normal! diw')
-  paste_replace()
-end, { desc = 'Replace word' })
 -- vim.keymap.set('v', '<leader>r', 'd"0P', { desc = 'Replace visual selection' })
-vim.keymap.set('v', '<leader>r', function()
-  vim.cmd('normal! d')
-  paste_replace()
-end, { desc = 'Replace visual selection' })
+vim.keymap.set({ "n", "x" }, "<leader>r", paste_replace, { desc = "Replace selection/word with last yank" })
 
 vim.keymap.set("n", "]]", function() vim.diagnostic.jump({ count = 1, float = true }) end, {noremap=true})
 vim.keymap.set("n", "[[", function() vim.diagnostic.jump({ count = -1, float = true }) end, {noremap=true})
