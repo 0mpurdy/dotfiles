@@ -16,3 +16,9 @@ once you've prepared a buffer
 ```vim
 :h cb
 ```
+
+Error format for manually filtering Telescope quickfix
+
+```vim
+set errorformat+=%f\|%l\ col\ %c\|\ %m
+```
