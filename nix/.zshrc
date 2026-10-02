@@ -134,7 +134,7 @@ complete -o default -F __start_kubectl k
 # * AWS statusline ***
 
 # https://github.com/jonmosco/kube-ps1
-source ~/dev/kube-ps1/kube-ps1.sh
+source "/opt/homebrew/opt/kube-ps1/share/kube-ps1.sh"
 PROMPT='$AWS_PROFILE $(kube_ps1) %2~ %# '
 
 function reset-aws-session {
