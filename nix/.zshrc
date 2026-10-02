@@ -1,3 +1,6 @@
+echo "TEMPORARY NVIM BUILD WORKAROUND APPLIED"
+export SDKROOT=/Library/Developer/CommandLineTools/SDKs/MacOSX26.sdk
+
 # ***************************** History control *******************************
 
 setopt HIST_EXPIRE_DUPS_FIRST
