@@ -16,6 +16,7 @@ doreplace() {
 doreplace "${dotpath}/nix/.bashrc" "${HOME}/.bashrc"
 doreplace "${dotpath}/nix/.zshrc" "${HOME}/.zshrc"
 doreplace "${dotpath}/nix/.bash_aliases" "${HOME}/.bash_aliases"
+doreplace "${dotpath}/git/gitconfig" "${HOME}/.gitconfig"
 doreplace "${dotpath}/nix/.globalrgignore" "${HOME}/.globalrgignore"
 doreplace "${dotpath}/editor/.vimrc" "${HOME}/.vimrc"
 doreplace "${dotpath}/nix/.profile" "${HOME}/.profile"
