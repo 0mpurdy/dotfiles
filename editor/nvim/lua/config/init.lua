@@ -8,6 +8,7 @@ local ergodox = false
 vim.filetype.add({
   filename = {
     ['tsconfig.json'] = 'jsonc',
+    ['gitconfig'] = 'gitconfig',
   },
 })
 
