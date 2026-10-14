@@ -35,7 +35,7 @@ In the overall comment
 - Do not mention the files that were reviewed
 - You may include a recommendation "Approve" or "Fix the 3 blocking issues before re-reviewing"
 - If there are unanswered questions in the commit description you may repeat them here
-- Include a trailer in the review description:
+- Include a trailer in the review description for YOUR model and harness:
 
   > 🤖 Generated with [OpenCode](https://opencode.ai/), Model: [Fable 5](https://www.anthropic.com/claude/fable)
 

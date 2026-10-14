@@ -8,11 +8,14 @@ If those assumptions do not hold, stop.
 
 Check if any comments have been deleted or edited from the pending review from what you would expect, if there are - adjust the overall comment and confirm again before submitting. Assume that their removal is intentional, but enumerate them for completenes.
 
-Submit the review, in the main review comment:
+Submit the review (always as comment, never as approve/request changes), in the main review comment:
 
 - Make no mention of the quality of the code.
 - Do not duplicate any of the details of the inline comments
-- Include a trailer in the review description:
+- Do not mention the files that were reviewed
+- You may include a recommendation "Approve" or "Fix the 3 blocking issues before re-reviewing"
+- If there are unanswered questions in the commit description you may repeat them here
+- Include a trailer in the review description for YOUR model and harness:
 
   > 🤖 Generated with [OpenCode](https://opencode.ai/), Model: [Fable 5](https://www.anthropic.com/claude/fable)
 
