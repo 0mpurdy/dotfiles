@@ -22,6 +22,7 @@ joinByChar() {
 }
 
 ignore_array=(
+  'builtin cd -- *'
   'cd ..'
   'clear'
   'eixt'
@@ -101,6 +102,9 @@ function warm-gpg {
 
 # brew install fzf
 [ -x "$(command -v fzf)" ] && source <(fzf --zsh)
+
+# sort of like alias fcd='fzf-cd-widget'
+bindkey '^F' fzf-cd-widget
 
 # ***************************** CLI completions *******************************
 
