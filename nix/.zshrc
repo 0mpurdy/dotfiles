@@ -27,6 +27,7 @@ ignore_array=(
   'clear'
   'eixt'
   'exit'
+  'exti'
   'fg'
   'll'
   'ls'
