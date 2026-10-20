@@ -6,9 +6,25 @@ Using the github MCP review the PR: $1
 
 If the github MCP is not available, disabled or unauthenticated, just stop and warn.
 
-Immediately after fetching the PR details, create a task (TaskCreate) whose subject includes the PR number and repo, e.g. `Review PR #123 — project: <PR title>`, and mark it in_progress so the PR number is visible from the agent context. Mark it completed once the review has been created.
-
 Add the comments inline on the PR as part of a review, but leave the review pending so that I can manually review each.
+
+Only one suggested change per comment. Multiple changes are multiple comments even if for the same line.
+
+If a comment has more than a couple of lines of detail, use a collapsible section 
+
+```
+tldr; short obvious description of problem
+
+<details>
+<summary>Extra detail</summary>
+
+More details here
+
+Lorem ipsum
+
+code block examples
+</details>
+```
 
 Comments can include suggested replacements, but simply include them as syntax highlighted code fence blocks in the comment.
 
