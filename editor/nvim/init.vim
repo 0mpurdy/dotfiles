@@ -93,6 +93,7 @@ nnoremap <leader>gl :Gclog %<cr>
 nnoremap <leader>gh :0Gclog<cr>
 nnoremap <leader>gb :Git blame<cr>
 nnoremap <leader>ge :Gedit<cr>
+nnoremap <leader>gw :Gwrite<cr>
 
 nnoremap gdh :diffget //2<cr>
 nnoremap gdl :diffget //3<cr>
