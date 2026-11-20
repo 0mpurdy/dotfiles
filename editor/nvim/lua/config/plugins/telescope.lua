@@ -9,10 +9,9 @@ return {
 
       local builtin = require('telescope.builtin')
 
-
       vim.keymap.set('n', '<leader>sf', builtin.git_files, { desc = 'Telescope find files', noremap = true })
       vim.keymap.set('n', '<leader>b', builtin.buffers, { desc = 'Telescope buffers', noremap = true })
-      vim.keymap.set('n', '<leader>sc', builtin.command_history, { desc = 'Telescope command history', noremap = true })
+      vim.keymap.set('n', '<leader>s:', builtin.command_history, { desc = 'Telescope command history', noremap = true })
       vim.keymap.set('n', '<leader>sh', builtin.help_tags, { desc = 'Telescope help tags', noremap = true })
       vim.keymap.set('n', '<Leader>a', builtin.live_grep, { desc = 'Telescope live grep', noremap = true })
       vim.keymap.set('v', '<Leader>a', function()

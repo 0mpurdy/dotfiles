@@ -218,7 +218,9 @@ colorscheme industry
 " find word in all files
 " :nnoremap <leader>K :grep -r --exclude-dir=node_modules --exclude="*.d.ts" --include "*.ts" --include "*.tsx" --include "*.py" ' ./src/ ./e2e<S-Left><S-Left><S-Left>'
 " :nnoremap <leader>K :vimgrep ' **/*.ts<S-Left><S-Left>'
-:nnoremap <leader>K :grep -r --exclude-dir=node_modules --exclude-dir=venv --exclude="*.d.ts" ' ./<S-Left><S-Left>'
+" :nnoremap <leader>K :grep -r --exclude-dir=node_modules --exclude-dir=venv --exclude="*.d.ts" ' ./<S-Left><S-Left>'
+" with ripgrep
+:nnoremap <leader>K :grep --glob '!node_modules/' --glob '!venv/' --glob '!*.d.ts' '' ./<S-Left><S-Left>
 " replace word under cursor
 :nnoremap <leader><leader>s :%s/\<<C-r><C-w>\>/
 " find word under cursor
